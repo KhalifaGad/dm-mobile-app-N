@@ -1,0 +1,22 @@
+.search-img {
+    width: 5%;
+    height: 5%;
+}
+.search-stklayout {
+    border-bottom-color: white;
+    border-bottom-width: 5px;
+    border-bottom-style: solid;
+    width: 80%;
+}
+.search-txtfld {
+    background-color: transparent;
+    color: white;
+    placeholder-color: white;
+    font-size: 20em;
+    width: 95%;
+}
+.items-list{
+    margin-right: 30vw;
+    margin-left: 30vw;
+}
+

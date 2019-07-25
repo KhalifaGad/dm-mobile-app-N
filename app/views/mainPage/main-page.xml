@@ -1,0 +1,37 @@
+<Page 
+    actionBarHidden="{{ actionBarStatus.hidden }}"
+    xmlns="http://schemas.nativescript.org/tns.xsd" 
+    xmlns:actionBar="components/actionBar" 
+    xmlns:bottomNav="components/bottomNav" navigatingTo="onNavigatingTo" class="page">
+    
+    <Page.actionBar>
+        <actionBar:ActionBar-component />
+    </Page.actionBar>
+
+    <AbsoluteLayout id="secondChild" >
+        <StackLayout top="30" left="36" orientation="vertical" class="app-headers">
+            <Label horizontalAlignment="left" text="SEARCH" />
+            <Label horizontalAlignment="left" class="bold" text="FOR MEDICIN" />
+        </StackLayout>
+        <StackLayout top="120" left="40" orientation="horizontal" class="search-stklayout">
+            <TextField hint="Find the medicine" class="search-txtfld" />
+            <Image src="res://fa_search" class="search-img" />
+        </StackLayout>
+        <StackLayout id="items-container" top="250" left="0" orientation="vertical" class="home-items-stklayout">
+            <ScrollView height="290vh" id="itemsScrollView" scrollBarIndicatorVisible="false">
+                <Repeater items="{{ items }}">
+                    <Repeater.itemTemplate>
+                        <StackLayout orientation="horizontal" class="list-item" tap="toDrug" val="{{ $value }}">
+                            <StackLayout orientation="vertical" horizontalAlignment="right" verticalAlignment="middle" class="drug-info-wrapper">
+                                <Label text="{{ $value.item }}" horizontalAlignment="left" class="drug-name" textWrap="false" width="90%" />
+                                <Label text="{{'Price per pack ' + $value.price + 'EGP' }}" horizontalAlignment="left" textWrap="true" />
+                            </StackLayout>
+                            <Image src="res://fa_angle_right" horizontalAlignment="right" style="horizontal-align:center;" verticalAlignment="middle" height="20vh" width="20vw" tap="toDrug" />
+                        </StackLayout>
+                    </Repeater.itemTemplate>
+                </Repeater >
+            </ScrollView>
+        </StackLayout>
+        <bottomNav:BottomNav-component top="546" left="0" />
+    </AbsoluteLayout>
+</Page>

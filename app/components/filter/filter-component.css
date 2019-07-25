@@ -1,0 +1,94 @@
+.filter-component {
+    background-color: #560BD0;
+    width: 100%;
+}
+.semi-actionbar{
+    width: 100%;
+}
+.close{
+    width: 30vw;
+    height: 30vh;
+    opacity: .5
+}
+.semi-actionbar Image+Image{
+    margin-left: 72%;
+}
+.light-opacity{
+    opacity: .7;
+}
+.bottom-controllers-layout {
+    background-color: transparent;
+}
+.bottom-controllers-layout CardView{
+    margin-left: 41%;
+}
+.label-header{
+    width: 100%;
+    font-size: 16em;
+    font-weight: bold;
+    color: #AB85E7;
+}
+.line{
+    border-width: .8em;
+    border-color: #AB85E7;
+    width: 58%;
+    margin-left: 2%;
+}
+font-big{
+    font-size: 93;
+}
+.switch-wrapper {
+    border-color: #fff;
+    border-radius: 15%;
+    border-width: 0;
+    background-color: #fff;
+    margin-left: 15vw;
+    height: 27vh;
+    width: 45vw;
+}
+
+.switch-dash[checked = false] {
+    padding: 0;
+    margin: 0;
+    color: #AB85E7;
+    background-color: transparent;
+}
+.switch-dash[checked = true]{
+    padding: 0;
+    margin: 0;
+    color: #560BD0;
+    background-color: transparent;
+}
+.payment-option1-wrapper,
+.payment-option2-wrapper{
+    width: 80%;
+}
+.payment-option1-wrapper Label+StackLayout{
+    margin-left: 47%;
+}
+.payment-option2-wrapper Label+StackLayout{
+    margin-left: 54%;
+}
+.search-img {
+    width: 5%;
+    height: 5%;
+}
+.search-stklayout {
+    border-bottom-color: white;
+    border-bottom-width: 5px;
+    border-bottom-style: solid;
+    width: 80%;
+}
+.search-txtfld {
+    background-color: transparent;
+    color: white;
+    placeholder-color: white;
+    font-size: 20em;
+    width: 95%;
+}
+
+.items-list{
+    margin-right: 30vw;
+    margin-left: 30vw;
+}
+

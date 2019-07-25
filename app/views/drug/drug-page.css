@@ -1,0 +1,40 @@
+.item-headers-wrapper {
+    width: 90%;
+}
+
+.item-info-wrapper {
+    color: #fff;
+    font-size: 18em;
+    width: 83%;
+}
+
+.item-headers-wrapper .first-layer+.second-layer {
+    margin-top: 45vh
+}
+
+.first-layer StackLayout+StackLayout {
+    margin-top: 5vh
+}
+
+.item-headers-wrapper Image+Label {
+    margin-left: 10vw;
+}
+
+.header-discount-wrapper {
+    color: #fff;
+    border-width: 2em;
+    border-color: #fff;
+    border-radius: 5%;
+    font-size: 15em;
+    width: 14%;
+    padding-top: 10vh;
+    font-weight: 900;
+}
+
+.second-layer {
+    font-size: 17em;
+}
+.second-layer StackLayout+StackLayout {
+    margin-left: 90vw;    
+}
+

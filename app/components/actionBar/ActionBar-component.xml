@@ -1,0 +1,10 @@
+<!-- http://moduscreate.com/custom-components-in-nativescript/ -->
+<!-- <ActionBar class="ActionBar-component" flat="true">
+    <Image horizontalAlignment="left" class="ActionBar-logo" src="res://logo_white" />
+</ActionBar> -->
+<ActionBar title="AB" class="ActionBar-component">
+    <StackLayout horizontalAlignment="left">
+        <Image src="res://logo_white" class="ActionBar-logo" tap="toMain" ></Image>
+    </StackLayout>
+</ActionBar>
+<!-- <Label class="ActionBar-component" loaded="onLoaded" text="ActionBar Component!"/> -->

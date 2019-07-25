@@ -1,0 +1,17 @@
+<!-- http://moduscreate.com/custom-components-in-nativescript/ -->
+
+<!-- <Label class="BottomNav-component" loaded="onLoaded" text="BottomNav Component!"/> -->
+<StackLayout 
+    xmlns:Card="@nstudio/nativescript-cardview"
+    orientation="horizontal"
+    loaded="onLoaded"
+    class="bottom-controllers-layout">
+    <Image id="profileImg" src="res://fa_user" verticalAlignment="bottom" class="btm-nav-side-imgs" tap="toProfile" />
+    <Card:CardView verticalAlignment="top" elevation="40" radius="30" tap="toFilter">
+        <StackLayout class="filter-stklayout" id="filter-tap">
+            <Image src="res://fa_filter" horizontalAlignment="center" class="btm-nav-center-imgs"/>
+            <Label text="Filter" horizontalAlignment="center" />
+        </StackLayout>
+    </Card:CardView>
+    <Image id="cartImg" src="res://fa_shopping_cart" verticalAlignment="bottom" class="btm-nav-side-imgs" tap="toCart"/>
+</StackLayout>

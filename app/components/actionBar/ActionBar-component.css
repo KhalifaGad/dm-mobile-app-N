@@ -1,0 +1,11 @@
+.ActionBar-component {
+    background-color: transparent;
+    height: 50vh;
+    margin-top: 6%;
+    z-index: 0;
+}
+.ActionBar-logo{
+    height: 50vh;
+    width: 40vw;
+    margin-left: 4%;
+}

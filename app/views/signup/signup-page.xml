@@ -1,0 +1,7 @@
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" navigatingTo="navigatingTo" class="page">
+<Page.actionBar>
+	<ActionBar title="Signup Page" icon="" class="action-bar">
+		</ActionBar>
+	</Page.actionBar>
+	<Label class="signup-page" text="Signup Page!"/>
+</Page>

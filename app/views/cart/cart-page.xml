@@ -1,0 +1,49 @@
+<Page 
+    id="cart-page"
+    actionBarHidden="{{ actionBarStatus.hidden }}"
+    xmlns="http://schemas.nativescript.org/tns.xsd"
+	xmlns:actionBar="components/actionBar" 
+	xmlns:bottomNav="components/bottomNav" navigatingTo="onNavigatingTo" class="page">
+
+	<Page.actionBar>
+		<actionBar:ActionBar-component />
+	</Page.actionBar>
+
+	<AbsoluteLayout id="secondChild" >
+		<Label top="30" left="40" class="bold app-headers" text="MY CART" />
+        <StackLayout top="100" left="40" orientation="horizontal" class="cart-headers-wrapper">
+            <StackLayout orientation="vertical" horizontalAlignment="left" class="cart-info-wrapper">
+                <StackLayout orientation="horizontal" >
+                    <Label text="Items: " textWrap="true" />
+                    <Label text="{{ items.length + ' item' }}" textWrap="true" class="bold" />
+                </StackLayout>
+                <StackLayout orientation="horizontal" >
+                    <Label text="Total: " textWrap="true" />
+                    <Label text="8500 EGP" textWrap="true" class="bold" />
+                </StackLayout>
+            </StackLayout>
+            <Button text="checkout" tap="" horizontalAlignment="right" class="checkout-btn" />
+        </StackLayout>
+        <StackLayout id="items-container" top="200" left="0" orientation="vertical" class="home-items-stklayout">
+            <ScrollView height="340vh" id="itemsScrollView" scrollBarIndicatorVisible="false">
+                <Repeater items="{{ items }}">
+                    <Repeater.itemTemplate>
+                        <StackLayout orientation="horizontal" class="list-item" tap="onTap" val="{{ $value.item }}">
+                            <StackLayout orientation="horizontal" class="drug-info-wrapper">
+                                <StackLayout orientation="vertical" horizontalAlignment="right" verticalAlignment="middle" class="drug-name-price">
+                                    <Label text="{{ $value.item }}" horizontalAlignment="left" class="drug-name" textWrap="true" />
+                                    <Label text="{{'Price per pack ' + $value.price + 'EGP' }}" horizontalAlignment="left" textWrap="true" />
+                                </StackLayout>
+                                <StackLayout class="discount-box" orientation="vertical" horizontalAlignment="right">
+                                    <Label text="{{ '-' + $value.discount + '%' }}" horizontalAlignment="center" />
+                                </StackLayout>
+                            </StackLayout>
+                            <Image src="res://fa_angle_right" horizontalAlignment="right" style="horizontal-align:center;" verticalAlignment="middle" height="20vh" width="20vw" />
+                        </StackLayout>
+                    </Repeater.itemTemplate>
+                </Repeater >
+            </ScrollView>
+        </StackLayout>
+		<bottomNav:BottomNav-component top="546" left="0" />
+	</AbsoluteLayout>
+</Page>
