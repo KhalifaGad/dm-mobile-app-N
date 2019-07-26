@@ -3,6 +3,7 @@
     top="650"
     left="0"
     class="filter-component"
+    tap="onTap"
     xmlns:Card="@nstudio/nativescript-cardview">
     <StackLayout top="60" left="0" orientation="horizontal" class="semi-actionbar" horizontalAlignment="left" horizontalAlignment="left">
             <Image horizontalAlignment="left" class="action-bar-logo" src="res://logo_white" />
@@ -34,12 +35,7 @@
         <Label verticalAlignment="bottom" text="LOCATION " textWrap="true" />
         <StackLayout verticalAlignment="center" class="line" />
     </StackLayout>
-    <StackLayout top="680" left="0" orientation="horizontal" class="bottom-controllers-layout">
-        <Card:CardView verticalAlignment="top" horizontalAlignment="center" elevation="40" radius="30">
-            <StackLayout class="filter-stklayout" id="filter-tap">
-                <Image src="res://fa_filter" horizontalAlignment="center" class="btm-nav-center-imgs"/>
-                <Label text="Apply" class="bold" horizontalAlignment="center" />
-            </StackLayout>
-        </Card:CardView>
+    <StackLayout top="680" left="170" class="filter-stklayout" verticalAlignment="top" id="filter-btn">
+        <Button verticalAlignment="center" horizontalAlignment="center"  text="Apply" tap="loadFilter" class="btm-nav-side-center-btn" />
     </StackLayout>
 </AbsoluteLayout>

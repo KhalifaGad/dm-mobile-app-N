@@ -1,10 +1,6 @@
-import * as view from 'tns-core-modules/ui/core/view'
 import DrugViewModel from './drug-view-model'
 import * as gestures from 'tns-core-modules/ui/gestures'
 import {
-    toProfile,
-    toFilter,
-    toCart,
     toDrug
 } from '../../utils/navHelpers'
 import {
@@ -21,10 +17,8 @@ function onNavigatingTo(args) {
 		viewModel: new DrugViewModel()
 	}
 	page.bindingContext = {...bindings}
-	
-    
-    const itemsScrollView = view.getViewById(page, 'itemsScrollView')
-    const itemsContainer = view.getViewById(page, 'items-container')
+    const itemsScrollView = page.getViewById('itemsScrollView')
+    const itemsContainer = page.getViewById('items-container')
 	let animationParams = {
         args,
         itemsContainer,
@@ -32,7 +26,7 @@ function onNavigatingTo(args) {
     }
 	itemsScrollView.on(gestures.GestureTypes.pan, async (args) => {
         if (args.deltaY < -200) {
-            animationParams.toY = -179
+            animationParams.toY = -270
             stretchMenu(animationParams)
         }else if (args.deltaY > 300) {
             animationParams.smallHeight = '340vh'

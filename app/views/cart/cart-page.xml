@@ -15,7 +15,7 @@
             <StackLayout orientation="vertical" horizontalAlignment="left" class="cart-info-wrapper">
                 <StackLayout orientation="horizontal" >
                     <Label text="Items: " textWrap="true" />
-                    <Label text="{{ items.length + ' item' }}" textWrap="true" class="bold" />
+                    <Label text="{{ viewModel.items.length + ' item' }}" textWrap="true" class="bold" />
                 </StackLayout>
                 <StackLayout orientation="horizontal" >
                     <Label text="Total: " textWrap="true" />
@@ -25,8 +25,8 @@
             <Button text="checkout" tap="" horizontalAlignment="right" class="checkout-btn" />
         </StackLayout>
         <StackLayout id="items-container" top="200" left="0" orientation="vertical" class="home-items-stklayout">
-            <ScrollView height="340vh" id="itemsScrollView" scrollBarIndicatorVisible="false">
-                <!-- <Repeater items="{{ viewModel.items }}">
+            <ScrollView height="360vh" id="itemsScrollView" scrollBarIndicatorVisible="false">
+                <Repeater items="{{ viewModel.items }}">
                     <Repeater.itemTemplate>
                         <StackLayout orientation="horizontal" class="list-item" tap="onTap" val="{{ $value.item }}">
                             <StackLayout orientation="horizontal" class="drug-info-wrapper">
@@ -38,12 +38,12 @@
                                     <Label text="{{ '-' + $value.discount + '%' }}" horizontalAlignment="center" />
                                 </StackLayout>
                             </StackLayout>
-                            <Image src="res://fa_angle_right" horizontalAlignment="right" style="horizontal-align:center;" verticalAlignment="middle" height="20vh" width="20vw" />
+                            <Image src="res://fa_angle_right" horizontalAlignment="right" verticalAlignment="middle" height="20vh" width="20vw" />
                         </StackLayout>
                     </Repeater.itemTemplate>
-                </Repeater > -->
+                </Repeater >
             </ScrollView>
         </StackLayout>
-		<bottomNav:BottomNav-component top="546" left="0" />
+		<bottomNav:BottomNav-component top="579" left="0" />
 	</AbsoluteLayout>
 </Page>

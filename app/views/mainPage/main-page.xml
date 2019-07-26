@@ -18,7 +18,7 @@
             <Image src="res://fa_search" class="search-img" />
         </StackLayout>
         <StackLayout id="items-container" top="250" left="0" orientation="vertical" class="home-items-stklayout">
-            <ScrollView height="290vh" id="itemsScrollView" scrollBarIndicatorVisible="false">
+            <ScrollView height="310" id="itemsScrollView" scrollBarIndicatorVisible="false">
                 <Repeater items="{{ viewModel.items }}">
                     <Repeater.itemTemplate>
                         <StackLayout orientation="horizontal" class="list-item" tap="toDrug" val="{{ $value }}">
@@ -32,6 +32,6 @@
                 </Repeater >
             </ScrollView>
         </StackLayout>
-        <bottomNav:BottomNav-component top="546" left="0" />
+        <bottomNav:BottomNav-component top="579" left="0" />
     </AbsoluteLayout>
 </Page>

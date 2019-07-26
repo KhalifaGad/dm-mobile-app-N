@@ -1,7 +1,30 @@
-<Page xmlns="http://schemas.nativescript.org/tns.xsd" navigatingTo="navigatingTo" class="page">
-<Page.actionBar>
-	<ActionBar title="Login Page" icon="" class="action-bar">
-		</ActionBar>
+<Page class="page" navigatingTo="navigatingTo" 
+	xmlns:actionBar="components/actionBar"
+	xmlns="http://schemas.nativescript.org/tns.xsd">
+	<Page.actionBar>
+		<actionBar:ActionBar-component />
 	</Page.actionBar>
-	<Label class="login-page" text="Login Page!"/>
+
+	<StackLayout >
+        <StackLayout orientation="vertical" class="headers" horizontalAlignment="left">
+            <Label text="SIGN IN" />
+            <Label class="bold" text="WELCOME BACK" />
+        </StackLayout>
+        <StackLayout class="login-controllers-stacklayout">
+            <Image horizontalAlignment="center" class="login-logo" src="res://logo_lg" />
+            <StackLayout id="emailView" horizontalAlignment="center" class="custom-input-stacklayout">
+                <Label text="Email Address"/>
+                <TextField hint="email@domain.com" keyboardType="email" text="{{ email }}" class="custom-txtfld" />
+            </StackLayout>
+            <StackLayout id="passwordView" horizontalAlignment="center" class="custom-input-stacklayout">
+                <Label text="Password" />
+                <TextField hint="Enter your passowrd" secure="true" text="{{ password }}" class="custom-txtfld" secure="true"/>
+            </StackLayout>
+            <StackLayout horizontalAlignment="center" orientation="horizontal" class="h-ctr-login-stklayout">
+                <Label text="Forget password?" verticalAlignment="center" horizontalAlignment="left" />
+                <Button text="Login" class="login-btn" horizontalAlignment="right" tap="login" />
+            </StackLayout>
+            <Label horizontalAlignment="center" text="Don't have account!" class="lastlogin-label" />
+        </StackLayout>
+    </StackLayout>
 </Page>

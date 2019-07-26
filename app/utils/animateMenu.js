@@ -6,9 +6,9 @@ async function stretchMenu(params) {
         toY
     } = params
 
-    bigHeight = bigHeight == undefined ? '520vh' : bigHeight
+    bigHeight = bigHeight == undefined ? '540' : bigHeight
     toY = toY == undefined ? -230 : toY
-    
+
     itemsContainer.animate({
         translate: {
             x: 0,
@@ -17,9 +17,9 @@ async function stretchMenu(params) {
         duration: 500
     })
     itemsScrollView.height = bigHeight
-    
+
 }
-async function shortenMenu(params){
+async function shortenMenu(params) {
     let {
         itemsContainer,
         itemsScrollView,
@@ -27,7 +27,7 @@ async function shortenMenu(params){
     } = params
 
     smallHeight = smallHeight == undefined ? '290vh' : smallHeight
-    
+
     await itemsContainer.animate({
         translate: {
             x: 0,

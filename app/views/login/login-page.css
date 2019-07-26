@@ -1,3 +1,52 @@
-.login-page {
-
+.login-controllers-stacklayout {
+    margin-top: 8%;
+    border-top-left-radius: 50%;
+    border-top-right-radius: 50%;
+    background-color: white;
+    height: 100%;
+}
+.login-logo {
+    margin-top: 4%;
+    height: 15%;
+    width: 12%;
+}
+.custom-input-stacklayout {
+    margin-top: 4%;
+    border-width: 1;
+    border-color: #a7a6aa;
+    width: 80%;
+}
+.custom-input-stacklayout Label {
+    margin-left: 5%;
+    margin-top: 2%;
+    color: #b1b0b4;
+    font-weight: bold;
+}
+.custom-input-stacklayout TextField {
+    margin-left: 4%;
+    color: #27252d;
+    font-weight: bold;
+}
+.h-ctr-login-stklayout {
+    margin-top: 4%;
+    width: 80%;
+}
+.login-btn {
+    border-radius: 10%;
+    background-color: #FF3838;
+    color: white;
+    font-weight: bold;
+    width: 35%;
+    text-transform: none;
+}
+.h-ctr-login-stklayout Label + Button {
+    margin-left: 20%;
+}
+.h-ctr-login-stklayout Label {
+    font-size: 16em;
+}
+.lastlogin-label {
+    color: #FF3838;
+    margin-top: 10%;
+    font-size: 16em;
 }

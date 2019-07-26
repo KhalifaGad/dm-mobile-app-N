@@ -94,3 +94,28 @@ font-big{
     margin-left: 30vw;
 }
 
+.btm-nav-side-center-btn{
+    height: 100%;
+    width: 100%;
+    background-color: #fff;
+    background-image: url('res://fa_filter');
+    background-size: 25% 25%;
+    background-repeat: no-repeat;
+    background-position: 50% 25% ;
+    color: #560BD0;
+    font-weight: bold;
+    font-size: 12em;
+    z-index: 0;
+    padding-top: 35%;
+    border-radius: 20%;
+    text-transform: none;
+
+}
+.filter-stklayout{
+    height: 75vh;
+    width: 70vw;
+    background-color: #fff;
+    overflow: hidden;
+    border-radius: 15%;
+    z-index: 30;
+}

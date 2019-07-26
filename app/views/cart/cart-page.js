@@ -1,5 +1,4 @@
 import CartViewModel from './cart-view-model'
-import * as view from 'tns-core-modules/ui/core/view'
 import * as gestures from 'tns-core-modules/ui/gestures'
 import {
     toProfile,
@@ -19,8 +18,8 @@ function onNavigatingTo(args) {
         viewModel: CartViewModel()
     }
     page.bindingContext = { ...bindings }
-    const itemsScrollView = view.getViewById(page, 'itemsScrollView')
-    const itemsContainer = view.getViewById(page, 'items-container')
+    const itemsScrollView = page.getViewById('itemsScrollView')
+    const itemsContainer = page.getViewById('items-container')
     let animationParams = {
         args,
         itemsContainer,
@@ -40,6 +39,5 @@ function onNavigatingTo(args) {
 export {
     onNavigatingTo,
     toProfile,
-    toFilter,
     toDrug
 };

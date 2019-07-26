@@ -108,7 +108,7 @@ Button, TextField {
     border-top-right-radius: 50%;
     border-width: 5;
     border-color: #fff;
-    background-color: white;
+    background-color: #fff;
     height: 800vh;  
     width: 100%;
     overflow: hidden;

@@ -25,7 +25,7 @@ function onNavigatingTo(args) {
     page = args.object;
     let bindings = {
         actionBarStatus,
-        viewModel
+        viewModel: profileViewModel()
     }
     page.bindingContext = {...bindings}
     const itemsScrollView = view.getViewById(page, 'itemsScrollView'),
@@ -46,12 +46,6 @@ function onNavigatingTo(args) {
     })
 }
 
-settingsStates.addEventListener(Observable.propertyChangeEvent, (data) => {
-    if (data.value === false) {
-        removeSettingsCompo()
-    }
-})
-
 async function removeSettingsCompo() {
     const settingsCompo = page.getViewById('settingsComponent');
     const mainScene = page.getViewById('secondChild')
@@ -71,6 +65,7 @@ async function removeSettingsCompo() {
 //mainScene
 async function toSettings() {
     const mainScene = page.getViewById('secondChild')
+    if(page.getViewById('settingsComponent')) return
     let settingsCompo = builder.load({
         path: 'components/settings',
         name: 'SettingsCompo'
@@ -95,8 +90,8 @@ async function toSettings() {
 
 export {
     onNavigatingTo,
-    toFilter,
     toCart,
     toSettings,
+    removeSettingsCompo,
     toDrug
 };

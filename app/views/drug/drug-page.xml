@@ -40,7 +40,7 @@
             </StackLayout>
         </StackLayout>
         <StackLayout id="items-container" top="280" left="0" orientation="vertical" class="home-items-stklayout">
-            <ScrollView height="470vh" id="itemsScrollView" scrollBarIndicatorVisible="false">
+            <ScrollView height="285" id="itemsScrollView"  scrollBarIndicatorVisible="false">
                 <Repeater items="{{ viewModel.items }}">
                     <Repeater.itemTemplate>
                         <StackLayout orientation="horizontal" class="list-item" tap="toDrug" val="{{ $value }}">
@@ -59,6 +59,6 @@
                 </Repeater >
             </ScrollView>
         </StackLayout>
-		<bottomNav:BottomNav-component top="546" left="0" />
+		<bottomNav:BottomNav-component top="579" left="0" />
 	</AbsoluteLayout>
 </Page>

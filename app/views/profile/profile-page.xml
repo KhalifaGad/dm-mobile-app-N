@@ -25,7 +25,7 @@
             </StackLayout>
         </StackLayout>
         <StackLayout id="items-container" top="200" left="0" orientation="vertical" class="home-items-stklayout">
-            <ScrollView height="340vh" id="itemsScrollView" scrollBarIndicatorVisible="false">
+            <ScrollView height="360" id="itemsScrollView" scrollBarIndicatorVisible="false">
                 <Repeater items="{{ viewModel.items }}">
                     <Repeater.itemTemplate>
                         <StackLayout orientation="horizontal" class="list-item" tap="onTap" val="{{ $value.item }}">
@@ -44,6 +44,6 @@
                 </Repeater >
             </ScrollView>
         </StackLayout>
-		<bottomNav:BottomNav-component top="546" left="0" />
+		<bottomNav:BottomNav-component top="579" left="0" />
 	</AbsoluteLayout>
 </Page>

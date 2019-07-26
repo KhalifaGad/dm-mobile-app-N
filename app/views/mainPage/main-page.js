@@ -26,8 +26,8 @@ function onNavigatingTo(args) {
     page.bindingContext = {
         ...bindings
     }
-    const itemsScrollView = view.getViewById(page, 'itemsScrollView')
-    const itemsContainer = view.getViewById(page, 'items-container')
+    const itemsScrollView = page.getViewById('itemsScrollView')
+    const itemsContainer = page.getViewById('items-container')
     itemsScrollView.on(gestures.GestureTypes.pan, async (args) => {
         const animationParams = {
             args,
@@ -42,15 +42,10 @@ function onNavigatingTo(args) {
     })
 }
 
-function onTap(args) {
-    console.log(args.object.val)
-}
-
 export {
     onNavigatingTo,
-    onTap,
     toDrug,
     toProfile,
-    toFilter,
-    toCart
+    toCart,
+    cartz
 };

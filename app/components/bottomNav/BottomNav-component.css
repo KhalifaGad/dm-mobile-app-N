@@ -1,41 +1,57 @@
 .bottom-controllers-layout {
-    height: 110vh;
+    height: 100vh;
     background-color: #fff;
     width: 100%;
-    padding-top: 10%;
 }
-.bottom-controllers-layout Image {
-    margin-left: 10%;
+.bottom-controllers-layout .btm-nav-side-right-btn {
+    margin-left: 12%;
 }
-.bottom-controllers-layout Image + CardView {
-    margin-left: 11%;
+.bottom-controllers-layout Button + .filter-stklayout {
+    margin-left: 8%;
     margin-top: 2%;
 }
-.bottom-controllers-layout CardView + Image  {
-    margin-left: 10%;
+.bottom-controllers-layout .filter-stklayout+ Button  {
+    margin-left: 8%;
 }
 
-.btm-nav-side-imgs {
-    height: 20%;
-    width: 20%;
-    background-color: transparent;
-    margin-bottom: 28
+.btm-nav-side-left-btn{
+    background-image: url('res://fa_shopping_cart');
+    background-repeat: no-repeat;
+    background-position: top;
+    border-width: 0;
+    z-index: 0;
+    padding-top: 10vh;
+}
+.btm-nav-side-right-btn{
+    background-image: url('res://fa_user');
+    background-repeat: no-repeat;
+    background-position: top;
+    border-width: 0;
+    z-index: 0;
+    padding-top: 10vh;
+}
+.btm-nav-side-center-btn{
+    height: 100%;
+    width: 100%;
+    background-color: #fff;
+    background-image: url('res://fa_filter');
+    background-size: 25% 25%;
+    background-repeat: no-repeat;
+    background-position: 50% 25% ;
+    color: #560BD0;
+    font-weight: bold;
+    font-size: 12em;
+    z-index: 0;
+    padding-top: 35%;
+    border-radius: 20%;
+    text-transform: none;
+
 }
 .filter-stklayout{
-    height: 70vh;
+    height: 75vh;
     width: 70vw;
-}
-.filter-stklayout Image {
-    margin-top: 10%;
-}
-.btm-nav-center-imgs {
-    height: 40%;
-    width: 20%;
-    background-color: transparent;
-}
-.btm-nav-side-imgs-active {
-    margin-bottom: 11; 
-    height: 37%;
-    width: 20%;
-    background-color: transparent;
+    background-color: #fff;
+    overflow: hidden;
+    border-radius: 15%;
+    z-index: 30;
 }
