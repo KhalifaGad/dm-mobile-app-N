@@ -13,10 +13,19 @@ import {
     stretchMenu,
     shortenMenu
 } from '../../utils/animateMenu'
+import {
+    actionBarStatus
+} from '~/app'
 
 function onNavigatingTo(args) {
-    const page = args.object;
-    page.bindingContext = mainViewModel();
+    const page = args.object
+    let bindings = {
+        actionBarStatus,
+        viewModel: mainViewModel()
+    }
+    page.bindingContext = {
+        ...bindings
+    }
     const itemsScrollView = view.getViewById(page, 'itemsScrollView')
     const itemsContainer = view.getViewById(page, 'items-container')
     itemsScrollView.on(gestures.GestureTypes.pan, async (args) => {
@@ -27,7 +36,7 @@ function onNavigatingTo(args) {
         }
         if (args.deltaY < -200) {
             stretchMenu(animationParams)
-        }else if (args.deltaY > 300) {
+        } else if (args.deltaY > 300) {
             shortenMenu(animationParams)
         }
     })

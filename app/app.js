@@ -11,16 +11,17 @@ filterStatus = observableModule.fromObject({
 }),
 actionBarStatus = observableModule.fromObject({
     hidden: false
-}) 
+})
 
 if (application.android) {
-    application.android.on(application
-        .AndroidApplication
+    application.android.on(application.AndroidApplication
         .activityBackPressedEvent, backEvent);
+        // set the status bar to Color.Transparent
+        //window.setStatusBarColor(0x000000);
 }
 
-function backEvent(){
-    console.log('pressed')
+function backEvent(args){
+    args.cancel = true
     const navigationEntry = {
         moduleName: 'views/mainPage/main-page',
         animated: true,
@@ -38,14 +39,3 @@ function backEvent(){
 export { settingsStates, filterStatus, actionBarStatus }
 
 application.run({ moduleName: "app-root" })
-
-/*
------------------ CHANGES --------------------------
-xmlns:Card="@nstudio/nativescript-cardview"
-<Card:CardView
-*/ 
-
-/*
-Do not place any code after the application has been started as it will not
-be executed on iOS.
-*/

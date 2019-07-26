@@ -41,7 +41,7 @@
         </StackLayout>
         <StackLayout id="items-container" top="280" left="0" orientation="vertical" class="home-items-stklayout">
             <ScrollView height="470vh" id="itemsScrollView" scrollBarIndicatorVisible="false">
-                <Repeater items="{{ mvvmContext.items }}">
+                <Repeater items="{{ viewModel.items }}">
                     <Repeater.itemTemplate>
                         <StackLayout orientation="horizontal" class="list-item" tap="toDrug" val="{{ $value }}">
                             <StackLayout orientation="horizontal" class="drug-info-wrapper">

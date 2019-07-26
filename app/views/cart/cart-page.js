@@ -10,10 +10,15 @@ import {
     stretchMenu,
     shortenMenu
 } from '../../utils/animateMenu'
+import { actionBarStatus } from '~/app'
 
 function onNavigatingTo(args) {
     const page = args.object;
-    page.bindingContext = new CartViewModel();
+    let bindings = {
+        actionBarStatus,
+        viewModel: CartViewModel()
+    }
+    page.bindingContext = { ...bindings }
     const itemsScrollView = view.getViewById(page, 'itemsScrollView')
     const itemsContainer = view.getViewById(page, 'items-container')
     let animationParams = {

@@ -19,7 +19,7 @@
         </StackLayout>
         <StackLayout id="items-container" top="250" left="0" orientation="vertical" class="home-items-stklayout">
             <ScrollView height="290vh" id="itemsScrollView" scrollBarIndicatorVisible="false">
-                <Repeater items="{{ items }}">
+                <Repeater items="{{ viewModel.items }}">
                     <Repeater.itemTemplate>
                         <StackLayout orientation="horizontal" class="list-item" tap="toDrug" val="{{ $value }}">
                             <StackLayout orientation="vertical" horizontalAlignment="right" verticalAlignment="middle" class="drug-info-wrapper">

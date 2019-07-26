@@ -7,7 +7,7 @@
     loaded="onLoaded"
     class="bottom-controllers-layout">
     <Image id="profileImg" src="res://fa_user" verticalAlignment="bottom" class="btm-nav-side-imgs" tap="toProfile" />
-    <Card:CardView verticalAlignment="top" elevation="40" radius="30" tap="toFilter">
+    <Card:CardView verticalAlignment="top" elevation="40" radius="30" tap="loadFilter">
         <StackLayout class="filter-stklayout" id="filter-tap">
             <Image src="res://fa_filter" horizontalAlignment="center" class="btm-nav-center-imgs"/>
             <Label text="Filter" horizontalAlignment="center" />

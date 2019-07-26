@@ -19,12 +19,15 @@ import {
     actionBarStatus
 } from '~/app'
 
-
 let page;
 
 function onNavigatingTo(args) {
     page = args.object;
-    page.bindingContext = new profileViewModel();
+    let bindings = {
+        actionBarStatus,
+        viewModel
+    }
+    page.bindingContext = {...bindings}
     const itemsScrollView = view.getViewById(page, 'itemsScrollView'),
         itemsContainer = view.getViewById(page, 'items-container'),
         animationParams = {

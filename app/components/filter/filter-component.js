@@ -4,4 +4,4 @@ function close(){
 	filterStatus.opened = false
 }
 
-export { close, filterStatus}
+export { close, filterStatus }

@@ -1,35 +1,40 @@
-<AbsoluteLayout id="filterComponent" class="filter-component">
-    <StackLayout orientation="horizontal" class="semi-actionbar" horizontalAlignment="left" horizontalAlignment="left">
+<AbsoluteLayout 
+    id="filterComponent"
+    top="650"
+    left="0"
+    class="filter-component"
+    xmlns:Card="@nstudio/nativescript-cardview">
+    <StackLayout top="60" left="0" orientation="horizontal" class="semi-actionbar" horizontalAlignment="left" horizontalAlignment="left">
             <Image horizontalAlignment="left" class="action-bar-logo" src="res://logo_white" />
             <Image horizontalAlignment="right" class="close" src="res://fa_close" tap="close" />
     </StackLayout>
-    <StackLayout top="30" left="24" orientation="vertical" class="app-headers light-opacity">
+    <StackLayout top="140" left="24" orientation="vertical" class="app-headers light-opacity">
         <Label horizontalAlignment="left" text="SEARCH FILTER" />
     </StackLayout>
-    <StackLayout top="70" left="30" orientation="horizontal" class="search-stklayout">
+    <StackLayout top="180" left="30" orientation="horizontal" class="search-stklayout">
         <TextField hint="Find the medicine" class="search-txtfld" />
     </StackLayout>
-    <StackLayout top="160" left="30" orientation="horizontal" class="label-header light-opacity">
+    <StackLayout top="280" left="30" orientation="horizontal" class="label-header light-opacity">
         <Label verticalAlignment="bottom" text="PAYMENT " textWrap="true" />
         <StackLayout verticalAlignment="center" class="line" />
     </StackLayout>
-    <StackLayout top="200" left="30" orientation="horizontal" horizontalAlignment="right" class="payment-option1-wrapper">
+    <StackLayout top="320" left="30" orientation="horizontal" horizontalAlignment="right" class="payment-option1-wrapper">
         <Label text="Deffered payment" textWrap="true" verticalAlignment="center" class="white bold light-opacity" />
         <StackLayout class="switch-wrapper light-opacity">
             <Switch class="switch-dash" width="45vw" />
         </StackLayout>
     </StackLayout>
-    <StackLayout top="230" left="30" orientation="horizontal" horizontalAlignment="right" class="payment-option2-wrapper">
+    <StackLayout top="350" left="30" orientation="horizontal" horizontalAlignment="right" class="payment-option2-wrapper">
         <Label text="Cash payment" textWrap="true" verticalAlignment="center" class="white bold light-opacity" />
         <StackLayout class="switch-wrapper light-opacity">
             <Switch class="switch-dash" width="45vw" />
         </StackLayout>
     </StackLayout>
-    <StackLayout top="300" left="30" orientation="horizontal" class="label-header light-opacity">
+    <StackLayout top="420" left="30" orientation="horizontal" class="label-header light-opacity">
         <Label verticalAlignment="bottom" text="LOCATION " textWrap="true" />
         <StackLayout verticalAlignment="center" class="line" />
     </StackLayout>
-    <StackLayout orientation="horizontal" class="bottom-controllers-layout">
+    <StackLayout top="680" left="0" orientation="horizontal" class="bottom-controllers-layout">
         <Card:CardView verticalAlignment="top" horizontalAlignment="center" elevation="40" radius="30">
             <StackLayout class="filter-stklayout" id="filter-tap">
                 <Image src="res://fa_filter" horizontalAlignment="center" class="btm-nav-center-imgs"/>

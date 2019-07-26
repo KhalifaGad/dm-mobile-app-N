@@ -11,14 +11,16 @@ import {
     stretchMenu,
     shortenMenu
 } from '../../utils/animateMenu'
+import { actionBarStatus } from '~/app'
 
 function onNavigatingTo(args) {
 	const page = args.object
-	let context = {
+	let bindings = {
+        actionBarStatus,
 		navContext: page.navigationContext,
-		mvvmContext: new DrugViewModel()
+		viewModel: new DrugViewModel()
 	}
-	page.bindingContext = {...context}
+	page.bindingContext = {...bindings}
 	
     
     const itemsScrollView = view.getViewById(page, 'itemsScrollView')
@@ -44,5 +46,5 @@ export {
     toProfile,
     toFilter,
 	toCart,
-	toDrug
+    toDrug
 };

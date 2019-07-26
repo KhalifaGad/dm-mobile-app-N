@@ -1,10 +1,12 @@
-const Observable = require("tns-core-modules/data/observable").Observable;
+const Observable = require("tns-core-modules/data/observable")
 const items = require('../../utils/db').items
 
 function mainViewModel() {
-    const viewModel = new Observable();
+    const viewModel = Observable.fromObject({
+        items
+    });
 
-    viewModel.items = items
+    //viewModel.items = items
 
     return viewModel;
 }

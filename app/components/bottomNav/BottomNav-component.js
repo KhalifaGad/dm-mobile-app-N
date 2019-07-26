@@ -1,12 +1,15 @@
 import * as view from 'tns-core-modules/ui/core/view'
 import * as builder from "tns-core-modules/ui/builder"
-    import {
-        Observable
-    } from 'tns-core-modules/data/observable'
+import {
+    Observable
+} from 'tns-core-modules/data/observable'
 import {
     toProfile,
     toCart
 } from '../../utils/navHelpers'
+import {
+    childrenUserInteraction
+} from '../../utils/childrenHelper'
 import {
     actionBarStatus,
     filterStatus
@@ -29,12 +32,13 @@ function onLoaded(args) {
 
 async function loadFilter() {
     const mainScene = page.getViewById('secondChild')
-    let settingsCompo = builder.load({
+    if (page.getViewById('filterComponent')) return
+    let filterComponent = builder.load({
         path: 'components/filter',
         name: 'filter-component'
     })
-    mainScene.addChild(settingsCompo)
-    await settingsCompo.animate({
+    mainScene.addChild(filterComponent)
+    await filterComponent.animate({
         translate: {
             x: 0,
             y: -650
@@ -44,17 +48,18 @@ async function loadFilter() {
         actionBarStatus.hidden = true;
     })
     filterStatus.opened = true
-    filterStatus.addEventListener(Observable.propertyChangeEvent, (data)=> {
+    filterStatus.addEventListener(Observable.propertyChangeEvent, (data) => {
         if (data.value === false) {
             removeFilter()
         }
     })
+    childrenUserInteraction(mainScene, false)
 }
 
 async function removeFilter() {
     const filterComponent = page.getViewById('filterComponent');
     const mainScene = page.getViewById('secondChild')
-    await settingsCompo.animate({
+    await filterComponent.animate({
         translate: {
             x: 0,
             y: 650
@@ -65,6 +70,7 @@ async function removeFilter() {
     )
     mainScene.removeChild(filterComponent)
     filterStatus.off(Observable.propertyChangeEvent)
+    childrenUserInteraction(mainScene, true)
 }
 
 export {
