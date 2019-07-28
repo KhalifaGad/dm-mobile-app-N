@@ -5,7 +5,7 @@
       "version": "6.0.1"
     },
     "tns-android": {
-      "version": "6.0.0"
+      "version": "6.0.1"
     }
   },
   "description": "NativeScript Application",
@@ -13,8 +13,12 @@
   "repository": "<fill-your-repository-here>",
   "dependencies": {
     "@nstudio/nativescript-cardview": "^1.0.0",
+    "apollo-boost": "^0.4.3",
+    "graphql": "^14.4.2",
+    "graphql-tag": "^2.10.1",
     "nativescript-theme-core": "~1.0.6",
     "nativescript-toast": "^2.0.0",
+    "nativescript-ui-listview": "^7.0.1",
     "tns-core-modules": "~6.0.0"
   },
   "devDependencies": {

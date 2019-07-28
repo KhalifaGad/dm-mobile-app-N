@@ -3,8 +3,11 @@
     <Image horizontalAlignment="left" class="ActionBar-logo" src="res://logo_white" />
 </ActionBar> -->
 <ActionBar title="AB" class="ActionBar-component">
-    <StackLayout horizontalAlignment="left">
-        <Image src="res://logo_white" class="ActionBar-logo" tap="toMain" ></Image>
+    <StackLayout class="AB-holder"  orientation="horizontal">
+        <Image class="ActionBar-logo" src="res://logo_white"  horizontalAlignment="left" />
+        <Button text="Home" class="home-btn" src="res://home" horizontalAlignment="right" tap="toMain" />
+        <!-- <Button text="Home" icon="res://home" horizontalAlignment="right" tap="toMain" /> -->
     </StackLayout>
+   
 </ActionBar>
 <!-- <Label class="ActionBar-component" loaded="onLoaded" text="ActionBar Component!"/> -->

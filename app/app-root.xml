@@ -1,2 +1,2 @@
-<Frame id="mainFrame" defaultPage="views/login/login-page">
+<Frame id="mainFrame" defaultPage="views/result/result-page">
 </Frame>

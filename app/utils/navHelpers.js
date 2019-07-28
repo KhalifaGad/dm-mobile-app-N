@@ -12,7 +12,7 @@ async function toMain(args) {
     const navigationEntry = {
         moduleName: 'views/mainPage/main-page',
         animated: true,
-        clearHistory: true,
+        clearHistory: false,
         transition: {
             name: "slideLeft",
             duration: 380,
@@ -34,7 +34,7 @@ function toProfile(args) {
     const navigationEntry = {
         moduleName: 'views/profile/profile-page',
         animated: true,
-        clearHistory: true,
+        clearHistory: false,
         transition: {
             name: "slideLeft",
             duration: 380,
@@ -49,7 +49,7 @@ function toCart(args) {
     const navigationEntry = {
         moduleName: 'views/cart/cart-page',
         animated: true,
-        clearHistory: true,
+        clearHistory: false,
         transition: {
             name: "slideLeft",
             duration: 380,
@@ -69,6 +69,7 @@ function toDrug(args) {
             drug
         },
         animated: true,
+        clearHistory: false,
         transition: {
             name: "slide",
             duration: 280,
@@ -78,25 +79,9 @@ function toDrug(args) {
     page.frame.navigate(navigationEntry)
 }
 
-/* function backEvent(args){
-    args.cancel = true
-    const navigationEntry = {
-        moduleName: 'views/mainPage/main-page',
-        animated: true,
-        clearHistory: true,
-        transition: {
-            name: "slideLeft",
-            duration: 380,
-            curve: "linear"
-        }
-    }
-    frame.getFrameById('mainFrame').navigate(navigationEntry)
-} */
-
 export {
     toMain,
     toProfile,
     toCart,
-    backEvent,
     toDrug
 }

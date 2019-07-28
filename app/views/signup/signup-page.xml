@@ -1,7 +1,89 @@
-<Page xmlns="http://schemas.nativescript.org/tns.xsd" navigatingTo="navigatingTo" class="page">
-<Page.actionBar>
-	<ActionBar title="Signup Page" icon="" class="action-bar">
+<Page class="page" navigatingTo="navigatingTo" 
+	xmlns="http://schemas.nativescript.org/tns.xsd">
+	<Page.actionBar>
+		<ActionBar title="AB" class="ActionBar-component">
+			<StackLayout horizontalAlignment="left">
+				<Image src="res://logo" class="ActionBar-logo" tap="toMain"></Image>
+			</StackLayout>
 		</ActionBar>
 	</Page.actionBar>
-	<Label class="signup-page" text="Signup Page!"/>
+	<StackLayout>
+        <StackLayout orientation="vertical" class="headers primary-color" horizontalAlignment="left">
+            <Label text="SIGN UP" />
+            <Label class="bold" text="LET'S START" />
+        </StackLayout>
+        <StackLayout id="firstScene" class="form-body" visibility="{{step == '1'? 'visible' : 'collapsed'}}" >
+            <StackLayout>
+                <Label text="Personal information" class="bold signup-info-label" textWrap="true" />
+                <Label text="Will not be shared with public" textWrap="true" />
+            </StackLayout>
+            <StackLayout horizontalAlignment="center" class="custom-input-stacklayout">
+                <Label text="First Name *" class="txtfld-label" />
+                <TextField hint="Enter your first name " class="custom-txtfld" />
+            </StackLayout>
+            <StackLayout horizontalAlignment="center" class="custom-input-stacklayout">
+                <Label text="Last Name *" class="txtfld-label" />
+                <TextField hint="Enter your last name" class="custom-txtfld" />
+            </StackLayout>
+            <StackLayout horizontalAlignment="center" class="custom-input-stacklayout">
+                <Label text="Phone Number *" class="txtfld-label" />
+                <TextField hint="Enter your phone number" class="custom-txtfld" />
+            </StackLayout>
+            <StackLayout horizontalAlignment="center" class="custom-input-stacklayout">
+                <Label text="Birth Date" class="txtfld-label" />
+                <TextField hint="DD/MM/YYYY" class="custom-txtfld" />
+            </StackLayout>
+            <StackLayout horizontalAlignment="right" class="next" >
+                <Image src="res://arrow_next" width="42vw" height="42vh" tap="step2" />
+            </StackLayout>
+        </StackLayout>
+        <StackLayout id="secondScene" class="form-body" visibility="{{step == '2'? 'visible' : 'collapsed'}}" >
+            <StackLayout>
+                <Label text="You are almost there!." class="bold signup-info-label" textWrap="true" />
+            </StackLayout>
+            <StackLayout horizontalAlignment="center" class="custom-input-stacklayout">
+                <Label text="Email Address *" class="txtfld-label" />
+                <TextField hint="Enter your email " class="custom-txtfld" />
+            </StackLayout>
+            <StackLayout horizontalAlignment="center" class="custom-input-stacklayout">
+                <Label text="Password *" class="txtfld-label" />
+                <TextField hint="Enter your password" class="custom-txtfld" />
+            </StackLayout>
+            <StackLayout horizontalAlignment="center" class="custom-input-stacklayout">
+                <Label text="Retype Password *" class="txtfld-label" />
+                <TextField hint="Retype your password Again" class="custom-txtfld" />
+            </StackLayout>
+            <StackLayout horizontalAlignment="right" orientation="horizontal" class="max-width split-arrows next-deeper">
+                <Image src="res://arrow_pervious" horizontalAlignment="left" width="42vw" height="42vh" tap="step1" />
+                <Image src="res://arrow_next" horizontalAlignment="right" width="42vw" height="42vh" tap="step3" />
+            </StackLayout>
+        </StackLayout>
+        <StackLayout id="thirdScene" class="form-body" visibility="{{step == '3'? 'visible' : 'collapsed'}}" >
+            <StackLayout>
+                <Label text="Pharmacy information" class="bold signup-info-label" textWrap="true" />
+                <Label text="Enter your pharmacy information" textWrap="true" />
+            </StackLayout>
+            <StackLayout horizontalAlignment="center" class="custom-input-stacklayout">
+                <Label text="Pharmacy name*" class="txtfld-label" />
+                <TextField hint="Enter your pharmacy name " class="custom-txtfld" />
+            </StackLayout>
+            <StackLayout horizontalAlignment="center" class="custom-input-stacklayout">
+                <Label text="City *" class="txtfld-label" />
+                <TextField hint="Enter your city" class="custom-txtfld" />
+            </StackLayout>
+            <StackLayout horizontalAlignment="center" class="custom-input-stacklayout">
+                <Label text="Area *" class="txtfld-label" />
+                <TextField hint="Enter your area" class="custom-txtfld" />
+            </StackLayout>
+            <StackLayout horizontalAlignment="center" class="custom-input-stacklayout">
+                <Label text="St name - Building number" class="txtfld-label" />
+                <TextField hint="Address information" class="custom-txtfld" />
+            </StackLayout>
+            <StackLayout horizontalAlignment="right" orientation="horizontal" class="max-width arrow-and-button next">
+                <Image src="res://arrow_pervious" horizontalAlignment="left" width="42vw" height="42vh" tap="step2" />
+                <Button text="confirm" horizontalAlignment="right" tap="" />
+            </StackLayout>
+        </StackLayout>
+    </StackLayout>
+
 </Page>

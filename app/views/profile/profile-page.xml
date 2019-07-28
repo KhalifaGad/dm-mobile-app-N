@@ -1,13 +1,12 @@
-<Page
-	id="profile-page"
-    actionBarHidden="{{ actionBarStatus.hidden }}"
-	xmlns="http://schemas.nativescript.org/tns.xsd" 
-	xmlns:actionBar="components/actionBar" 
-	xmlns:bottomNav="components/bottomNav" navigatingTo="onNavigatingTo" class="page">
-	 <Page.actionBar>
+<Page id="profile-page" actionBarHidden="{{ actionBarStatus.hidden }}" 
+    xmlns="http://schemas.nativescript.org/tns.xsd" 
+    xmlns:lv="nativescript-ui-listview" 
+    xmlns:actionBar="components/actionBar" 
+    xmlns:bottomNav="components/bottomNav" navigatingTo="onNavigatingTo" class="page">
+    <Page.actionBar>
         <actionBar:ActionBar-component />
     </Page.actionBar>
-	<AbsoluteLayout id="secondChild">
+    <AbsoluteLayout id="secondChild">
         <Label top="30" left="24" class="bold app-headers" text="Dr.Ahmed Pharmacy" />
         <StackLayout top="100" left="24" class="item-headers-wrapper">
             <StackLayout orientation="horizontal" class="first-layer">
@@ -25,7 +24,23 @@
             </StackLayout>
         </StackLayout>
         <StackLayout id="items-container" top="200" left="0" orientation="vertical" class="home-items-stklayout">
-            <ScrollView height="360" id="itemsScrollView" scrollBarIndicatorVisible="false">
+            <lv:RadListView height="360" id="itemsScrollView" items="{{ viewModel.items }}">
+                <lv:RadListView.itemTemplate>
+                    <StackLayout orientation="horizontal" class="list-item" tap="onTap" >
+                            <StackLayout orientation="horizontal" class="drug-info-wrapper">
+                                <StackLayout orientation="vertical" horizontalAlignment="right" verticalAlignment="middle" class="drug-name-price">
+                                    <Label text="{{ name }}" horizontalAlignment="left" class="drug-name" textWrap="true" />
+                                    <Label text="{{'Price per pack ' + price + 'EGP' }}" horizontalAlignment="left" textWrap="true" />
+                                </StackLayout>
+                                <StackLayout class="discount-box" orientation="vertical" horizontalAlignment="right">
+                                    <Label text="{{ '-' + discount + '%' }}" horizontalAlignment="center" />
+                                </StackLayout>
+                            </StackLayout>
+                            <Image src="res://fa_angle_right" horizontalAlignment="right" style="horizontal-align:center;" verticalAlignment="middle" height="20vh" width="20vw" />
+                        </StackLayout>
+                </lv:RadListView.itemTemplate> 
+            </lv:RadListView>
+            <!-- <ScrollView height="360" id="itemsScrollView" scrollBarIndicatorVisible="false">
                 <Repeater items="{{ viewModel.items }}">
                     <Repeater.itemTemplate>
                         <StackLayout orientation="horizontal" class="list-item" tap="onTap" val="{{ $value.item }}">
@@ -41,9 +56,9 @@
                             <Image src="res://fa_angle_right" horizontalAlignment="right" style="horizontal-align:center;" verticalAlignment="middle" height="20vh" width="20vw" />
                         </StackLayout>
                     </Repeater.itemTemplate>
-                </Repeater >
-            </ScrollView>
+                </Repeater>
+            </ScrollView> -->
         </StackLayout>
-		<bottomNav:BottomNav-component top="579" left="0" />
-	</AbsoluteLayout>
+        <bottomNav:BottomNav-component top="579" left="0" />
+    </AbsoluteLayout>
 </Page>

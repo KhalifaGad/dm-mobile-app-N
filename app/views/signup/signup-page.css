@@ -1,3 +1,67 @@
-.signup-page {
-
+.page {
+    background-color: #fff
+}
+.ActionBar-component {
+    background-color: transparent;
+    height: 50vh;
+    margin-top: 6%;
+    z-index: 0;
+}
+.ActionBar-logo{
+    height: 50vh;
+    width: 40vw;
+    margin-left: 4%;
+}
+.form-body{
+    margin-top: 20vh;
+    padding-top: 20vh;
+    border-top-color:#cdcdd1;
+    border-top-width: 1;
+    border-top-style: solid;
+    margin-right: 6.5%;
+    margin-left: 6.5%;
+}
+.headers.primary-color{
+    color: #FF3838;
+}
+.signup-info-label{
+    font-size: 18em
+}
+.custom-input-stacklayout {
+    margin-top: 4%;
+    border-width: 1;
+    border-color: #a7a6aa;
+    width: 100%;
+}
+.custom-input-stacklayout Label {
+    margin-left: 5%;
+    margin-top: 2%;
+    color: #b1b0b4;
+    font-weight: bold;
+}
+.custom-input-stacklayout TextField {
+    margin-left: 4%;
+    color: #27252d;
+    font-weight: bold;
+}
+.next{
+    margin-top: 10%;
+}
+.next-deeper{
+    margin-top: 30%;
+}
+.max-width{
+    width: 100%
+}
+.split-arrows Image+Image{
+    margin-left: 76.5%;
+}
+.arrow-and-button Button{
+    border-radius: 10%;
+    background-color: #FF3838;
+    color: #fff;
+    font-weight: bold;
+}
+.arrow-and-button Image+Button{
+    margin-left: 62%;
 }

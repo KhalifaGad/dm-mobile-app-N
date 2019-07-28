@@ -6,8 +6,6 @@ import {
     Observable
 } from 'tns-core-modules/data/observable'
 import {
-    toFilter,
-    toCart,
     toDrug
 } from '../../utils/navHelpers'
 import {
@@ -28,14 +26,14 @@ function onNavigatingTo(args) {
         viewModel: profileViewModel()
     }
     page.bindingContext = {...bindings}
-    const itemsScrollView = view.getViewById(page, 'itemsScrollView'),
-        itemsContainer = view.getViewById(page, 'items-container'),
+    const itemsScrollView = view.getViewById(page, 'itemsScrollView');
+    const itemsContainer = view.getViewById(page, 'items-container'),
         animationParams = {
             args,
             itemsContainer,
             itemsScrollView,
         }
-    itemsScrollView.on(gestures.GestureTypes.pan, async (args) => {
+    itemsScrollView.on(gestures.GestureTypes.touch, async (args) => {
         if (args.deltaY < -200) {
             animationParams.toY = -179
             stretchMenu(animationParams)
@@ -70,6 +68,7 @@ async function toSettings() {
         path: 'components/settings',
         name: 'SettingsCompo'
     })
+    console.log(page.bindingContext.actionBarStatus)
     mainScene.addChild(settingsCompo)
     await settingsCompo.animate({
         translate: {

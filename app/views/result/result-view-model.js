@@ -1,13 +1,13 @@
 const observableModule = require("tns-core-modules/data/observable")
 const items = require('../../utils/db').items
 
-function ProfileViewModel() {
+function ResultViewModel() {
     let viewModel = observableModule.fromObject({
-        items,
-        name: '',
-        actionBarStatus: false
+        items
     })
     return viewModel
 }
 
-export default ProfileViewModel;
+export {
+    ResultViewModel
+}

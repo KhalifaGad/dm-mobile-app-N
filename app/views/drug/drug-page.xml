@@ -2,6 +2,7 @@
     id="drug-page"
     actionBarHidden="{{ actionBarStatus.hidden }}"
     xmlns="http://schemas.nativescript.org/tns.xsd"
+    xmlns:lv="nativescript-ui-listview"
 	xmlns:actionBar="components/actionBar" 
 	xmlns:bottomNav="components/bottomNav" navigatingTo="onNavigatingTo" class="page">
 	<Page.actionBar>

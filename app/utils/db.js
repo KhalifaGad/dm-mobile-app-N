@@ -13,6 +13,13 @@ const items = [{
         deferred: false
     },
     {
+        item: 'Lyrolin 150mg Capsule',
+        price: 120,
+        seller: 'Abo Zeyada',
+        discount: 20,
+        deferred: false
+    },
+    {
         item: 'AMOXIL 500mg Capsule',
         price: 450,
         seller: 'storii',

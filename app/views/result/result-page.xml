@@ -1,7 +1,42 @@
-<Page xmlns="http://schemas.nativescript.org/tns.xsd" navigatingTo="navigatingTo" class="page">
-<Page.actionBar>
-	<ActionBar title="Result Page" icon="" class="action-bar">
-		</ActionBar>
+<Page id="result-page" actionBarHidden="{{ actionBarStatus.hidden }}" 
+	xmlns="http://schemas.nativescript.org/tns.xsd"
+	xmlns:lv="nativescript-ui-listview" 
+	xmlns:actionBar="components/actionBar" 
+	xmlns:bottomNav="components/bottomNav" navigatingTo="navigatingTo" class="page">
+	
+	<Page.actionBar>
+		<actionBar:ActionBar-component />
 	</Page.actionBar>
-	<Label class="result-page" text="Result Page!"/>
+
+	<AbsoluteLayout>
+		<StackLayout top="30" left="24" orientation="vertical" class="app-headers">
+			<Label horizontalAlignment="left" text="RESULT FOR" />
+		</StackLayout>
+		<StackLayout top="90" left="50" orientation="horizontal" class="search-stklayout">
+			<TextField hint="Find the medicine" class="search-txtfld" />
+			<Image src="res://fa_search" class="search-img" />
+		</StackLayout>
+		<StackLayout id="items-container" top="200" left="0" orientation="vertical" class="home-items-stklayout">
+			<ScrollView height="380vh" id="itemsScrollView" scrollBarIndicatorVisible="false">
+				<Repeater items="{{ viewModel.items }}">
+                    <Repeater.itemTemplate>
+                        <StackLayout orientation="horizontal" class="list-item" tap="onTap" val="{{ $value.item }}">
+                            <StackLayout orientation="horizontal" class="drug-info-wrapper">
+                                <StackLayout orientation="vertical" horizontalAlignment="right" verticalAlignment="middle" class="drug-name-price">
+                                    <Label text="{{ $value.item }}" horizontalAlignment="left" class="drug-name" textWrap="true" />
+                                    <Label text="{{'Price per pack ' + $value.price + 'EGP' }}" horizontalAlignment="left" textWrap="true" />
+                                </StackLayout>
+                                <StackLayout class="discount-box" orientation="vertical" horizontalAlignment="right">
+                                    <Label text="{{ '-' + $value.discount + '%' }}" horizontalAlignment="center" />
+                                </StackLayout>
+                            </StackLayout>
+                            <Image src="res://fa_angle_right" horizontalAlignment="right" verticalAlignment="middle" height="20vh" width="20vw" />
+                        </StackLayout>
+                    </Repeater.itemTemplate>
+                </Repeater>
+			</ScrollView>
+		</StackLayout>
+		<bottomNav:BottomNav-component top="579" left="0" />
+	</AbsoluteLayout>
+
 </Page>

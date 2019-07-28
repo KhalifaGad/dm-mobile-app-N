@@ -2,10 +2,8 @@ import {
     mainViewModel
 } from './main-view-model'
 import * as gestures from 'tns-core-modules/ui/gestures'
-import * as view from 'tns-core-modules/ui/core/view'
 import {
     toProfile,
-    toFilter,
     toCart,
     toDrug
 } from '../../utils/navHelpers'
@@ -41,7 +39,7 @@ function onNavigatingTo(args) {
         }
     })
 }
-
+  
 export {
     onNavigatingTo,
     toDrug,

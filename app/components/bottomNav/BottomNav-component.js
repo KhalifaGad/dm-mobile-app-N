@@ -38,9 +38,9 @@ async function loadFilter() {
             y: -650
         },
         duration: 400
-    }).then(() => {
-        actionBarStatus.hidden = true;
-    })
+    }).then(
+        actionBarStatus.hidden = true
+    )
     filterStatus.opened = true
     filterStatus.addEventListener(Observable.propertyChangeEvent, (data) => {
         if (data.value === false) {

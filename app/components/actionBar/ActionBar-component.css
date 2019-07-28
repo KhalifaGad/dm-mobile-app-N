@@ -1,11 +1,32 @@
 .ActionBar-component {
     background-color: transparent;
     height: 50vh;
+    width: 100%;
     margin-top: 6%;
     z-index: 0;
 }
+.AB-holder{
+    width: 365vw;
+    height: 50vh;
+    background-color: transparent
+}
 .ActionBar-logo{
     height: 50vh;
-    width: 40vw;
-    margin-left: 4%;
+    width: 35vw;
+    /* margin-left: 4%; */
+}
+.ActionBar-logo + .home-btn{
+    margin-left: 64%
+}
+.home-btn{
+    text-transform: none;
+    color: #fff;
+    font-weight: bold;
+    background-image: url('res://home');
+    background-position: 100% 50%;
+    /* background-size: 26% 36%; */
+    padding-right: 10%;
+    z-index: 0;
+    background-repeat: no-repeat;
+    width: 90vw;
 }
