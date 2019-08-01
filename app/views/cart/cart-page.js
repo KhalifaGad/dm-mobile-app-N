@@ -1,6 +1,5 @@
 import CartViewModel from './cart-view-model'
 import * as gestures from 'tns-core-modules/ui/gestures'
-const httpModule = require("tns-core-modules/http");
 import ApolloClient from 'apollo-boost';
 import gql from 'graphql-tag';
 
@@ -45,11 +44,11 @@ function onNavigatingTo(args) {
 }
 
 function test(args) {
-   const client = new ApolloClient({
-    uri: 'http://test.drug1market.com/'
-   })
-   client.query({
-    query: gql`
+    const client = new ApolloClient({
+        uri: 'http://test.drug1market.com/'
+    })
+    client.query({
+            query: gql `
       {
         drugs{
                   id
@@ -57,9 +56,9 @@ function test(args) {
                 }
       }
     `,
-  })
-    .then(data => console.log(data))
-    .catch(error => console.error(error))
+        })
+        .then(data => console.log(data))
+        .catch(error => console.error(error))
 }
 
 

@@ -50,11 +50,30 @@
 .next-deeper{
     margin-top: 30%;
 }
+.next-extra-deeper{
+    margin-top: 43%;
+}
 .max-width{
     width: 100%
 }
-.split-arrows Image+Image{
+.split-arrows Button+Button{
     margin-left: 76.5%;
+}
+.back-btn{
+    width: 42;
+    height: 42;
+    background-image: url('res://arrow_pervious');
+    background-size: 100%;
+    z-index: 0;
+    border-radius: 10%;
+}
+.next-btn{
+    width: 42;
+    height: 42;
+    background-image: url('res://arrow_next');
+    background-size: 100%;
+    z-index: 0;
+    border-radius: 10%;
 }
 .arrow-and-button Button{
     border-radius: 10%;
@@ -62,6 +81,44 @@
     color: #fff;
     font-weight: bold;
 }
-.arrow-and-button Image+Button{
+.arrow-and-button Button+Button{
     margin-left: 62%;
+}
+.switch-wrapper {
+    border-color: #FF3838;
+    border-radius: 15%;
+    border-width: 0;
+    background-color: #FF3838;
+    margin-left: 15vw;
+    height: 27vh;
+    width: 45vw;
+    margin-top: 3%;
+}
+.switch-dash[checked = false] {
+    padding: 0;
+    margin: 0;
+    color: #fff;
+    background-color: transparent;
+    outline-color: transparent;
+    outline-width: 0;
+}
+.switch-dash[checked = true]{
+    padding: 0;
+    margin: 0;
+    color: #fff;
+    background-color: transparent;
+    outline-color: transparent;
+    outline-width: 0;
+}
+
+.location-labels{
+    margin-top: 10%;
+    width: 83%;
+    font-size: 17em;
+}
+.switch-wrapper-parent{
+    width: 100%;
+}
+.small{
+    font-size: 12em;
 }

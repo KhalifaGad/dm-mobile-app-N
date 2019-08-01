@@ -1,0 +1,18 @@
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" actionBarHidden="true" navigatingTo="navigatingTo" class="page">
+	<Page.actionBar>
+		<ActionBar title=" " icon="" class="action-bar">
+		</ActionBar>
+	</Page.actionBar>
+
+	<StackLayout>
+		<Image horizontalAlignment="center" class="logo-lg" src="res://logo_lg" />
+		<Image horizontalAlignment="center" class="confirm" src="res://confirm_illustrations" />
+		<Label horizontalAlignment="center" text="VERIFICATION CODE SENT" textWrap="true" class="bold first-lbl" />
+		<Label text="Please check your email, copy & paste the verification code " textWrap="true" class="second-lbl" />
+		<StackLayout horizontalAlignment="center" orientation="horizontal" class="bottom-controllers">
+			<TextField hint="Verification code" text="{{ code }}" class="verify-txtfld" />
+			<Button text="Verify" class="verify-btn" tap="verifyPharmacy" />
+		</StackLayout>
+	</StackLayout>
+
+</Page>

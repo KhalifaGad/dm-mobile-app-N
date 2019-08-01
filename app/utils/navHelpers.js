@@ -7,12 +7,12 @@ import {
 } from '~/views/profile/profile-page'
 
 
-async function toMain(args) {
+async function toMain(args, clearHistoryFlag = false) {
     args.cancel = true
     const navigationEntry = {
         moduleName: 'views/mainPage/main-page',
         animated: true,
-        clearHistory: false,
+        clearHistory: clearHistoryFlag,
         transition: {
             name: "slideLeft",
             duration: 380,
@@ -79,9 +79,58 @@ function toDrug(args) {
     page.frame.navigate(navigationEntry)
 }
 
+function toSignup(args){
+    const page = args.object.page;
+    const navigationEntry = {
+        moduleName: 'views/signup/signup-page',
+        animated: true,
+        backstackVisible: false,
+        transition: {
+            name: "slideLeft",
+            duration: 380,
+            curve: "linear"
+        }
+    }
+    page.frame.navigate(navigationEntry)
+}
+
+function toVerification(args) {
+    console.log('hey2')
+    const page = args.object.page;
+    const navigationEntry = {
+        moduleName: 'views/verification/verification-page',
+        animated: true,
+        transition: {
+            name: "slideLeft",
+            duration: 380,
+            curve: "linear"
+        }
+    }
+    page.frame.navigate(navigationEntry)
+    console.log('hey3')
+}
+
+function toLogin(args){
+    console.log('toLogin')
+    const page = args.object.page;
+    const navigationEntry = {
+        moduleName: 'views/login/login-page',
+        animated: true,
+        transition: {
+            name: "slideLeft",
+            duration: 380,
+            curve: "linear"
+        }
+    }
+    page.frame.navigate(navigationEntry)
+}
+
 export {
     toMain,
     toProfile,
     toCart,
-    toDrug
+    toDrug,
+    toSignup,
+    toVerification,
+    toLogin
 }

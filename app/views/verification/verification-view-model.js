@@ -1,12 +1,12 @@
 const observableModule = require("tns-core-modules/data/observable");
 
-function LoginViewModel() {
+function VerificationViewModel() {
     const viewModel = observableModule.fromObject({
-		email: '',
-		password: '',
-		hidden: true
-	})
+        code: ''
+    })
     return viewModel;
 }
 
-export { LoginViewModel }
+export {
+    VerificationViewModel
+}

@@ -1,6 +1,6 @@
 import { LoginViewModel } from './login-view-model'
 import Toast from 'nativescript-toast'
-import { toMain } from '~/utils/navHelpers'
+import { toMain, toSignup } from '~/utils/navHelpers'
 
 let page
 
@@ -22,5 +22,4 @@ function login(args){
 		toMain(args)
 	}
 }
-
-export { navigatingTo, login }
+export { navigatingTo, login, toSignup }

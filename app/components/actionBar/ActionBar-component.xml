@@ -2,10 +2,10 @@
 <!-- <ActionBar class="ActionBar-component" flat="true">
     <Image horizontalAlignment="left" class="ActionBar-logo" src="res://logo_white" />
 </ActionBar> -->
-<ActionBar title="AB" class="ActionBar-component">
+<ActionBar title="AB" class="ActionBar-component" loaded="onLoad">
     <StackLayout class="AB-holder"  orientation="horizontal">
         <Image class="ActionBar-logo" src="res://logo_white"  horizontalAlignment="left" />
-        <Button text="Home" class="home-btn" src="res://home" horizontalAlignment="right" tap="toMain" />
+        <Button text="Home" class="home-btn" src="res://home" visibility="{{ hidden ? 'collapsed' : 'visible' }}" horizontalAlignment="right" tap="toMain" />
         <!-- <Button text="Home" icon="res://home" horizontalAlignment="right" tap="toMain" /> -->
     </StackLayout>
    

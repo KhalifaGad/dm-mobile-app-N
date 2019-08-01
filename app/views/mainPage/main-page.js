@@ -44,6 +44,5 @@ export {
     onNavigatingTo,
     toDrug,
     toProfile,
-    toCart,
-    cartz
+    toCart
 };

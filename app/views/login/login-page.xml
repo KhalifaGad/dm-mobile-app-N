@@ -2,7 +2,7 @@
 	xmlns:actionBar="components/actionBar"
 	xmlns="http://schemas.nativescript.org/tns.xsd">
 	<Page.actionBar>
-		<actionBar:ActionBar-component />
+		<actionBar:ActionBar-component hidden="{{ true }}"/>
 	</Page.actionBar>
 
 	<StackLayout >
@@ -24,7 +24,7 @@
                 <Label text="Forget password?" verticalAlignment="center" horizontalAlignment="left" />
                 <Button text="Login" class="login-btn" horizontalAlignment="right" tap="login" />
             </StackLayout>
-            <Label horizontalAlignment="center" text="Don't have account!" class="lastlogin-label" />
+            <Label horizontalAlignment="center" text="Don't have account?! Sign up" class="lastlogin-label" tap="toSignup" />
         </StackLayout>
     </StackLayout>
 </Page>

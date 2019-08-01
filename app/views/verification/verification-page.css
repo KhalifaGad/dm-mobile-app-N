@@ -1,0 +1,45 @@
+.page {
+    background-color: #fff;
+}
+.logo-lg {
+    margin-top: 10%;
+    height: 15%;
+    width: 12%;
+}
+.confirm{
+    margin-top: 10%;
+    height: 33%;
+    width: 100%;
+}
+.first-lbl{
+    margin-top: 4%;
+    font-size: 18em;
+    color: black;
+}
+.second-lbl{
+    width: 76%;
+    margin-top: 1%;
+}
+.bottom-controllers {
+    margin-top: 5%;
+}
+.bottom-controllers TextField+Button{
+    margin-left: 4%;
+}
+.verify-txtfld{
+    width: 50%;
+    background-color: transparent;
+    border: none;
+    border-bottom-width: 2em;
+    border-bottom-color: #560BD0;
+}
+.verify-btn{
+    color: #fff;
+    font-weight: bold;
+    height: 45vh;
+    background-color: #FF3838;
+    text-transform: none;
+    border-width: 0;
+    z-index: 0;
+    border-radius: 10%;
+}
