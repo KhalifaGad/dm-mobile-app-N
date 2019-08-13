@@ -37,7 +37,7 @@ function onNavigatingTo(args) {
             animationParams.toY = -179
             stretchMenu(animationParams)
         } else if (args.deltaY > 300) {
-            animationParams.smallHeight = '340vh'
+            animationParams.smallHeight = '360'
             shortenMenu(animationParams)
         }
     })

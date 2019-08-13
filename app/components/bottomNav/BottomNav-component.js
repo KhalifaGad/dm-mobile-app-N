@@ -3,6 +3,7 @@ import {
     Observable
 } from 'tns-core-modules/data/observable'
 import {
+    toMain,
     toProfile,
     toCart
 } from '../../utils/navHelpers'
@@ -19,7 +20,7 @@ function onLoaded(args) {
         const cartBtn = page.getViewById('cart-btn')
         cartBtn.backgroundImage = "res://fa_shopping_cart_active"
     } else if (page.id === 'profile-page') {
-        const profileBtn = page.getViewById('profile-btn')
+        const profileBtn = page.getViewById('home-btn')
         profileBtn.backgroundImage = "res://fa_user_active"
     }
 }
@@ -67,6 +68,7 @@ async function removeFilter() {
 
 export {
     onLoaded,
+    toMain,
     toProfile,
     toCart,
     loadFilter,

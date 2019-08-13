@@ -1,10 +1,12 @@
 <AbsoluteLayout 
     id="filterComponent"
+    loaded="onLoaded"
     top="650"
     left="0"
     class="filter-component"
     tap="onTap"
-    xmlns:Card="@nstudio/nativescript-cardview">
+    xmlns:Card="@nstudio/nativescript-cardview"
+    xmlns:dd="nativescript-drop-down">
     <StackLayout top="60" left="0" orientation="horizontal" class="semi-actionbar" horizontalAlignment="left" horizontalAlignment="left">
             <Image horizontalAlignment="left" class="action-bar-logo" src="res://logo_white" />
             <Image horizontalAlignment="right" class="close" src="res://fa_close" tap="close" />
@@ -13,7 +15,7 @@
         <Label horizontalAlignment="left" text="SEARCH FILTER" />
     </StackLayout>
     <StackLayout top="180" left="30" orientation="horizontal" class="search-stklayout">
-        <TextField hint="Find the medicine" class="search-txtfld" />
+        <TextField hint="Search for..." text="{{ searchInput }}" class="search-txtfld" />
     </StackLayout>
     <StackLayout top="280" left="30" orientation="horizontal" class="label-header light-opacity">
         <Label verticalAlignment="bottom" text="PAYMENT " textWrap="true" />
@@ -22,19 +24,38 @@
     <StackLayout top="320" left="30" orientation="horizontal" horizontalAlignment="right" class="payment-option1-wrapper">
         <Label text="Deffered payment" textWrap="true" verticalAlignment="center" class="white bold light-opacity" />
         <StackLayout class="switch-wrapper light-opacity">
-            <Switch class="switch-dash" width="45vw" />
+            <Switch class="switch-dash" width="45" />
         </StackLayout>
     </StackLayout>
     <StackLayout top="350" left="30" orientation="horizontal" horizontalAlignment="right" class="payment-option2-wrapper">
         <Label text="Cash payment" textWrap="true" verticalAlignment="center" class="white bold light-opacity" />
         <StackLayout class="switch-wrapper light-opacity">
-            <Switch class="switch-dash" width="45vw" />
+            <Switch class="switch-dash" width="45" />
         </StackLayout>
     </StackLayout>
     <StackLayout top="420" left="30" orientation="horizontal" class="label-header light-opacity">
+        <Label verticalAlignment="bottom" text="SEARCH FOR " textWrap="true" />
+        <StackLayout verticalAlignment="center" class="line" />
+    </StackLayout>
+    <StackLayout top="460" left="30" orientation="horizontal" horizontalAlignment="right" class="search4-option1-wrapper">
+        <Label text="Store" textWrap="true" verticalAlignment="center" class="white bold light-opacity" />
+        <StackLayout class="switch-wrapper light-opacity">
+            <Switch class="switch-dash" width="45" />
+        </StackLayout>
+    </StackLayout>
+    <StackLayout top="490" left="30" orientation="horizontal" horizontalAlignment="right" class="search4-option2-wrapper">
+        <Label text="Medicine" textWrap="true" verticalAlignment="center" class="white bold light-opacity" />
+        <StackLayout class="switch-wrapper light-opacity">
+            <Switch class="switch-dash" width="45" />
+        </StackLayout>
+    </StackLayout>
+    <StackLayout top="520" left="30" orientation="horizontal" class="label-header light-opacity">
         <Label verticalAlignment="bottom" text="LOCATION " textWrap="true" />
         <StackLayout verticalAlignment="center" class="line" />
     </StackLayout>
+    <dd:DropDown id="dd" top="560" left="30" items="{{ areas }}" selectedIndex="{{ selectedIndex }}" 
+                 opened="dropDownOpened" closed="dropDownClosed" 
+                 selectedIndexChanged="dropDownSelectedIndexChanged"/>
     <StackLayout top="680" left="170" class="filter-stklayout" verticalAlignment="top" id="filter-btn">
         <Button verticalAlignment="center" horizontalAlignment="center"  text="Apply" tap="loadFilter" class="btm-nav-side-center-btn" />
     </StackLayout>

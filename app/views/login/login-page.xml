@@ -22,9 +22,9 @@
             </StackLayout>
             <StackLayout horizontalAlignment="center" orientation="horizontal" class="h-ctr-login-stklayout">
                 <Label text="Forget password?" verticalAlignment="center" horizontalAlignment="left" />
-                <Button text="Login" class="login-btn" horizontalAlignment="right" tap="login" />
+                <Button text="Login" class="login-btn" horizontalAlignment="right" tap="submit" />
             </StackLayout>
-            <Label horizontalAlignment="center" text="Don't have account?! Sign up" class="lastlogin-label" tap="toSignup" />
+            <Button horizontalAlignment="center" text="Don't have account?! Sign up" class="lastlogin-label" tap="toSignup" />
         </StackLayout>
     </StackLayout>
 </Page>

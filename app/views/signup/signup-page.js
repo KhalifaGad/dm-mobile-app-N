@@ -12,6 +12,7 @@ import {
 import {
     toVerification
 } from '~/utils/navHelpers'
+const appSettings = require("application-settings")
 
 let page, step1View, step2View, step3View
 
@@ -194,21 +195,11 @@ async function submit(args) {
         } else {
             page.getViewById('pName').borderColor = '#a7a6aa'
             let data = await addPharmacy(page.bindingContext.signupInfo)
-            console.log(data)
+            appSettings.set('verificationStat', 'waiting4Verification')
             if (data) {
                 toVerification(args)
-                console.log('hey1')
             } else {
-                alert('Error in signing up')
-                page.bindingContext.signupInfo.fName = '' 
-                page.bindingContext.signupInfo.lName = '' 
-                page.bindingContext.signupInfo.pharmacyName = '' 
-                page.bindingContext.signupInfo.email = '' 
-                page.bindingContext.signupInfo.password = '' 
-                page.bindingContext.signupInfo.repeatedPass = '' 
-                page.bindingContext.signupInfo.lat = 0
-                page.bindingContext.signupInfo.long = 0
-                page.bindingContext.signupInfo.phone = '' 
+                alert('Error in signing up') 
                 page.getViewById('secondScene').opacity = 0
                 page.getViewById('thirdScene').opacity = 0
                 page.getViewById('firstScene').opacity = 1

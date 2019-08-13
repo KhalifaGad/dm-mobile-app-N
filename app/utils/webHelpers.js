@@ -43,7 +43,27 @@ async function pharmacyVerification(code) {
     return returnedData
 }
 
+async function login(email, password) {
+    let token
+    await apolloClient
+    .mutate({
+            mutation: gql `mutation {
+            login(email: "${email}",
+                password: "${password}",
+                areYouStore: false){
+                    token
+                }
+        }`
+        })
+        .then(data => {
+            token = data.data.login.token
+        })
+        .catch(error => console.error(error))
+    return token
+}
+
 export {
     addPharmacy,
-    pharmacyVerification
+    pharmacyVerification,
+    login
 }

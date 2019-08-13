@@ -3,7 +3,10 @@
     xmlns="http://schemas.nativescript.org/tns.xsd"
     xmlns:lv="nativescript-ui-listview" 
     xmlns:actionBar="components/actionBar" 
-    xmlns:bottomNav="components/bottomNav" navigatingTo="onNavigatingTo" class="page">
+    xmlns:bottomNav="components/bottomNav"
+    navigatingTo="onNavigatingTo"
+    class="page"
+    id="home-page">
     
     <Page.actionBar>
         <actionBar:ActionBar-component />
@@ -33,6 +36,6 @@
                 </Repeater >
             </ScrollView>
         </StackLayout>
-        <bottomNav:BottomNav-component top="579" left="0" />
+        <bottomNav:BottomNav-component top="579" left="0"/>
     </AbsoluteLayout>
 </Page>

@@ -26,7 +26,7 @@ async function shortenMenu(params) {
         smallHeight
     } = params
 
-    smallHeight = smallHeight == undefined ? '290vh' : smallHeight
+    smallHeight = smallHeight == undefined ? '310vh' : smallHeight
 
     await itemsContainer.animate({
         translate: {

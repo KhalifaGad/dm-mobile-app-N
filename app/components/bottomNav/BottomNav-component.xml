@@ -1,5 +1,5 @@
 <StackLayout orientation="horizontal" loaded="onLoaded" class="bottom-controllers-layout">
-    <Button id="profile-btn" text="" verticalAlignment="bottom" tap="toProfile" class="btm-nav-side-right-btn" />
+    <Button id="home-btn" text="" verticalAlignment="bottom" tap="toProfile" class="btm-nav-side-right-btn" />
     <StackLayout class="filter-stklayout" verticalAlignment="top" id="filter-btn">
         <Button verticalAlignment="center" horizontalAlignment="center" text="Filter" tap="loadFilter" class="btm-nav-side-center-btn" />
     </StackLayout>

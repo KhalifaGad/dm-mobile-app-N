@@ -68,8 +68,18 @@ font-big{
 .payment-option1-wrapper Label+StackLayout{
     margin-left: 47%;
 }
+.search4-option1-wrapper,
+.search4-option2-wrapper{
+    width: 80%;
+}
+.search4-option1-wrapper Label+StackLayout{
+    margin-left: 74.5%;
+}
+.search4-option2-wrapper Label+StackLayout{
+    margin-left: 66.5%;
+}
 .payment-option2-wrapper Label+StackLayout{
-    margin-left: 54%;
+    margin-left: 55%;
 }
 .search-img {
     width: 5%;
@@ -118,4 +128,9 @@ font-big{
     overflow: hidden;
     border-radius: 15%;
     z-index: 30;
+}
+
+#dd{
+    width: 80%;
+    background-color: #fff
 }

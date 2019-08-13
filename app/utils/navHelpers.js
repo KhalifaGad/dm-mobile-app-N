@@ -95,7 +95,6 @@ function toSignup(args){
 }
 
 function toVerification(args) {
-    console.log('hey2')
     const page = args.object.page;
     const navigationEntry = {
         moduleName: 'views/verification/verification-page',
@@ -107,7 +106,6 @@ function toVerification(args) {
         }
     }
     page.frame.navigate(navigationEntry)
-    console.log('hey3')
 }
 
 function toLogin(args){

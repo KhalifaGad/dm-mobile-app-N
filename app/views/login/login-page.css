@@ -47,6 +47,8 @@
 }
 .lastlogin-label {
     color: #FF3838;
+    z-index: 0;
+    background-color: transparent;
     margin-top: 10%;
     font-size: 16em;
 }

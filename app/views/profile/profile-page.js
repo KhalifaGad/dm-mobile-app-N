@@ -33,12 +33,12 @@ function onNavigatingTo(args) {
             itemsContainer,
             itemsScrollView,
         }
-    itemsScrollView.on(gestures.GestureTypes.touch, async (args) => {
+    itemsScrollView.on(gestures.GestureTypes.pan, async (args) => {
         if (args.deltaY < -200) {
             animationParams.toY = -179
             stretchMenu(animationParams)
         } else if (args.deltaY > 300) {
-            animationParams.smallHeight = '340vh'
+            animationParams.smallHeight = '360'
             shortenMenu(animationParams)
         }
     })

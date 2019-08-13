@@ -1,6 +1,7 @@
 import { VerificationViewModel } from './verification-view-model'
 import { pharmacyVerification } from '~/utils/webHelpers'
 import { toSignup, toLogin } from '~/utils/navHelpers'
+const appSettings = require("application-settings")
 
 let page
 function navigatingTo(args) {
@@ -15,12 +16,12 @@ async function verifyPharmacy(args){
 		alert('Please provide verification code')
 		return
 	}
-	console.log(code)
 	let done = await pharmacyVerification(code)
 	if(!done){
 		alert('Error verifiying your email!')
 		toSignup(args)
 	} else {
+		appSettings.set('verificationStat', 'verified')
 		toLogin(args)
 	}
 }
