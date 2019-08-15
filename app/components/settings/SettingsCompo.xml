@@ -1,5 +1,10 @@
-<AbsoluteLayout id="settingsComponent" top="640" left="0" 
-    xmlns:Card="@nstudio/nativescript-cardview" loaded="onLoad" class="component-wrapper">
+<AbsoluteLayout 
+    id="settingsComponent"
+    top="640" left="0" 
+    tap="onTap"
+    xmlns:Card="@nstudio/nativescript-cardview"
+    loaded="onLoad"
+    class="component-wrapper">
 
     <StackLayout top="0" left="0" class="wrapper">
         <StackLayout orientation="horizontal" class="semi-actionbar" horizontalAlignment="left" horizontalAlignment="left">
@@ -7,7 +12,7 @@
             <Image horizontalAlignment="right" class="close" src="res://close" tap="toProfile" />
         </StackLayout>
         <Label text="Edit your information" class="bold edit-info-label" textWrap="true" />
-        <ScrollView height="540vh">
+        <ScrollView height="540">
             <StackLayout>
                 <StackLayout id="firstScene" class="form-body">
                     <StackLayout top="160" left="30" class="label-header light-opacity">

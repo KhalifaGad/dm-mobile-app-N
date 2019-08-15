@@ -1,24 +1,52 @@
 <Page id="result-page" actionBarHidden="{{ actionBarStatus.hidden }}" 
-	xmlns="http://schemas.nativescript.org/tns.xsd"
-	xmlns:lv="nativescript-ui-listview" 
-	xmlns:actionBar="components/actionBar" 
-	xmlns:bottomNav="components/bottomNav" navigatingTo="navigatingTo" class="page">
-	
-	<Page.actionBar>
-		<actionBar:ActionBar-component />
-	</Page.actionBar>
+    xmlns="http://schemas.nativescript.org/tns.xsd" 
+    xmlns:lv="nativescript-ui-listview" 
+    xmlns:actionBar="components/actionBar" 
+    xmlns:bottomNav="components/bottomNav" navigatingTo="navigatingTo" class="page">
 
-	<AbsoluteLayout>
-		<StackLayout top="30" left="24" orientation="vertical" class="app-headers">
-			<Label horizontalAlignment="left" text="RESULT FOR" />
-		</StackLayout>
-		<StackLayout top="90" left="50" orientation="horizontal" class="search-stklayout">
-			<TextField hint="Find the medicine" class="search-txtfld" />
-			<Image src="res://fa_search" class="search-img" />
-		</StackLayout>
-		<StackLayout id="items-container" top="200" left="0" orientation="vertical" class="home-items-stklayout">
-			<ScrollView height="380vh" id="itemsScrollView" scrollBarIndicatorVisible="false">
-				<Repeater items="{{ viewModel.items }}">
+    <Page.actionBar>
+        <actionBar:ActionBar-component />
+    </Page.actionBar>
+
+    <AbsoluteLayout>
+        <StackLayout top="30" left="24" orientation="vertical" class="app-headers">
+            <Label horizontalAlignment="left" text="RESULT FOR" />
+        </StackLayout>
+        <StackLayout top="90" left="50" orientation="horizontal" class="search-stklayout">
+            <TextField  text="{{ viewModel.searchTxt }}" hint="Find the medicine" class="search-txtfld" />
+            <Button text="" src="res://fa_search" class="search-btn" tap="search" />
+        </StackLayout>
+        <StackLayout id="items-container" top="200" left="0" orientation="vertical" class="home-items-stklayout">
+            <ScrollView height="380" id="itemsScrollView" scrollBarIndicatorVisible="false">
+                <StackLayout height="380" id="itemsStackLayout">
+                    <!-- loaded="onLoaded" itemLoading="onItemLoading" -->
+                    <ListView id="itemsListView" height="380" items="{{ viewModel.items }}" style="" itemTap="onItemTap">
+                        <ListView.itemTemplate>
+                            <StackLayout orientation="horizontal" class="list-item" tap="onTap" val="{{ $value.item }}">
+                                <StackLayout orientation="horizontal" class="drug-info-wrapper">
+                                    <StackLayout orientation="vertical" horizontalAlignment="right" verticalAlignment="middle" class="drug-name-price">
+                                        <Label text="{{ $value.item }}" horizontalAlignment="left" class="drug-name" textWrap="true" />
+                                        <StackLayout class="price-seller">
+                                            <StackLayout orientation="horizontal">
+                                                <Label text="Price: " horizontalAlignment="left" textWrap="true" />
+                                                <Label text="{{ $value.price + ' EGP' }}" class="bold red" horizontalAlignment="left" textWrap="true" />
+                                            </StackLayout>
+                                            <StackLayout orientation="horizontal">
+                                                <Label text='Seller: ' horizontalAlignment="left" textWrap="true" />
+                                                <Label text="{{ $value.seller }}" class="bold red" horizontalAlignment="left" textWrap="true" />
+                                            </StackLayout>
+                                        </StackLayout>
+                                    </StackLayout>
+                                    <StackLayout class="discount-box" orientation="vertical" horizontalAlignment="right">
+                                        <Label text="{{ '-' + $value.discount + '%' }}" horizontalAlignment="center" />
+                                    </StackLayout>
+                                </StackLayout>
+                                <Image src="res://fa_angle_right" horizontalAlignment="right" verticalAlignment="middle" height="20vh" width="20vw" />
+                            </StackLayout>
+                        </ListView.itemTemplate>
+                    </ListView>
+                </StackLayout>
+                <!-- <Repeater items="{{ viewModel.items }}">
                     <Repeater.itemTemplate>
                         <StackLayout orientation="horizontal" class="list-item" tap="onTap" val="{{ $value.item }}">
                             <StackLayout orientation="horizontal" class="drug-info-wrapper">
@@ -33,10 +61,10 @@
                             <Image src="res://fa_angle_right" horizontalAlignment="right" verticalAlignment="middle" height="20vh" width="20vw" />
                         </StackLayout>
                     </Repeater.itemTemplate>
-                </Repeater>
-			</ScrollView>
-		</StackLayout>
-		<bottomNav:BottomNav-component top="579" left="0" />
-	</AbsoluteLayout>
+                </Repeater> -->
+            </ScrollView>
+        </StackLayout>
+        <bottomNav:BottomNav-component top="579" left="0" />
+    </AbsoluteLayout>
 
 </Page>

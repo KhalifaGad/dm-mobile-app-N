@@ -3,7 +3,8 @@ const items = require('../../utils/db').items
 
 function mainViewModel() {
     const viewModel = Observable.fromObject({
-        items
+        items,
+        searchTxt: ''
     });
 
     //viewModel.items = items

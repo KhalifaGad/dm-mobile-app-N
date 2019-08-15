@@ -6,7 +6,11 @@ function onLoad(args) {
 function toProfile(){
     settingsStates.opened = false
 }
+function onTap(){
+
+}
 export {
     onLoad,
-    toProfile
-};
+    toProfile,
+    onTap
+}

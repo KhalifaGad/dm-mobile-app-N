@@ -4,20 +4,7 @@ StackLayout, AbsoluteLayout,  Label,
 Button, TextField {
     font-family: 'Montserrat-Regular', 'Montserrat-Bold' ;
 }
-.side-drawer{
-    background-color: #fff;
-}
-.side-drawer Button{
-    margin: 0;
-    height: 50vh;
-    padding: 0;
-    background-color: #fff;
-    border-width: 0;
-    border-bottom-width: 1;
-    border-bottom-color: rgba(1,1,1,.1);
-    border-color: transparent;
-    z-index: 0;
-}
+
 .switch-wrapper {
     border-color: #fff;
     border-radius: 15%;
@@ -107,18 +94,24 @@ Button, TextField {
     border-top-left-radius: 50%;
     border-top-right-radius: 50%;
     border-width: 5;
+    padding-top: 10vh;
+    padding-left: 20vw;
+    padding-right: 20vw;
     border-color: #fff;
     background-color: #fff;
     height: 800vh;  
     width: 100%;
     overflow: hidden;
 }
+
 .list-item {
+    border-top-left-radius: 50%;
+    border-top-right-radius: 50%;
     border-bottom-color: #d6d6d7;
     border-bottom-width: 2px;
     padding-top: 10vh;
-    margin-right: 25vw;
-    margin-left: 25vw;
+    margin-right: 25;
+    margin-left: 25;
     height: 100vh;
 }
 .list-item StackLayout Label + Label {

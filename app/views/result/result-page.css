@@ -24,3 +24,26 @@
 .list-item .drug-info-wrapper {
     width: 95%;
 }
+.list-item Label+StackLayout {
+    margin-top: 10;
+}
+.list-item StackLayout Label + Label {
+    margin-top: 0vh
+}
+.red{
+    color: #FF3838;
+}
+.discount-box{
+    height: 45;
+}
+.discount-box Label {
+    margin-top: 12vh;
+}
+.search-btn {
+    width: 35;
+    height: 25;
+    background-image: url('res://fa_search');
+    background-repeat: no-repeat;
+    z-index: 0;
+    margin-top: 15;
+}

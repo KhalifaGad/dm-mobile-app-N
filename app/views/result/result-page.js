@@ -16,22 +16,30 @@ import * as gestures from 'tns-core-modules/ui/gestures'
 let page;
 
 function navigatingTo(args) {
-	page = args.object
+    page = args.object
     let bindings = {
-		actionBarStatus,
-        viewModel: ResultViewModel()
+        actionBarStatus,
+        viewModel: {
+            items: page.navigationContext.resArr,
+            searchTxt: page.navigationContext.searchTxt
+        }
     }
     page.bindingContext = {
         ...bindings
     }
+    console.log(page.bindingContext.viewModel)
     const itemsScrollView = page.getViewById('itemsScrollView'),
+        itemsStackLayout = page.getViewById('itemsStackLayout'),
+        itemsListView = page.getViewById('itemsListView'),
         itemsContainer = page.getViewById('items-container'),
         animationParams = {
             args,
             itemsContainer,
-            itemsScrollView,
+            itemsStackLayout,
+            itemsListView,
+            itemsScrollView
         }
-    itemsScrollView.on(gestures.GestureTypes.pan, async (args) => {
+    itemsListView.on(gestures.GestureTypes.pan, async (args) => {
         if (args.deltaY < -200) {
             animationParams.toY = -179
             stretchMenu(animationParams)
@@ -43,6 +51,6 @@ function navigatingTo(args) {
 }
 
 export {
-	navigatingTo,
-	toDrug
+    navigatingTo,
+    toDrug
 }

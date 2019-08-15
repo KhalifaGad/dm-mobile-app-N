@@ -1,0 +1,30 @@
+.side-drawer{
+    background-color: #fff;
+    padding-top: 55vh;
+}
+.side-drawer .close-btn {
+    background-image: url('res://close');
+    background-repeat: no-repeat;
+    background-size: 70 70;
+    margin-left: 10vw;
+    opacity: 0.4;
+    width: 40vw;
+}
+.side-drawer Button{
+    margin: 0;
+    height: 70vh;
+    padding: 0;
+    background-color: #fff;
+    border-width: 0;
+    border-color: transparent;
+    z-index: 0;
+}
+.side-drawer .drawer-item+.drawer-item{
+    border-top-width: .7;
+    border-top-color: rgb(189, 189, 189);
+    margin-left: 10vw;
+    margin-right: 10vw;
+}
+.side-drawer .top-itme{
+    margin-top: 30vh;
+}

@@ -26,14 +26,18 @@ function onNavigatingTo(args) {
         viewModel: profileViewModel()
     }
     page.bindingContext = {...bindings}
-    const itemsScrollView = view.getViewById(page, 'itemsScrollView');
-    const itemsContainer = view.getViewById(page, 'items-container'),
+    const itemsScrollView = page.getViewById('itemsScrollView')
+    const itemsStackLayout = page.getViewById('itemsStackLayout')
+    const itemsListView = page.getViewById('itemsListView')
+    const itemsContainer = page.getViewById('items-container'),
         animationParams = {
             args,
             itemsContainer,
-            itemsScrollView,
+            itemsStackLayout,
+            itemsListView,
+            itemsScrollView
         }
-    itemsScrollView.on(gestures.GestureTypes.pan, async (args) => {
+        itemsListView.on(gestures.GestureTypes.pan, async (args) => {
         if (args.deltaY < -200) {
             animationParams.toY = -179
             stretchMenu(animationParams)

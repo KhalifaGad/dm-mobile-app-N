@@ -2,6 +2,8 @@ async function stretchMenu(params) {
     let {
         itemsContainer,
         itemsScrollView,
+        itemsStackLayout,
+        itemsListView,
         bigHeight,
         toY
     } = params
@@ -17,12 +19,16 @@ async function stretchMenu(params) {
         duration: 500
     })
     itemsScrollView.height = bigHeight
+    itemsStackLayout.height = bigHeight
+    itemsListView.height = bigHeight
 
 }
 async function shortenMenu(params) {
     let {
         itemsContainer,
         itemsScrollView,
+        itemsStackLayout,
+        itemsListView,
         smallHeight
     } = params
 
@@ -36,6 +42,8 @@ async function shortenMenu(params) {
         duration: 500
     })
     itemsScrollView.height = smallHeight
+    itemsStackLayout.height = smallHeight
+    itemsListView.height = smallHeight
 }
 export {
     stretchMenu,

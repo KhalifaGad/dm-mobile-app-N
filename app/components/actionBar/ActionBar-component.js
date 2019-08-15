@@ -1,8 +1,14 @@
-import { toProfile, toMain } from '../../utils/navHelpers'
+import { toProfile } from '../../utils/navHelpers'
 
 function onLoad(args){
     const actionbar = args.object
     actionbar.bindingContext = actionbar.hidden
 }
 
-export { onLoad, toProfile, toMain }
+function openSideDrawer(args){
+    const page = args.object.page
+    const drawer = page.parent.parent  
+    drawer.toggleDrawerState()
+}
+
+export { onLoad, toProfile, openSideDrawer }

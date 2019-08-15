@@ -1,7 +1,7 @@
 .wrapper{
     background-color: #fff;
     width: 100%;
-    padding-top: 50%;
+    /* padding-top: 50%; */
 }
 .semi-actionbar{
     width: 100%;
@@ -20,7 +20,7 @@
 .component-wrapper{
     width: 100%;
     border-top-right-radius: 25%;
-    background-color: transparent
+    background-color: blue
 }
 .bottom-controllers-layout {
     height: 100vh;

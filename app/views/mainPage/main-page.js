@@ -5,7 +5,8 @@ import * as gestures from 'tns-core-modules/ui/gestures'
 import {
     toProfile,
     toCart,
-    toDrug
+    toDrug,
+    toResult
 } from '../../utils/navHelpers'
 import {
     stretchMenu,
@@ -24,14 +25,19 @@ function onNavigatingTo(args) {
     page.bindingContext = {
         ...bindings
     }
-    const itemsScrollView = page.getViewById('itemsScrollView')
-    const itemsContainer = page.getViewById('items-container')
-    itemsScrollView.on(gestures.GestureTypes.pan, async (args) => {
-        const animationParams = {
+    const itemsScrollView = page.getViewById('itemsScrollView'),
+        itemsStackLayout = page.getViewById('itemsStackLayout'),
+        itemsListView = page.getViewById('itemsListView'),
+        itemsContainer = page.getViewById('items-container'),
+        animationParams = {
             args,
             itemsContainer,
+            itemsStackLayout,
+            itemsListView,
             itemsScrollView
         }
+
+    itemsListView.on(gestures.GestureTypes.pan, async (args) => {
         if (args.deltaY < -200) {
             stretchMenu(animationParams)
         } else if (args.deltaY > 300) {
@@ -39,10 +45,21 @@ function onNavigatingTo(args) {
         }
     })
 }
-  
+
+function search(args){
+    const page = args.object.page
+    const searchTxt = page.bindingContext.viewModel.searchTxt
+    const items = page.bindingContext.viewModel.items
+    const res = items.filter((drug)=> {
+        return drug.item.includes(searchTxt)
+    })
+    toResult(args, res, searchTxt)
+}
+
 export {
     onNavigatingTo,
     toDrug,
     toProfile,
-    toCart
+    toCart,
+    search
 };

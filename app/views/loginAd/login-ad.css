@@ -1,0 +1,44 @@
+page {
+    z-index: 0;
+}
+.main-container{
+    background-color: #fff;
+    height: 600;
+    width: 90%;
+    margin-left: 5%;
+    border-width: 10;
+    border-radius: 50;
+    border-color: #626066;
+    padding: 10;
+    z-index: 900;
+}
+.logo{
+    background-color: #fff;
+    border-width: 10;
+    border-radius: 50;
+    border-color: #626066;
+    padding: 10;
+    z-index: 900.1;
+}
+.main-container .first-label{
+    margin-top: 40%;
+    font-weight: bold;
+    font-size: 21;
+    margin-left:5%;
+}
+.main-container .second-label{
+    font-weight: bold;
+    font-size: 21;
+}
+Button {
+    width: 40vw;
+    height: 40vh;
+    border-radius: 40%;
+    background-image: url("res://close");
+    background-repeat: no-repeat;
+    background-size: 60 60;
+    background-position: center;
+    background-color: #d4d2d8;
+    z-index: 999;
+    border-width: 0;
+}

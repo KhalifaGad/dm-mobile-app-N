@@ -1,0 +1,19 @@
+<Page xmlns="http://www.nativescript.org/tns.xsd"
+    loaded="onLoaded"
+    actionBarHidden="true"
+    navigatedTo="onNavigatedTo">
+    <AbsoluteLayout>
+            <Button top="95" left="270" text="" tap="animatIt" />
+        <!-- <StackLayout top="20" left="250" >
+            
+        </StackLayout> -->
+        <StackLayout top="70" left="160" class="logo">
+            <Image src="res://logo" width="50" height="50"/>    
+        </StackLayout>
+        <StackLayout id="main-container" top="110" class="main-container" >
+            <Label horizontalAlignment="center" text="You may ask for advertising" class="first-label" textWrap="true" />
+            <Label horizontalAlignment="center" text="here!" class="second-label" textWrap="true" />
+            
+        </StackLayout>
+    </AbsoluteLayout>
+</Page>

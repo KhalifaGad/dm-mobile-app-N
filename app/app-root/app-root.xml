@@ -9,8 +9,8 @@
     <nsDrawer:RadSideDrawer.drawerContent>
         <!-- Here go the side drawer items -->
         <StackLayout class="side-drawer" >
-            <Button text="" class="close-btn" tap="closeSideDrawer" />
-            <Button text="Home" class="drawer-item top-itme" tap="toHome" />
+            <Button text="" horizontalAlignment="left" class="close-btn" tap="closeSideDrawer" />
+            <Button text="Home" class="drawer-item top-itme" tap="navMain" />
             <Button text="Orders" class="drawer-item" tap="toOrders" />
             <Button text="change expired" class="drawer-item" tap="toOrders" />
             <!-- <Button text="Orders" class="drawer-item" tap="toOrders" /> -->
@@ -20,7 +20,7 @@
 
     <nsDrawer:RadSideDrawer.mainContent>
         <!-- This is the navigation frame -->
-        <Frame id="mainFrame" defaultPage="views/mainPage/main-page">
+        <Frame id="mainFrame" defaultPage="views/loginAd/login-ad">
         </Frame>
     </nsDrawer:RadSideDrawer.mainContent>
 </nsDrawer:RadSideDrawer>

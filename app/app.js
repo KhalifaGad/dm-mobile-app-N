@@ -10,10 +10,10 @@ const apolloClient = new ApolloClient({
 })
 
 const token = appSettings.getString("token")
-let appRoot = 'app-root'
-if(!token){
+let appRoot = 'app-root/app-root'
+/* if(!token){
     appRoot = 'login-root'
-}
+} */
 
 let settingsStates = observableModule.fromObject({
         opened: false

@@ -5,7 +5,7 @@
 <ActionBar title="AB" class="ActionBar-component" loaded="onLoad">
     <StackLayout class="AB-holder"  orientation="horizontal">
         <Image class="ActionBar-logo" src="res://logo_white"  horizontalAlignment="left" />
-        <Button text="Home" class="home-btn" visibility="{{ hidden ? 'collapsed' : 'visible' }}" horizontalAlignment="right" tap="toMain" />
+        <Button text="" class="side-drawer-btn" visibility="{{ hidden ? 'collapsed' : 'visible' }}" horizontalAlignment="right" tap="openSideDrawer" />
         <!-- <Button text="Home" icon="res://home" horizontalAlignment="right" tap="toMain" /> -->
     </StackLayout>
    

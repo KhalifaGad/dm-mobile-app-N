@@ -8,7 +8,7 @@ import {
 
 
 async function toMain(args, clearHistoryFlag = false) {
-    args.cancel = true
+    //args.cancel = true
     const navigationEntry = {
         moduleName: 'views/mainPage/main-page',
         animated: true,
@@ -79,6 +79,25 @@ function toDrug(args) {
     page.frame.navigate(navigationEntry)
 }
 
+function toResult(args, resArr, searchTxt){
+    const page = args.object.page;
+    const navigationEntry = {
+        moduleName: "views/result/result-page",
+        context: {
+            resArr,
+            searchTxt
+        },
+        animated: true,
+        clearHistory: false,
+        transition: {
+            name: "slide",
+            duration: 280,
+            curve: "easeIn"
+        }
+    }
+    page.frame.navigate(navigationEntry)
+}
+
 function toSignup(args){
     const page = args.object.page;
     const navigationEntry = {
@@ -128,6 +147,7 @@ export {
     toProfile,
     toCart,
     toDrug,
+    toResult,
     toSignup,
     toVerification,
     toLogin
