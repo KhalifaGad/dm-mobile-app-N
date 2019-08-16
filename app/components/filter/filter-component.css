@@ -36,6 +36,12 @@
     width: 58%;
     margin-left: 2%;
 }
+.short{
+    width: 56%;
+}
+.shorter{
+    width: 52%;
+}
 font-big{
     font-size: 93;
 }
@@ -129,8 +135,23 @@ font-big{
     border-radius: 15%;
     z-index: 30;
 }
-
-#dd{
+.location-search{
     width: 80%;
-    background-color: #fff
+}
+.location-search Label{
+    font-size: 16em;
+}
+.location-search Label+Button{
+    margin-left: 49%;
+}
+.location-btn{
+    z-index: 100;
+    background-image: url("res://icons8_location_off_48");
+    background-repeat: no-repeat;
+    background-size: 70 70;
+    background-position: center;
+    background-color: #fff;
+    border-radius: 5%;
+    width: 35;
+    height: 35;
 }

@@ -1,0 +1,23 @@
+<Page xmlns="http://www.nativescript.org/tns.xsd" shownModally="onShownModally" width="400">
+    <StackLayout id="cartOptionsComponent" class="location-filter-modal" tap="onTap">
+        <StackLayout orientation="horizontal" class="first-layer">
+            <Label text="Choose Location" textWrap="true" class="bold" />
+            <Button text="" tap="cancle"/>
+        </StackLayout>
+        <StackLayout horizontalAlignment="center" class="">
+            <TextField hint="Enter desired quantity " text="{{ selectedLocation.loc }}" class="custom-txtfld" />
+        </StackLayout>
+        <StackLayout orientation="horizontal" class="last-layer">
+            <ScrollView height="180" scrollBarIndicatorVisible="false">
+                <ListView items="{{ areas }}" height="180">
+                    <ListView.itemTemplate>
+                        <StackLayout orientation="horizontal" class="list-item-modal" tap="completeText" val="{{ $value }}">
+                            <Label horizontalAlignment="center" text="{{$value}}" textWrap="true" />
+                        </StackLayout>
+                    </ListView.itemTemplate>
+                </ListView>
+            </ScrollView>
+        </StackLayout>
+        <Button text="Done" class="done-btn" tap="done" />
+    </StackLayout>
+</Page>

@@ -10,7 +10,7 @@
 	</Page.actionBar>
 
 	<AbsoluteLayout id="secondChild">
-		<Label top="30" left="24" class="bold app-headers" text="{{ navContext.drug.item }}" />
+		<Label top="30" left="24" class="bold app-headers" text="{{ navContext.drug.name }}" />
         <StackLayout top="100" left="24" class="item-headers-wrapper">
             <StackLayout orientation="horizontal" class="first-layer">
                 <StackLayout orientation="vertical" horizontalAlignment="left" class="item-info-wrapper">
@@ -29,8 +29,10 @@
             </StackLayout>
             <StackLayout orientation="horizontal" class="second-layer" >
                 <StackLayout orientation="horizontal" verticalAlignment="center" horizontalAlignment="left">
-                    <Image horizontalAlignment="left" src="res://fa_plus_square" width="28vw" height="28vh"/>
-                    <Label horizontalAlignment="right" verticalAlignment="center" text="Add To Cart" textWrap="true" class="bold white" />
+                    <Button text="Add To Cart" tap="showCartOptions" class="add-2-cart-btn" />
+                    
+                    <!-- <Image horizontalAlignment="left" src="res://fa_plus_square" width="28vw" height="28vh"/>
+                    <Label horizontalAlignment="right" verticalAlignment="center" text="Add To Cart" textWrap="true" class="bold white" /> -->
                 </StackLayout>
                 <StackLayout orientation="horizontal" verticalAlignment="center" horizontalAlignment="right" class="deffered-state" >
                     <Label text="Deffered" textWrap="true" verticalAlignment="bottom" class="white bold" />
@@ -44,19 +46,20 @@
             <ScrollView height="285" id="itemsScrollView"  scrollBarIndicatorVisible="false">
                 <StackLayout height="285" id="itemsStackLayout" >
                     <!-- loaded="onLoaded" itemLoading="onItemLoading" -->
-                    <ListView id="itemsListView" height="285" items="{{ viewModel.items }}" style="" itemTap="onItemTap">
+                    <ListView id="itemsListView" height="285" items="{{ viewModel.items }}" itemTap="onItemTap">
                         <ListView.itemTemplate>
                             <StackLayout orientation="horizontal" class="list-item" tap="toDrug" val="{{ $value }}">
                             <StackLayout orientation="horizontal" class="drug-info-wrapper">
                                 <StackLayout orientation="vertical" horizontalAlignment="right" verticalAlignment="middle" class="drug-name-price">
-                                    <Label text="{{ $value.item }}" horizontalAlignment="left" class="drug-name" textWrap="true" />
+                                    <Label text="{{ $value.name }}" horizontalAlignment="left" class="drug-name" textWrap="true" />
                                     <Label text="{{'Price per pack ' + $value.price + 'EGP' }}" horizontalAlignment="left" textWrap="true" />
                                 </StackLayout>
                                 <StackLayout class="discount-box" orientation="vertical" horizontalAlignment="right">
                                     <Label text="{{ '-' + $value.discount + '%' }}" horizontalAlignment="center" />
                                 </StackLayout>
                             </StackLayout>
-                            <Image src="res://fa_angle_right" horizontalAlignment="right" style="horizontal-align:center;" verticalAlignment="middle" height="20vh" width="20vw" />
+                            <!-- <Image src="res://fa_angle_right" horizontalAlignment="right" style="horizontal-align:center;" verticalAlignment="middle" height="20vh" width="20vw" /> -->
+                            <Button text="" tap="toDrug" class="to-drug-btn" />
                         </StackLayout>
                         </ListView.itemTemplate>
                     </ListView>

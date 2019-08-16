@@ -37,4 +37,13 @@
 .second-layer StackLayout+StackLayout {
     margin-left: 90vw;    
 }
-
+.add-2-cart-btn{
+    background-image: url("res://fa_plus_square");
+    background-repeat: no-repeat;
+    background-position: left;
+    z-index: 0;
+    color: #fff;
+    font-weight: bold;
+    text-transform: none;
+    padding-left: 30;
+}

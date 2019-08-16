@@ -1,0 +1,73 @@
+.location-filter-modal {
+    background-color: #fff;
+}
+.first-layer {
+    width: 100%;
+    padding-top: 15;
+}
+.first-layer Label{
+    width: 50%;
+    margin-left: 10%;
+    font-size: 18em;
+}
+.first-layer Button{
+    background-image: url('res://close');
+    background-repeat: no-repeat;
+    background-position: center;
+    z-index: 0;
+    margin-left: 27%;
+    width: 15;
+    height: 15;
+}
+.search-txtfld {
+    background-color: transparent;
+    color: black;
+    placeholder-color: silver;
+    font-size: 20em;
+    width: 95%;
+}
+.search-stklayout {
+    border-bottom-color: #560BD0;
+    border-bottom-width: 5px;
+    border-bottom-style: solid;
+    width: 80%;
+}
+.last-layer{
+    margin-top: 3%;
+    margin-bottom: 3%;
+    margin-left: 10%;
+}
+.last-layer StackLayout+Button{
+    margin-left: 45%;
+}
+
+.confirm-btn{
+    z-index: 0;
+    background-image: url('res://icons8_right_24');
+    background-size: 35 50;
+    background-repeat: no-repeat;
+    background-position: right;
+    padding-right: 14;
+    padding-bottom: 12;
+    background-color: transparent;
+    color: #fff;
+    font-size: 18em;
+    text-transform: none;
+}
+.list-item-modal{
+    width: 80%;
+    color: rgb(75, 72, 72);
+    font-size: 16em;
+    height: 50vh;
+}
+.list-item-modal + .list-item-modal {
+    border-top-style: solid;
+    border-top-width: 1;
+    border-top-color: rgb(175, 175, 175);
+}
+.done-btn{
+    width: 100%;
+    z-index: 100;
+    background-color: #fff;
+    text-transform: none;
+}

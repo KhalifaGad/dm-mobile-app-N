@@ -110,18 +110,25 @@ Button, TextField {
     border-bottom-color: #d6d6d7;
     border-bottom-width: 2px;
     padding-top: 10vh;
-    margin-right: 25;
-    margin-left: 25;
     height: 100vh;
 }
 .list-item StackLayout Label + Label {
     margin-top: 10vh
 }
+.to-drug-btn{
+    z-index: 0;
+    background-image: url("res://fa_angle_right");
+    background-position: right;
+    background-size: 30 50;
+    background-repeat: no-repeat;
+    height: 40%;
+    width: 10%;
+}
 .list-item StackLayout + Image {
     margin-left: 45%
 }
 .list-item .drug-info-wrapper {
-    width: 95%;
+    width: 90%;
 }
 .list-item .drug-info-wrapper + Image {
     margin-left: 0%

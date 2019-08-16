@@ -1,5 +1,6 @@
 import DrugViewModel from './drug-view-model'
 import * as gestures from 'tns-core-modules/ui/gestures'
+import Toast from 'nativescript-toast'
 import {
     toDrug
 } from '../../utils/navHelpers'
@@ -11,8 +12,11 @@ import {
     actionBarStatus
 } from '~/app'
 
+let page, drug
+
 function onNavigatingTo(args) {
-    const page = args.object
+    page = args.object
+    drug = page.navigationContext.drug
     let bindings = {
         actionBarStatus,
         navContext: page.navigationContext,
@@ -43,10 +47,31 @@ function onNavigatingTo(args) {
     })
 }
 
+function showCartOptions(args) {
+    const mainView = args.object
+    const option = {
+        context: {
+            quantity: 1,
+            price: drug.price,
+            discount: drug.discount
+        },
+        closeCallback: (quantity = 0) => {
+            if (quantity === 0) return
+                Toast
+                .makeText(`Quantity ${quantity} of ${drug.name} added to cart`)
+                .show()
+        },
+        fullscreen: false
+    }
+    mainView.showModal('modals/cartOptions/cart-options-modal', option);
+
+}
+
 export {
     onNavigatingTo,
     toProfile,
     toFilter,
     toCart,
-    toDrug
+    toDrug,
+    showCartOptions
 };

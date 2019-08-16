@@ -1,5 +1,4 @@
 import profileViewModel from './profile-view-model'
-import * as view from 'tns-core-modules/ui/core/view'
 import * as builder from "tns-core-modules/ui/builder"
 import * as gestures from 'tns-core-modules/ui/gestures'
 import {
@@ -72,7 +71,6 @@ async function toSettings() {
         path: 'components/settings',
         name: 'SettingsCompo'
     })
-    console.log(page.bindingContext.actionBarStatus)
     mainScene.addChild(settingsCompo)
     await settingsCompo.animate({
         translate: {

@@ -1,0 +1,19 @@
+<Page xmlns="http://www.nativescript.org/tns.xsd" shownModally="onShownModally" width="400">
+    <StackLayout id="cartOptionsComponent" class="cart-options-modal" tap="onTap">
+        <StackLayout orientation="horizontal" class="first-layer">
+            <Label text="Cart Options" textWrap="true" class="white bold" />
+            <Button text="" tap="cancle"/>
+        </StackLayout>
+        <StackLayout horizontalAlignment="center" class="custom-input-stacklayout">
+            <Label text="Quantity" class="txtfld-label" />
+            <TextField hint="Enter desired quantity " text="{{ quantity }}" keyboardType="number" class="custom-txtfld" />
+        </StackLayout>
+        <StackLayout orientation="horizontal" class="last-layer">
+            <StackLayout>
+                <Label text="Total Price" textWrap="true" class="white" style="opacity: .7" />
+                <Label text="{{ (quantity * price - (quantity * price * (discount/100))) + ' EGP' }}" textWrap="true" class="white bold" />
+            </StackLayout>
+            <Button text="Confirm" tap="confirm" class="confirm-btn" />
+        </StackLayout>
+    </StackLayout>
+</Page>

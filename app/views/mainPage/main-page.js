@@ -51,7 +51,7 @@ function search(args){
     const searchTxt = page.bindingContext.viewModel.searchTxt
     const items = page.bindingContext.viewModel.items
     const res = items.filter((drug)=> {
-        return drug.item.includes(searchTxt)
+        return drug.name.includes(searchTxt)
     })
     toResult(args, res, searchTxt)
 }

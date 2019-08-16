@@ -61,7 +61,7 @@ function toCart(args) {
 
 
 function toDrug(args) {
-    const drug = args.object.val
+    const drug = args.object.parent.val
     const page = args.object.page;
     const navigationEntry = {
         moduleName: "views/drug/drug-page",

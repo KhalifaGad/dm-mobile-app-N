@@ -1,15 +1,9 @@
-<AbsoluteLayout 
-    id="filterComponent"
-    loaded="onLoaded"
-    top="650"
-    left="0"
-    class="filter-component"
-    tap="onTap"
-    xmlns:Card="@nstudio/nativescript-cardview"
-    xmlns:dd="nativescript-drop-down">
+<AbsoluteLayout id="filterComponent" loaded="onLoaded" top="650" left="0" class="filter-component" tap="onTap" 
+    xmlns:Card="@nstudio/nativescript-cardview" 
+    xmlns:MDL="nativescript-materialdropdownlist">
     <StackLayout top="60" left="0" orientation="horizontal" class="semi-actionbar" horizontalAlignment="left" horizontalAlignment="left">
-            <Image horizontalAlignment="left" class="action-bar-logo" src="res://logo_white" />
-            <Image horizontalAlignment="right" class="close" src="res://fa_close" tap="close" />
+        <Image horizontalAlignment="left" class="action-bar-logo" src="res://logo_white" />
+        <Image horizontalAlignment="right" class="close" src="res://fa_close" tap="close" />
     </StackLayout>
     <StackLayout top="140" left="24" orientation="vertical" class="app-headers light-opacity">
         <Label horizontalAlignment="left" text="SEARCH FILTER" />
@@ -35,7 +29,7 @@
     </StackLayout>
     <StackLayout top="420" left="30" orientation="horizontal" class="label-header light-opacity">
         <Label verticalAlignment="bottom" text="SEARCH FOR " textWrap="true" />
-        <StackLayout verticalAlignment="center" class="line" />
+        <StackLayout verticalAlignment="center" class="line shorter" />
     </StackLayout>
     <StackLayout top="460" left="30" orientation="horizontal" horizontalAlignment="right" class="search4-option1-wrapper">
         <Label text="Store" textWrap="true" verticalAlignment="center" class="white bold light-opacity" />
@@ -51,12 +45,15 @@
     </StackLayout>
     <StackLayout top="520" left="30" orientation="horizontal" class="label-header light-opacity">
         <Label verticalAlignment="bottom" text="LOCATION " textWrap="true" />
-        <StackLayout verticalAlignment="center" class="line" />
+        <StackLayout verticalAlignment="center" class="line short" />
     </StackLayout>
-    <dd:DropDown id="dd" top="560" left="30" items="{{ areas }}" selectedIndex="{{ selectedIndex }}" 
-                 opened="dropDownOpened" closed="dropDownClosed" 
-                 selectedIndexChanged="dropDownSelectedIndexChanged"/>
+    <StackLayout orientation="horizontal" top="560" left="30" class="location-search">
+        <Label text="{{ selectedLocation || 'Choose location'}}" verticalAlignment="center" class="white light-opacity" textWrap="true" />
+        <Button class="location-btn" text="" tap="showLocationModal" />
+        
+    </StackLayout>
+    <!-- <dd:DropDown id="dd" items="{{ areas }}" width="335" selectedIndex="{{ selectedIndex }}" opened="dropDownOpened" closed="dropDownClosed" backgroundColor="#fff" class="dd" style="padding-bottom: 15; margin-bottom: -10; padding-left: 18; margin-left: -14;" selectedIndexChanged="dropDownSelectedIndexChanged"/> -->
     <StackLayout top="680" left="170" class="filter-stklayout" verticalAlignment="top" id="filter-btn">
-        <Button verticalAlignment="center" horizontalAlignment="center"  text="Apply" tap="loadFilter" class="btm-nav-side-center-btn" />
+        <Button verticalAlignment="center" horizontalAlignment="center" text="Apply" tap="loadFilter" class="btm-nav-side-center-btn" />
     </StackLayout>
 </AbsoluteLayout>
