@@ -10,11 +10,13 @@ function SignupViewModel() {
             email: 'k.k.h.a.l.i.f.a.gad@gmail.com',
             password: 'Hakm2321',
             repeatedPass: 'Hakm2321',
-            lat: 31.0901558,
-            long: 29.7554523,
+            lat: 0,
+            long: 0,
             phone: '01099106299'
         },
-        locationSwitch: false
+        locationSwitch: false,
+        allowed: false,
+        activityIndcatorFlag: false
     })
     return viewModel;
 }

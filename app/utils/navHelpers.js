@@ -128,10 +128,9 @@ function toVerification(args) {
 }
 
 function toLogin(args){
-    console.log('toLogin')
-    const page = args.object.page;
     const navigationEntry = {
         moduleName: 'views/login/login-page',
+        clearHistory: true,
         animated: true,
         transition: {
             name: "slideLeft",
@@ -139,7 +138,7 @@ function toLogin(args){
             curve: "linear"
         }
     }
-    page.frame.navigate(navigationEntry)
+    frame.getFrameById('mainFrame').navigate(navigationEntry)
 }
 
 export {

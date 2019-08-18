@@ -13,6 +13,7 @@
             <Button text="Home" class="drawer-item top-itme" tap="navMain" />
             <Button text="Orders" class="drawer-item" tap="toOrders" />
             <Button text="change expired" class="drawer-item" tap="toOrders" />
+            <Button text="Logout" class="drawer-item" tap="logout" />
             <!-- <Button text="Orders" class="drawer-item" tap="toOrders" /> -->
             
         </StackLayout>

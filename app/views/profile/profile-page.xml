@@ -7,7 +7,7 @@
         <actionBar:ActionBar-component />
     </Page.actionBar>
     <AbsoluteLayout id="secondChild">
-        <Label top="30" left="24" class="bold app-headers" text="Dr.Ahmed Pharmacy" />
+        <Label top="30" left="24" class="bold app-headers" text="{{ viewModel.pharmacyName }}" />
         <StackLayout top="100" left="24" class="item-headers-wrapper">
             <StackLayout orientation="horizontal" class="first-layer">
                 <StackLayout orientation="vertical" horizontalAlignment="left" class="item-info-wrapper">

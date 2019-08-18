@@ -75,11 +75,14 @@
     z-index: 0;
     border-radius: 10%;
 }
-.arrow-and-button Button{
+.confirm-btn{
     border-radius: 10%;
     background-color: #FF3838;
     color: #fff;
     font-weight: bold;
+}
+.confirm-btn[isEnabled = false]{
+    opacity: .7;
 }
 .arrow-and-button Button+Button{
     margin-left: 62%;

@@ -6,7 +6,8 @@ import {
     toProfile,
     toCart,
     toDrug,
-    toResult
+    toResult,
+    toLogin
 } from '../../utils/navHelpers'
 import {
     stretchMenu,
@@ -15,8 +16,16 @@ import {
 import {
     actionBarStatus
 } from '~/app'
+import * as appSettings from "tns-core-modules/application-settings"
 
 function onNavigatingTo(args) {
+
+    const token = appSettings.getString("token")
+    if(!token) {
+        toLogin(args)
+        return
+    }
+
     const page = args.object
     let bindings = {
         actionBarStatus,

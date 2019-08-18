@@ -10,6 +10,39 @@
     height: 15%;
     width: 12%;
 }
+.abs-login-logo{
+    margin-top: 4%;
+    background-color: #fff;
+    height: 100;
+    width: 60;
+}
+.higher-logo{
+    top: 0;
+    left: 0;
+    height: 38;
+    width: 35;
+    margin-left: 12;
+    background-color: #FF3838;
+    border-top-left-radius: 19;
+    border-top-right-radius: 19;
+    transition: background-color 15s linear;
+}
+.higher-logo:active{
+    background-color: yellow;
+}
+.lower-logo{
+    top: 46;
+    left: 1;
+    height: 40;
+    width: 57;
+    background-color: #fff;
+    border-width: 11;
+    border-top-width: 0;
+    border-color: #000;
+    border-bottom-left-radius: 27;
+    border-bottom-right-radius: 27;
+}
+
 .custom-input-stacklayout {
     margin-top: 4%;
     border-width: 1;
@@ -45,10 +78,20 @@
 .h-ctr-login-stklayout Label {
     font-size: 16em;
 }
-.lastlogin-label {
+.signup-btn {
     color: #FF3838;
     z-index: 0;
-    background-color: transparent;
-    margin-top: 10%;
+    background-color: #fff;
+    margin-top: 7%;
     font-size: 16em;
+    font-weight: bold;
+    text-transform: none;
+}
+.verification-btn {
+    color: #FF3838;
+    z-index: 0;
+    background-color: #fff;
+    font-size: 16em;
+    text-transform: none;
+    font-weight: bold;
 }

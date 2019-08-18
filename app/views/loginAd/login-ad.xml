@@ -8,6 +8,9 @@
             
         </StackLayout> -->
         <StackLayout top="70" left="160" class="logo">
+            <AbsoluteLayout class="logo-wrapper">
+                <Label text="" top="0" left="0" />                
+            </AbsoluteLayout>
             <Image src="res://logo" width="50" height="50"/>    
         </StackLayout>
         <StackLayout id="main-container" top="110" class="main-container" >

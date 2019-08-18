@@ -1,10 +1,5 @@
-<AbsoluteLayout 
-    id="settingsComponent"
-    top="640" left="0" 
-    tap="onTap"
-    xmlns:Card="@nstudio/nativescript-cardview"
-    loaded="onLoad"
-    class="component-wrapper">
+<AbsoluteLayout id="settingsComponent" top="640" left="0" tap="onTap" 
+    xmlns:Card="@nstudio/nativescript-cardview" loaded="onLoad" class="component-wrapper">
 
     <StackLayout top="0" left="0" class="wrapper">
         <StackLayout orientation="horizontal" class="semi-actionbar" horizontalAlignment="left" horizontalAlignment="left">
@@ -12,8 +7,7 @@
             <Image horizontalAlignment="right" class="close" src="res://close" tap="toProfile" />
         </StackLayout>
         <Label text="Edit your information" class="bold edit-info-label" textWrap="true" />
-        <ScrollView height="540">
-            <StackLayout>
+        <ScrollView height="540" scrollBarIndicatorVisible="false" >
                 <StackLayout id="firstScene" class="form-body">
                     <StackLayout top="160" left="30" class="label-header light-opacity">
                         <Label text="Personal info " textWrap="true" />
@@ -21,31 +15,31 @@
                     </StackLayout>
                     <StackLayout horizontalAlignment="center" class="custom-input-stacklayout">
                         <Label text="First Name *" class="txtfld-label" />
-                        <TextField hint="Enter your first name " class="custom-txtfld" />
+                        <TextField hint="Enter your first name" text="{{ firstName }}" class="custom-txtfld" />
                     </StackLayout>
                     <StackLayout horizontalAlignment="center" class="custom-input-stacklayout">
                         <Label text="Last Name *" class="txtfld-label" />
-                        <TextField hint="Enter your last name" class="custom-txtfld" />
+                        <TextField hint="Enter your last name" text="{{ lastName }}" class="custom-txtfld" />
                     </StackLayout>
                     <StackLayout horizontalAlignment="center" class="custom-input-stacklayout">
                         <Label text="Phone Number *" class="txtfld-label" />
-                        <TextField hint="Enter your phone number" class="custom-txtfld" />
+                        <TextField hint="Enter your phone number" text="{{ phone }}" class="custom-txtfld" />
                     </StackLayout>
                     <StackLayout horizontalAlignment="center" class="custom-input-stacklayout">
                         <Label text="Birth Date" class="txtfld-label" />
-                        <TextField hint="DD/MM/YYYY" class="custom-txtfld" />
+                        <TextField hint="DD/MM/YYYY" keyboardType="datetime" text="{{ birthdate }}" class="custom-txtfld" />
                     </StackLayout>
                     <StackLayout horizontalAlignment="center" class="custom-input-stacklayout">
                         <Label text="Email Address *" class="txtfld-label" />
-                        <TextField hint="Enter your email " class="custom-txtfld" />
+                        <TextField hint="Enter your email" keyboardType="email" text="{{ email }}" class="custom-txtfld" />
                     </StackLayout>
                     <StackLayout horizontalAlignment="center" class="custom-input-stacklayout">
                         <Label text="Password *" class="txtfld-label" />
-                        <TextField hint="Enter your password" class="custom-txtfld" />
+                        <TextField hint="Enter your password" text="{{ password }}" class="custom-txtfld" />
                     </StackLayout>
                     <StackLayout horizontalAlignment="center" class="custom-input-stacklayout">
                         <Label text="Retype Password *" class="txtfld-label" />
-                        <TextField hint="Retype your password Again" class="custom-txtfld" />
+                        <TextField hint="Retype your password again" text="{{ passwordAgain }}" class="custom-txtfld" />
                     </StackLayout>
                     <StackLayout top="160" left="30" class="label-header2 light-opacity ">
                         <Label text="Pharmacy info " textWrap="true" />
@@ -53,22 +47,9 @@
                     </StackLayout>
                     <StackLayout horizontalAlignment="center" class="custom-input-stacklayout">
                         <Label text="Pharmacy name*" class="txtfld-label" />
-                        <TextField hint="Enter your pharmacy name " class="custom-txtfld" />
-                    </StackLayout>
-                    <StackLayout horizontalAlignment="center" class="custom-input-stacklayout">
-                        <Label text="City *" class="txtfld-label" />
-                        <TextField hint="Enter your city" class="custom-txtfld" />
-                    </StackLayout>
-                    <StackLayout horizontalAlignment="center" class="custom-input-stacklayout">
-                        <Label text="Area *" class="txtfld-label" />
-                        <TextField hint="Enter your area" class="custom-txtfld" />
-                    </StackLayout>
-                    <StackLayout horizontalAlignment="center" class="custom-input-stacklayout">
-                        <Label text="St name - Building number" class="txtfld-label" />
-                        <TextField hint="Address information" class="custom-txtfld" />
+                        <TextField hint="Enter your pharmacy name" text="{{ pharmacyName }}" class="custom-txtfld" />
                     </StackLayout>
                 </StackLayout>
-            </StackLayout>
         </ScrollView>
         <StackLayout orientation="horizontal" class="bottom-controllers-layout">
             <Card:CardView verticalAlignment="top" class="save-card" elevation="40" radius="30" tap="toFilter">

@@ -1,20 +1,20 @@
 const observableModule = require("tns-core-modules/data/observable")
 const application = require("tns-core-modules/application")
 import ApolloClient from 'apollo-boost'
-const appSettings = require("application-settings")
+import * as appSettings from 'application-settings'
 
 const BASE_URI = 'http://test.drug1market.com/'
 
 const apolloClient = new ApolloClient({
     uri: BASE_URI
 })
-
+/* 
 const token = appSettings.getString("token")
 let appRoot = 'app-root/app-root'
-/* if(!token){
+if(!token){
     appRoot = 'login-root'
-} */
-
+}
+ */
 let settingsStates = observableModule.fromObject({
         opened: false
     }),
@@ -33,7 +33,7 @@ export {
 }
 
 application.run({
-    moduleName: appRoot
+    moduleName: 'app-root/app-root'
 })
 /*
  const header = req.req.headers.authorization

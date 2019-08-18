@@ -1,7 +1,7 @@
 import {
     SignupViewModel
-} from './signup-view-model';
-import Toast from 'nativescript-toast'
+} from './signup-view-model'
+import { makeToast } from '~/utils/makeToast'
 import * as geolocation from 'nativescript-geolocation'
 import {
     Accuracy
@@ -12,7 +12,7 @@ import {
 import {
     toVerification
 } from '~/utils/navHelpers'
-const appSettings = require("application-settings")
+import * as appSettings from "tns-core-modules/application-settings"
 
 let page, step1View, step2View, step3View
 
@@ -27,16 +27,16 @@ function navigatingTo(args) {
 }
 
 async function toggleSwitch() {
-    geolocation.isEnabled().then(function (isEnabled) {
+    geolocation.isEnabled().then(async (isEnabled) => {
         if (!isEnabled) {
-            geolocation.enableLocationRequest().then(function () {
-                getLocation()
+            geolocation.enableLocationRequest().then(async () => {
+                await getLocation()
             }, function (e) {
                 alert('Location is required!')
                 page.bindingContext.locationSwitch = false
             });
         } else {
-            getLocation()
+            await getLocation()
         }
     }, function (e) {
         alert('Location is required')
@@ -44,19 +44,19 @@ async function toggleSwitch() {
     });
 
 }
-
-async function getLocation() {
-    await geolocation.getCurrentLocation({
-        desiredAccuracy: Accuracy.high,
-        updateDistance: 10,
-        maximumAge: 20000,
-        timeout: 20000
+//31.0934175 activityIndcatorFlag
+function getLocation() {
+    page.bindingContext.activityIndcatorFlag = true
+    geolocation.getCurrentLocation({
+        desiredAccuracy: Accuracy.high
     }).
     then(function (loc) {
         if (loc) {
-            console.log("Current location is: " + loc.latitude);
+            console.log("Current location is: " + loc.latitude)
             page.bindingContext.signupInfo.lat = loc.latitude
             page.bindingContext.signupInfo.long = loc.longitude
+            page.bindingContext.allowed = true
+            page.bindingContext.activityIndcatorFlag = false
         }
     }, function (e) {
         console.log("Error: " + e.message);
@@ -86,8 +86,7 @@ function checkStep1() {
 
     if (fName === '') {
         page.getViewById('fName').borderColor = 'red'
-        let toast = Toast.makeText('Please write your first name!')
-        toast.show()
+        makeToast('Please write your first name!')
         return false
     } else {
         page.getViewById('fName').borderColor = '#a7a6aa'
@@ -95,8 +94,7 @@ function checkStep1() {
 
     if (lName === '') {
         page.getViewById('lName').borderColor = 'red'
-        let toast = Toast.makeText('Please write your last name!')
-        toast.show()
+        makeToast('Please write your last name!')
         return false
     } else {
         page.getViewById('lName').borderColor = '#a7a6aa'
@@ -104,8 +102,7 @@ function checkStep1() {
 
     if (phone === '' || phone.length < 10 && phone.length > 11) {
         page.getViewById('phone').borderColor = 'red'
-        let toast = Toast.makeText('Please check your fone number')
-        toast.show()
+        makeToast('Please check your fone number')
         return false
     } else {
         page.getViewById('phone').borderColor = '#a7a6aa'
@@ -122,8 +119,7 @@ function checkStep2() {
 
     if (email === '') {
         page.getViewById('email').borderColor = 'red'
-        let toast = Toast.makeText('Please write your email!')
-        toast.show()
+        makeToast('Please write your email!')
         return false
     } else {
         page.getViewById('email').borderColor = '#a7a6aa'
@@ -131,8 +127,7 @@ function checkStep2() {
 
     if (password === '' || password.length < 8) {
         page.getViewById('password').borderColor = 'red'
-        let toast = Toast.makeText('Password must be 8 characters or greater')
-        toast.show()
+        makeToast('Password must be 8 characters or greater')
         return false
     } else {
         page.getViewById('password').borderColor = '#a7a6aa'
@@ -140,8 +135,7 @@ function checkStep2() {
 
     if (repeatedPass !== password) {
         page.getViewById('repeatedPass').borderColor = 'red'
-        let toast = Toast.makeText('Passwords not equal')
-        toast.show()
+        makeToast('Passwords not equal')
         return false
     } else {
         page.getViewById('repeatedPass').borderColor = '#a7a6aa'
@@ -182,22 +176,22 @@ function step3(args) {
 }
 
 async function submit(args) {
-    console.log('hey1')
     if (!page.bindingContext.locationSwitch) {
         alert(`can't process without location`)
         return
     } else {
         if (!page.bindingContext.signupInfo.pharmacyName) {
             page.getViewById('pName').borderColor = 'red'
-            let toast = Toast.makeText('Please write your pharmacy name!')
-            toast.show()
+            makeToast('Please write your pharmacy name!')
             return
         } else {
             page.getViewById('pName').borderColor = '#a7a6aa'
             let data = await addPharmacy(page.bindingContext.signupInfo)
-            appSettings.set('verificationStat', 'waiting4Verification')
+            appSettings.setBoolean('isVerified', false)
             if (data) {
+                console.log(data)
                 toVerification(args)
+
             } else {
                 alert('Error in signing up') 
                 page.getViewById('secondScene').opacity = 0

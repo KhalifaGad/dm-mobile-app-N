@@ -7,13 +7,16 @@
     width: 100%;
     margin-left: 4%;
 }
+.action-bar-logo{
+    margin-left: 1.5%
+}
 .close{
     width: 24vw;
     height: 24vh;
     opacity: .5
 }
 .semi-actionbar Image+Image{
-    margin-left: 72%;
+    margin-left: 70.5%;
 }
 .light-opacity{
     opacity: .7;
@@ -33,14 +36,14 @@
 .line{
     border-width: .8em;
     border-color: #AB85E7;
-    width: 58%;
+    width: 61%;
     margin-left: 2%;
 }
 .short{
-    width: 56%;
+    width: 59%;
 }
 .shorter{
-    width: 52%;
+    width: 54%;
 }
 font-big{
     font-size: 93;
@@ -68,34 +71,38 @@ font-big{
     background-color: transparent;
 }
 .payment-option1-wrapper,
-.payment-option2-wrapper{
-    width: 80%;
+.payment-option2-wrapper,
+.payment-option3-wrapper{
+    width: 83%;
 }
 .payment-option1-wrapper Label+StackLayout{
-    margin-left: 47%;
+    margin-left: 48.5%;
 }
 .search4-option1-wrapper,
 .search4-option2-wrapper{
-    width: 80%;
+    width: 83%;
 }
 .search4-option1-wrapper Label+StackLayout{
-    margin-left: 74.5%;
+    margin-left: 76%;
 }
 .search4-option2-wrapper Label+StackLayout{
-    margin-left: 66.5%;
+    margin-left: 68%;
 }
 .payment-option2-wrapper Label+StackLayout{
-    margin-left: 55%;
+    margin-left: 56.5%;
+}
+.payment-option3-wrapper Label+StackLayout{
+    margin-left: 76%;
 }
 .search-img {
     width: 5%;
     height: 5%;
 }
 .search-stklayout {
-    border-bottom-color: white;
+    border-bottom-color: #AB85E7;
     border-bottom-width: 5px;
     border-bottom-style: solid;
-    width: 80%;
+    width: 83%;
 }
 .search-txtfld {
     background-color: transparent;
@@ -136,13 +143,11 @@ font-big{
     z-index: 30;
 }
 .location-search{
-    width: 80%;
+    width: 83%;
 }
 .location-search Label{
     font-size: 16em;
-}
-.location-search Label+Button{
-    margin-left: 49%;
+    width: 80%;
 }
 .location-btn{
     z-index: 100;
@@ -154,4 +159,6 @@ font-big{
     border-radius: 5%;
     width: 35;
     height: 35;
+    margin-left: 8.5%;
 }
+

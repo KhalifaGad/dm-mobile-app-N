@@ -4,15 +4,15 @@
             <Label text="Choose Location" textWrap="true" class="bold" />
             <Button text="" tap="cancle"/>
         </StackLayout>
-        <StackLayout horizontalAlignment="center" class="">
-            <TextField hint="Enter desired quantity " text="{{ selectedLocation.loc }}" class="custom-txtfld" />
+        <StackLayout horizontalAlignment="center" class="search-stklayout">
+            <TextField hint="Search locations " text="{{ selectedLocation.loc }}" class="custom-txtfld" />
         </StackLayout>
         <StackLayout orientation="horizontal" class="last-layer">
             <ScrollView height="180" scrollBarIndicatorVisible="false">
                 <ListView items="{{ areas }}" height="180">
                     <ListView.itemTemplate>
-                        <StackLayout orientation="horizontal" class="list-item-modal" tap="completeText" val="{{ $value }}">
-                            <Label horizontalAlignment="center" text="{{$value}}" textWrap="true" />
+                        <StackLayout class="list-item-modal" tap="completeText" val="{{ $value }}">
+                            <Label horizontalAlignment="center" verticalAlignment="center" text="{{$value}}" textWrap="true" />
                         </StackLayout>
                     </ListView.itemTemplate>
                 </ListView>

@@ -11,7 +11,11 @@
             <Label class="bold" text="WELCOME BACK" />
         </StackLayout>
         <StackLayout class="login-controllers-stacklayout">
-            <Image horizontalAlignment="center" class="login-logo" src="res://logo_lg" />
+            <!-- <Image horizontalAlignment="center" class="login-logo" src="res://logo_lg" /> -->
+            <AbsoluteLayout class="abs-login-logo" >
+                <Label id="higherLogoPart" class="higher-logo" text="" tap="d" />
+                <Label class="lower-logo" text="" />
+            </AbsoluteLayout>
             <StackLayout id="emailView" horizontalAlignment="center" class="custom-input-stacklayout">
                 <Label text="Email Address"/>
                 <TextField hint="email@domain.com" keyboardType="email" text="{{ email }}" class="custom-txtfld" />
@@ -24,7 +28,8 @@
                 <Label text="Forget password?" verticalAlignment="center" horizontalAlignment="left" />
                 <Button text="Login" class="login-btn" horizontalAlignment="right" tap="submit" />
             </StackLayout>
-            <Button horizontalAlignment="center" text="Don't have account?! Sign up" class="lastlogin-label" tap="toSignup" />
+            <Button horizontalAlignment="center" text="Don't have account!" class="signup-btn" tap="toSignup" />
+            <Button horizontalAlignment="center" text="Verify your account" class="verification-btn" tap="toVerification" />
         </StackLayout>
     </StackLayout>
 </Page>

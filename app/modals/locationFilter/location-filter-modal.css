@@ -31,14 +31,20 @@
     border-bottom-width: 5px;
     border-bottom-style: solid;
     width: 80%;
+    margin-top: 10vh;
 }
 .last-layer{
+    width: 100%;
     margin-top: 3%;
     margin-bottom: 3%;
     margin-left: 10%;
 }
 .last-layer StackLayout+Button{
     margin-left: 45%;
+}
+.last-layer ScrollView{
+    margin-right: 15%;
+    margin-left: 5%;
 }
 
 .confirm-btn{
@@ -55,10 +61,11 @@
     text-transform: none;
 }
 .list-item-modal{
-    width: 80%;
+    width: 300;
     color: rgb(75, 72, 72);
     font-size: 16em;
     height: 50vh;
+    padding-top: 11vh;
 }
 .list-item-modal + .list-item-modal {
     border-top-style: solid;
@@ -70,4 +77,5 @@
     z-index: 100;
     background-color: #fff;
     text-transform: none;
+    color: #560BD0;
 }

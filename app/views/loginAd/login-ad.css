@@ -20,6 +20,11 @@ page {
     padding: 10;
     z-index: 900.1;
 }
+.logo-wrapper{
+    width: 50;
+    height: 50;
+    background-color: aqua;
+}
 .main-container .first-label{
     margin-top: 40%;
     font-weight: bold;

@@ -2,7 +2,10 @@
     xmlns="http://schemas.nativescript.org/tns.xsd" 
     xmlns:lv="nativescript-ui-listview" 
     xmlns:actionBar="components/actionBar" 
-    xmlns:bottomNav="components/bottomNav" navigatingTo="onNavigatingTo" class="page" id="home-page">
+    xmlns:bottomNav="components/bottomNav"
+    navigatingTo="onNavigatingTo"
+    class="page"
+    id="home-page">
 
     <Page.actionBar>
         <actionBar:ActionBar-component />
@@ -36,18 +39,6 @@
                         </ListView.itemTemplate>
                     </ListView>
                 </StackLayout>
-
-                <!-- <Repeater items="{{ viewModel.items }}">
-                    <Repeater.itemTemplate>
-                        <StackLayout orientation="horizontal" class="list-item" tap="toDrug" val="{{ $value }}">
-                            <StackLayout orientation="vertical" horizontalAlignment="right" verticalAlignment="middle" class="drug-info-wrapper">
-                                <Label text="{{ $value.item }}" horizontalAlignment="left" class="drug-name" textWrap="false" width="90%" />
-                                <Label text="{{'Price per pack ' + $value.price + 'EGP' }}" horizontalAlignment="left" textWrap="true" />
-                            </StackLayout>
-                            <Image src="res://fa_angle_right" horizontalAlignment="right" style="horizontal-align:center;" verticalAlignment="middle" height="20vh" width="20vw" tap="toDrug" />
-                        </StackLayout>
-                    </Repeater.itemTemplate>
-                </Repeater > -->
             </ScrollView>
         </StackLayout>
         <bottomNav:BottomNav-component top="579" left="0"/>
