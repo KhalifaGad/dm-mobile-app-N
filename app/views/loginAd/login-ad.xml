@@ -3,20 +3,20 @@
     actionBarHidden="true"
     navigatedTo="onNavigatedTo">
     <AbsoluteLayout>
-            <Button top="95" left="270" text="" tap="animatIt" />
         <!-- <StackLayout top="20" left="250" >
             
         </StackLayout> -->
-        <StackLayout top="70" left="160" class="logo">
-            <AbsoluteLayout class="logo-wrapper">
-                <Label text="" top="0" left="0" />                
+        <StackLayout top="50" left="160" class="logo">
+            <AbsoluteLayout id="logoWrapper" class="logo-wrapper">
+                <Label id="higherLogoPart" class="higher-logo" text="" />
+                <Label id="lowerLogoPart" class="lower-logo" text="" />            
             </AbsoluteLayout>
-            <Image src="res://logo" width="50" height="50"/>    
         </StackLayout>
-        <StackLayout id="main-container" top="110" class="main-container" >
+        <StackLayout id="main-container" top="90" class="main-container" >
             <Label horizontalAlignment="center" text="You may ask for advertising" class="first-label" textWrap="true" />
             <Label horizontalAlignment="center" text="here!" class="second-label" textWrap="true" />
-            
         </StackLayout>
+        <Button text="skip" tap="skipAd" top="710" left="160" class="skip-btn" />
+        
     </AbsoluteLayout>
 </Page>

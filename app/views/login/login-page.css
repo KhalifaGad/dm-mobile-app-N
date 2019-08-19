@@ -27,9 +27,6 @@
     border-top-right-radius: 19;
     transition: background-color 15s linear;
 }
-.higher-logo:active{
-    background-color: yellow;
-}
 .lower-logo{
     top: 46;
     left: 1;

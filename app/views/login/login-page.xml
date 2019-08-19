@@ -13,7 +13,7 @@
         <StackLayout class="login-controllers-stacklayout">
             <!-- <Image horizontalAlignment="center" class="login-logo" src="res://logo_lg" /> -->
             <AbsoluteLayout class="abs-login-logo" >
-                <Label id="higherLogoPart" class="higher-logo" text="" tap="d" />
+                <Label id="higherLogoPart" class="higher-logo" text="" />
                 <Label class="lower-logo" text="" />
             </AbsoluteLayout>
             <StackLayout id="emailView" horizontalAlignment="center" class="custom-input-stacklayout">

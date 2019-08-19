@@ -3,7 +3,7 @@ import {
 } from './verification-view-model'
 import {
     pharmacyVerification
-} from '~/utils/webHelpers'
+} from '~/utils/webHelpers/mutations'
 import {
     toSignup,
     toLogin

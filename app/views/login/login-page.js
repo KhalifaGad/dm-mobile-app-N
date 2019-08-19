@@ -11,7 +11,7 @@ import {
 } from '~/utils/navHelpers'
 import {
     login
-} from '~/utils/webHelpers'
+} from '~/utils/webHelpers/mutations'
 const appSettings = require("application-settings")
 const Animation = require("tns-core-modules/ui/animation").Animation;
 
@@ -64,7 +64,7 @@ async function submit(args) {
                 appSettings.setString('pharmacyName', pharmacyName)
                 loginAnimation.cancel()
                 higherLogoPart.backgroundColor = '#FF3838'
-                toMain(args)
+                toMain(args, true)
             }
         }
     }

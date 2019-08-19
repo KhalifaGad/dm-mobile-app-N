@@ -8,7 +8,7 @@ import {
 } from "tns-core-modules/ui/enums"
 import {
     addPharmacy
-} from '~/utils/webHelpers'
+} from '~/utils/webHelpers/mutations'
 import {
     toVerification
 } from '~/utils/navHelpers'

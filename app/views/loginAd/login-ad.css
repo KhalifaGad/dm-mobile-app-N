@@ -21,9 +21,31 @@ page {
     z-index: 900.1;
 }
 .logo-wrapper{
-    width: 50;
-    height: 50;
-    background-color: aqua;
+    width: 60;
+    height: 60;
+    background-color: transparent;
+}
+.higher-logo{
+    top: 8;
+    left: 0;
+    height: 18;
+    width: 15;
+    margin-left: 22;
+    background-color: #FF3838;
+    border-top-left-radius: 19;
+    border-top-right-radius: 19;
+}
+.lower-logo{
+    top: 29;
+    left: 17;
+    height: 18;
+    width: 24;
+    background-color: #fff;
+    border-width: 5;
+    border-top-width: 00;
+    border-color: #000;
+    border-bottom-left-radius: 27;
+    border-bottom-right-radius: 27;
 }
 .main-container .first-label{
     margin-top: 40%;
@@ -36,14 +58,10 @@ page {
     font-size: 21;
 }
 Button {
-    width: 40vw;
-    height: 40vh;
-    border-radius: 40%;
-    background-image: url("res://close");
-    background-repeat: no-repeat;
-    background-size: 60 60;
-    background-position: center;
-    background-color: #d4d2d8;
-    z-index: 999;
-    border-width: 0;
+   text-transform: none;
+   color: #fff;
+   font-weight: bold;
+   background-color: #FF3838;
+   border-radius: 10;
+   z-index: 990;
 }
