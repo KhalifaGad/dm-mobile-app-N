@@ -1,7 +1,4 @@
 import {
-    ResultViewModel
-} from './result-view-model';
-import {
     toDrug
 } from '../../utils/navHelpers'
 import {
@@ -11,19 +8,31 @@ import {
 import {
     actionBarStatus
 } from '~/app'
+import {
+    ObservableArray
+} from 'tns-core-modules/data/observable-array'
+import {
+    refactorWtihSellers
+} from '~/utils/refactorDrugsArray'
+import {
+    searchDrugs
+} from '~/utils/webHelpers/queries'
 import * as observableModule from 'tns-core-modules/data/observable'
-
 import * as gestures from 'tns-core-modules/ui/gestures'
 let page;
-
+let searchNumber = 1
 function navigatingTo(args) {
     page = args.object
     let bindings = observableModule.fromObjectRecursive({
         actionBarStatus,
         viewModel: {
-            items: page.navigationContext.resArr,
+            items: new ObservableArray(page.navigationContext.resArr),
             searchTxt: page.navigationContext.searchTxt,
-            db: ResultViewModel()
+            itemsViewVisiblity: 'visible',
+            activityIndecatorVis: 'collapse',
+            loadMoreItemsIndicator: 'collapse',
+            fetching: false,
+            loadMore: false
         }
     })
     page.bindingContext = {
@@ -51,18 +60,50 @@ function navigatingTo(args) {
     })
 }
 
-function search(args) {
-    let {
-        db,
-        searchTxt
-    } = page.bindingContext.viewModel
-    console.log(page.bindingContext.viewModel.searchTxt)
-    page.bindingContext.viewModel.items =
-        db.items.filter((drug) => drug.name.includes(searchTxt))
+async function search(args) {
+    searchNumber = 1
+    page.bindingContext.viewModel.fetching = true
+    page.bindingContext.viewModel.itemsViewVisiblity = 'collapse'
+    page.bindingContext.viewModel.activityIndecatorVis = 'visible'
+    let searchTxt = page.bindingContext.viewModel.searchTxt
+    let searchRes = await searchDrugs(searchTxt, 100, 0)
+    searchRes = await refactorWtihSellers(searchRes)
+    page.bindingContext.viewModel.items = searchRes
+    page.bindingContext.viewModel.fetching = false
+    page.bindingContext.viewModel.itemsViewVisiblity = 'visible'
+    page.bindingContext.viewModel.activityIndecatorVis = 'collapse'
+}
+
+async function onLoadMoreItems(args){
+    searchNumber ++
+    const loadMoreItemsIndicator = page.getViewById('loadMoreItemsIndicator')
+    page.bindingContext.viewModel.loadMore = true
+    page.bindingContext.viewModel.loadMoreItemsIndicator = 'visible'
+    loadMoreItemsIndicator.animate({
+        translate: {x: 0, y: -100},
+        duration: 200
+    })
+    let searchTxt = page.bindingContext.viewModel.searchTxt
+    let moreDrugs = await searchDrugs(searchTxt, 100, 100 * searchNumber)
+    moreDrugs = await refactorWtihSellers(moreDrugs)
+    console.log(moreDrugs.length)
+    console.log(page.bindingContext.viewModel.items.length)
+    if(moreDrugs.length !== 0){
+        console.log('entered')
+        await page.bindingContext.viewModel.items.push(...moreDrugs)
+        console.log(page.bindingContext.viewModel.items.length)
+    }
+    loadMoreItemsIndicator.animate({
+        translate: {x: 0, y: 0},
+        duration: 200
+    })
+    page.bindingContext.viewModel.loadMore = false
+    page.bindingContext.viewModel.loadMoreItemsIndicator = 'collapse'
 }
 
 export {
     navigatingTo,
     toDrug,
-    search
+    search,
+    onLoadMoreItems
 }

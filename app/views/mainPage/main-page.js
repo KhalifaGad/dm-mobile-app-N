@@ -18,12 +18,13 @@ import {
 } from '~/app'
 import * as appSettings from "tns-core-modules/application-settings"
 import {
-    refactor
+    refactor,
+    refactorWtihSellers
 } from '~/utils/refactorDrugsArray'
 import {
-    getRandomDrugs
+    getRandomDrugs,
+    searchDrugs
 } from '~/utils/webHelpers/queries'
-const Observable = require("tns-core-modules/data/observable")
 
 async function onNavigatingTo(args) {
 
@@ -56,7 +57,7 @@ async function onNavigatingTo(args) {
         page.bindingContext.viewModel.items.push([...drugsArr])
         
         page.bindingContext.viewModel.itemsViewVisiblit = 'visible'
-        page.bindingContext.viewModel.activityIndecationVis = 'collapse'
+        page.bindingContext.viewModel.activityIndecatorVis = 'collapse'
         page.bindingContext.viewModel.notFetched = false
     })
 
@@ -82,14 +83,15 @@ async function onNavigatingTo(args) {
     })
 }
 
-function search(args) {
+async function search(args) {
     const page = args.object.page
     const searchTxt = page.bindingContext.viewModel.searchTxt
-    const items = page.bindingContext.viewModel.items
-    const res = items.filter((drug) => {
-        return drug.name.includes(searchTxt)
-    })
-    toResult(args, res, searchTxt)
+    page.bindingContext.viewModel.itemsViewVisiblit = 'collapse'
+    page.bindingContext.viewModel.activityIndecatorVis = 'visible'
+    page.bindingContext.viewModel.notFetched = true
+    let items = await searchDrugs(searchTxt, 100, 0)
+    items = await refactorWtihSellers(items)
+    toResult(args, items, searchTxt)
 }
 
 export {

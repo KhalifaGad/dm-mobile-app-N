@@ -2,11 +2,8 @@ const observableModule = require("tns-core-modules/data/observable")
 const application = require("tns-core-modules/application")
 import ApolloClient from 'apollo-boost'
 import * as appSettings from 'application-settings'
-import { makeToast } from '~/utils/makeToast'
 
 const BASE_URI = 'http://test.drug1market.com/'
-
-// improvments : graphQLErrors, sendToLoggingService
 
 const apolloClient = new ApolloClient({
     uri: BASE_URI,
@@ -15,15 +12,14 @@ const apolloClient = new ApolloClient({
         token = token === undefined ? '' : token
         operation.setContext({
             headers: {
-              authorization: token
+                authorization: token
             }
-          })
+        })
     },
-    onError: ({ graphQLErrors, networkError })=>{
-          if (networkError) {
-            makeToast('Its a network error,' +
-                    ' Please make sure of your internet connectivity')
-          }
+    onError: ({
+        graphQLErrors
+    }) => {
+        // improvments : graphQLErrors, sendToLoggingService
     }
 })
 /* 

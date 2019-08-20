@@ -2,11 +2,15 @@ import gql from 'graphql-tag'
 import {
     apolloClient
 } from '~/app'
+import {
+    makeToast,
+    NETWORK_ERROR_WARNING
+} from '~/utils/makeToast'
 
 async function addPharmacy(signupInfo) {
     let returnedData
     await apolloClient
-    .mutate({
+        .mutate({
             mutation: gql `mutation {
             addPharmacy(firstName: "${signupInfo.fName}",
                 lastName: "${signupInfo.lName}",
@@ -23,14 +27,19 @@ async function addPharmacy(signupInfo) {
         }`
         })
         .then(data => returnedData = data)
-        .catch(error => console.error(error))
+        .catch(error => {
+            if (error.networkError) {
+                makeToast(NETWORK_ERROR_WARNING)
+            }
+            console.error(error)
+        })
     return returnedData
 }
 
 async function pharmacyVerification(code) {
     let returnedData
     await apolloClient
-    .mutate({
+        .mutate({
             mutation: gql `mutation {
             pharmacyVerification(code: "${code}")
         }`
@@ -39,14 +48,19 @@ async function pharmacyVerification(code) {
             console.log(data)
             returnedData = data
         })
-        .catch(error => console.error(error))
+        .catch(error => {
+            if (error.networkError) {
+                makeToast(NETWORK_ERROR_WARNING)
+            }
+            console.error(error)
+        })
     return returnedData
 }
 
 async function login(email, password) {
-    let token, pharmacyName
+    let token, pharmacyName, returnedError = null
     await apolloClient
-    .mutate({
+        .mutate({
             mutation: gql `mutation {
             login(email: "${email}",
                 password: "${password}",
@@ -62,8 +76,17 @@ async function login(email, password) {
             token = data.data.login.token
             pharmacyName = data.data.login.pharmacy.pharmacyName
         })
-        .catch(error => console.error(error))
-    return {token, pharmacyName}
+        .catch(error => {
+            if (error.networkError) {
+                makeToast(NETWORK_ERROR_WARNING)
+            }
+            returnedError = error
+        })
+    return {
+        token,
+        pharmacyName,
+        returnedError
+    }
 }
 
 export {

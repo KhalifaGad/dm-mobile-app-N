@@ -2,12 +2,16 @@ import gql from 'graphql-tag'
 import {
     apolloClient
 } from '~/app'
+import {
+    makeToast,
+    NETWORK_ERROR_WARNING
+} from '~/utils/makeToast'
 
 async function getRandomDrugs() {
-    let returnedData = 8
+    let data
     await apolloClient
-    .query({
-        query: gql`query {
+        .query({
+            query: gql `query {
             drugsHaveStores{
                 id
                 name
@@ -19,10 +23,70 @@ async function getRandomDrugs() {
                 }
             }
         }`
-    })
-    .then(res => returnedData = res.data.drugsHaveStores)
-    .catch(error => console.error(error))
-    return returnedData
+        })
+        .then(res => data = res.data.drugsHaveStores)
+        .catch(error => {
+            if (error.networkError) {
+                makeToast(NETWORK_ERROR_WARNING)
+            } else {
+                console.error(error)
+            }
+        })
+    return data
 }
 
-export { getRandomDrugs }
+async function searchDrugs(drugName, first, skip) {
+    let data
+    await apolloClient.query({
+            query: gql `query{
+            drugs(name: "${drugName}", first: ${first}, skip: ${skip}){
+                id
+                name
+                stores{
+                    store
+                    price
+                    discount
+                    onlyCash
+                }
+            }
+        }`
+        })
+        .then(res => data = res.data.drugs)
+        .catch(error => {
+            if (error.networkError) {
+                makeToast(NETWORK_ERROR_WARNING)
+            } else {
+                console.error(error)
+            }
+        })
+        return data
+}
+
+async function getSeller(sellerId){
+    let storeName
+    await apolloClient.query({
+        query: gql`query{
+            store(id: "${sellerId}"){
+                storeName
+            }
+        }`
+    })
+    .then(res => {
+        console.log(res)
+        storeName = res.data.store.storeName
+    })
+    .catch(error => {
+        if (error.networkError) {
+            makeToast(NETWORK_ERROR_WARNING)
+        } else {
+            console.error(error)
+        }
+    })
+    return storeName
+}
+
+export {
+    getRandomDrugs,
+    searchDrugs,
+    getSeller
+}

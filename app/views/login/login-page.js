@@ -39,34 +39,37 @@ async function submit(args) {
         return
     } else {
         // this if statment in development stat only
-        if (email === 'test' && password === 'test') {
-            toMain(args)
+
+        page.getViewById('emailView').borderColor = '#a7a6aa'
+        page.getViewById('passwordView').borderColor = '#a7a6aa'
+        let higherLogoPart = page.getViewById('higherLogoPart')
+        let loginAnimation = new Animation([{
+            target: higherLogoPart,
+            backgroundColor: '#000',
+            duration: 1000,
+            iterations: Number.POSITIVE_INFINITY
+        }])
+        loginAnimation.play()
+        let {
+            token,
+            pharmacyName,
+            returnedError
+        } = await login(email, password)
+        if (returnedError) {
+            if(returnedError.networkError) return
+            page.getViewById('emailView').borderColor = 'red'
+            page.getViewById('passwordView').borderColor = 'red'
+            makeToast('Wrong email or password')
+            loginAnimation.cancel()
+            higherLogoPart.backgroundColor = '#FF3838'
         } else {
-            page.getViewById('emailView').borderColor = '#a7a6aa'
-            page.getViewById('passwordView').borderColor = '#a7a6aa'
-            let higherLogoPart = page.getViewById('higherLogoPart')
-            let loginAnimation = new Animation([{
-                target: higherLogoPart,
-                backgroundColor: '#000',
-                duration: 1000,
-                iterations: Number.POSITIVE_INFINITY
-            }])
-            loginAnimation.play()
-            let {token, pharmacyName} = await login(email, password)
-            if (!token) {
-                page.getViewById('emailView').borderColor = 'red'
-                page.getViewById('passwordView').borderColor = 'red'
-                makeToast('Wrong email or password')
-                loginAnimation.cancel()
-                higherLogoPart.backgroundColor = '#FF3838'
-            } else {
-                appSettings.setString('token', token)
-                appSettings.setString('pharmacyName', pharmacyName)
-                loginAnimation.cancel()
-                higherLogoPart.backgroundColor = '#FF3838'
-                toMain(args, true)
-            }
+            appSettings.setString('token', token)
+            appSettings.setString('pharmacyName', pharmacyName)
+            loginAnimation.cancel()
+            higherLogoPart.backgroundColor = '#FF3838'
+            toMain(args, true)
         }
+
     }
 }
 

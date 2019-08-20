@@ -7,14 +7,8 @@ function mainViewModel() {
         searchTxt: '',
         notFetched: true,
         itemsViewVisiblit: 'collapse',
-        activityIndecationVis: 'visible',
-        items: new ObservableArray([{
-                   name: "abimol 500mg 20 t",
-                   sellerId: "5d573b0ac450450007a93456",
-                   price: 51,
-                   discount: 1,
-                   deferred: false
-                 }])
+        activityIndecatorVis: 'visible',
+        items: new ObservableArray()
     })
 
     return viewModel;

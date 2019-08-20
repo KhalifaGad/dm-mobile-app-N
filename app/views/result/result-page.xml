@@ -8,19 +8,32 @@
         <actionBar:ActionBar-component />
     </Page.actionBar>
 
-    <AbsoluteLayout>
+    <AbsoluteLayout id="secondChild">
         <StackLayout top="30" left="24" orientation="vertical" class="app-headers">
             <Label horizontalAlignment="left" text="RESULT FOR" />
         </StackLayout>
         <StackLayout top="90" left="50" orientation="horizontal" class="search-stklayout">
-            <TextField  text="{{ viewModel.searchTxt }}" returnKeyType="Search" returnPress="search" hint="Find the medicine" class="search-txtfld" />
+            <TextField text="{{ viewModel.searchTxt }}" returnKeyType="Search" returnPress="search" hint="Find the medicine" class="search-txtfld" />
             <Button text="" src="res://fa_search" class="search-btn" tap="search" />
         </StackLayout>
         <StackLayout id="items-container" top="200" left="0" orientation="vertical" class="home-items-stklayout">
-            <ScrollView height="380" id="itemsScrollView" scrollBarIndicatorVisible="false">
+            <ActivityIndicator 
+                horizontalAlignment="center"
+                marginTop="139"
+                visibility="{{viewModel.activityIndecatorVis}}"
+                id="myIndicator"
+                busy="{{ viewModel.fetching }}"
+                backgroundColor="transparent"
+                color="#FF3838"
+                width="100"
+                height="100" />
+            <ScrollView 
+                height="380"
+                visibility="{{viewModel.itemsViewVisiblity}}"
+                id="itemsScrollView"
+                scrollBarIndicatorVisible="false">
                 <StackLayout height="380" id="itemsStackLayout">
-                    <!-- loaded="onLoaded" itemLoading="onItemLoading" -->
-                    <ListView id="itemsListView" height="380" items="{{ viewModel.items }}" style="" itemTap="onItemTap">
+                    <ListView id="itemsListView" height="380" items="{{ viewModel.items }}" loadMoreItems="onLoadMoreItems" itemTap="onItemTap">
                         <ListView.itemTemplate>
                             <StackLayout orientation="horizontal" class="list-item" tap="onTap" val="{{ $value }}">
                                 <StackLayout orientation="horizontal" class="drug-info-wrapper">
@@ -47,25 +60,20 @@
                         </ListView.itemTemplate>
                     </ListView>
                 </StackLayout>
-                <!-- <Repeater items="{{ viewModel.items }}">
-                    <Repeater.itemTemplate>
-                        <StackLayout orientation="horizontal" class="list-item" tap="onTap" val="{{ $value.item }}">
-                            <StackLayout orientation="horizontal" class="drug-info-wrapper">
-                                <StackLayout orientation="vertical" horizontalAlignment="right" verticalAlignment="middle" class="drug-name-price">
-                                    <Label text="{{ $value.item }}" horizontalAlignment="left" class="drug-name" textWrap="true" />
-                                    <Label text="{{'Price per pack ' + $value.price + 'EGP' }}" horizontalAlignment="left" textWrap="true" />
-                                </StackLayout>
-                                <StackLayout class="discount-box" orientation="vertical" horizontalAlignment="right">
-                                    <Label text="{{ '-' + $value.discount + '%' }}" horizontalAlignment="center" />
-                                </StackLayout>
-                            </StackLayout>
-                            <Image src="res://fa_angle_right" horizontalAlignment="right" verticalAlignment="middle" height="20vh" width="20vw" />
-                        </StackLayout>
-                    </Repeater.itemTemplate>
-                </Repeater> -->
             </ScrollView>
         </StackLayout>
         <bottomNav:BottomNav-component top="579" left="0" />
+        <ActivityIndicator 
+                top="600"
+                left="180"
+                style="z-index: 400"
+                visibility="{{viewModel.loadMoreItemsIndicator}}"
+                id="loadMoreItemsIndicator"
+                busy="{{ viewModel.loadMore }}"
+                backgroundColor="transparent"
+                color="#FF3838"
+                width="30"
+                height="30" />
     </AbsoluteLayout>
 
 </Page>

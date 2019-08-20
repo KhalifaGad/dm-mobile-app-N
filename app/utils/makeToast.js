@@ -4,4 +4,7 @@ function makeToast(txt){
     Toast.makeText(txt).show()
 }
 
-export { makeToast }
+const NETWORK_ERROR_WARNING = 
+    'Its a network error, Please make sure of your internet connectivity'
+
+export { makeToast, NETWORK_ERROR_WARNING }

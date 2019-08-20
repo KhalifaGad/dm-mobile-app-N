@@ -30,7 +30,7 @@
             <ActivityIndicator
                     horizontalAlignment="center"
                     marginTop="139"
-                    visibility="{{viewModel.activityIndecationVis}}"
+                    visibility="{{viewModel.activityIndecatorVis}}"
                     id="myIndicator"
                     busy="{{ viewModel.notFetched }}"
                     backgroundColor="transparent"
@@ -43,7 +43,6 @@
                 id="itemsScrollView"
                 scrollBarIndicatorVisible="false">
                 <StackLayout visibility="{{ viewModel.itemsViewVisiblit }}" height="310" id="itemsStackLayout" >
-                    <!-- loaded="onLoaded" itemLoading="onItemLoading" -->
                     <ListView id="itemsListView" height="310" items="{{ viewModel.items }}" >
                         <ListView.itemTemplate>
                             <StackLayout orientation="horizontal" class="list-item" val="{{ $value }}">
