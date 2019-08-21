@@ -11,7 +11,7 @@
         <StackLayout orientation="horizontal" class="last-layer">
             <StackLayout>
                 <Label text="Total Price" textWrap="true" class="white" style="opacity: .7" />
-                <Label text="{{ (quantity * price - (quantity * price * (discount/100))) + ' EGP' }}" textWrap="true" class="white bold" />
+                <Label text="{{ totalPrice + ' EGP' }}" textWrap="true" class="white bold" />
             </StackLayout>
             <Button text="Confirm" tap="confirm" class="confirm-btn" />
         </StackLayout>

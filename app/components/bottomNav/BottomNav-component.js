@@ -9,6 +9,7 @@ import {
 } from '../../utils/navHelpers'
 import {
     actionBarStatus,
+    cart,
     filterStatus
 } from '~/app'
 
@@ -23,6 +24,14 @@ function onLoaded(args) {
         const profileBtn = page.getViewById('home-btn')
         profileBtn.backgroundImage = "res://fa_user_active"
     }
+    const cartHasItems = page.getViewById('cartHasItems')
+    cart.on(Observable.propertyChangeEvent, (data)=> {
+        if(data.value){
+            cartHasItems.visibility = 'visible'
+        } else {
+            cartHasItems.visibility = 'collapse'
+        }
+    })
 }
 
 async function loadFilter() {

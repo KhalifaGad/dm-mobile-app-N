@@ -22,13 +22,7 @@ const apolloClient = new ApolloClient({
         // improvments : graphQLErrors, sendToLoggingService
     }
 })
-/* 
-const token = appSettings.getString("token")
-let appRoot = 'app-root/app-root'
-if(!token){
-    appRoot = 'login-root'
-}
- */
+
 let settingsStates = observableModule.fromObject({
         opened: false
     }),
@@ -37,12 +31,16 @@ let settingsStates = observableModule.fromObject({
     }),
     actionBarStatus = observableModule.fromObject({
         hidden: false
+    }),
+    cart = observableModule.fromObject({
+        hasItems: false
     })
 
 export {
     settingsStates,
     filterStatus,
     actionBarStatus,
+    cart,
     apolloClient
 }
 

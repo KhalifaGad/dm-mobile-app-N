@@ -72,7 +72,6 @@ async function getSeller(sellerId){
         }`
     })
     .then(res => {
-        console.log(res)
         storeName = res.data.store.storeName
     })
     .catch(error => {
@@ -87,6 +86,6 @@ async function getSeller(sellerId){
 
 export {
     getRandomDrugs,
-    searchDrugs,
+    searchDrugs, 
     getSeller
 }

@@ -73,6 +73,7 @@ Button, TextField {
 .app-headers {
     color: white;
     font-size: 24em;
+    width: 80%;
 }
 .discount-box{
     color: #fff;

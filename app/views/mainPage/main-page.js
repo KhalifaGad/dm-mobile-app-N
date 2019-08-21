@@ -18,7 +18,6 @@ import {
 } from '~/app'
 import * as appSettings from "tns-core-modules/application-settings"
 import {
-    refactor,
     refactorWtihSellers
 } from '~/utils/refactorDrugsArray'
 import {
@@ -50,7 +49,7 @@ async function onNavigatingTo(args) {
     }).then(function (drugsArr) {
 
         return new Promise((resolve, reject) => {
-            resolve(refactor(drugsArr))
+            resolve(refactorWtihSellers(drugsArr))
         });
 
     }).then(function (drugsArr) {
