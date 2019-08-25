@@ -18,7 +18,7 @@ import {
 import {
     refactorWtihSellers
 } from '~/utils/refactorDrugsArray';
-import { fileSystemModule } from 'tns-core-modules/file-system'
+import * as fileSystemModule from 'tns-core-modules/file-system'
 
 let page, drug
 
@@ -83,9 +83,6 @@ function showCartOptions(args) {
         },
         closeCallback: (quantity = 0) => {
             if (quantity === 0) return
-            Toast
-                .makeText(`Quantity ${quantity} of ${drug.name} added to cart`)
-                .show()
             cart.hasItems = true
             add2Cart(quantity)
         },
@@ -95,10 +92,56 @@ function showCartOptions(args) {
 
 }
 
-function add2Cart(quantity){
+function add2Cart(quantity) {
     const currentAppFolder =
         fileSystemModule.knownFolders.currentApp()
-    console.log(currentAppFolder)
+    const folderPath =
+        fileSystemModule.path.join(currentAppFolder.path, "cartOrders")
+    const cartOrdersFolder = fileSystemModule.Folder.fromPath(folderPath)
+    const ordersFile = cartOrdersFolder.getFile('ordersFile.txt')
+
+    //cartOrdersFolder.clear().then(()=>{console.log('hello')})
+
+    ordersFile.readText().then((res) => {
+        let orders = JSON.parse('[' + res + ']')
+        let sellerId, drugId, existedOrder = false
+        for (let i = 0; i < orders.length; i++) {
+            sellerId = orders[i].sellerId
+            drugId = orders[i].drugId
+
+            if (sellerId == drug.sellerId && drugId == drug.drugId) {
+                orders[i].quantity = parseInt(orders[i].quantity, 10) +
+                    parseInt(quantity, 10)
+                existedOrder = true
+            }
+        }
+        let data2Write
+        if (existedOrder) {
+            data2Write =
+                JSON.stringify(orders).replace("[", "").replace("]", "")
+        } else {
+            drug.quantity = quantity
+            if(res.length > 2){
+                drug.index = orders.length
+                data2Write = res + ',' + JSON.stringify(drug) 
+            } else {
+                drug.index = 0
+                data2Write = JSON.stringify(drug)
+            }
+        }
+
+        ordersFile.writeText(data2Write).
+        then(() => {
+            Toast.makeText(`Quantity ${quantity} of ${drug.name} added to cart`)
+                .show()
+        }).catch((err) => {
+            Toast.makeText('Error placing order please' +
+                           ' check if there are enough free storage')
+                .show()
+            console.log(err)
+        })
+    })
+
 }
 
 export {

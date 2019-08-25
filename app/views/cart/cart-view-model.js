@@ -1,10 +1,21 @@
-const Observable = require("tns-core-modules/data/observable").Observable;
-const items = require('../../utils/db').items
+import {
+    ObservableArray
+} from 'tns-core-modules/data/observable-array/observable-array';
+import {
+    fromObject
+} from 'tns-core-modules/data/observable/observable';
 
 function CartViewModel() {
-    const viewModel = new Observable()
-	viewModel.items = items
+    const viewModel = fromObject({
+        items: new ObservableArray(),
+        total: 0,
+        notFetched: true,
+        activityIndicatorVis: 'visible',
+        itemsViewVisibility: 'collapse',
+        isEmptyViewVisibility: 'collapse'
+    })
     return viewModel;
 }
+
 
 export default CartViewModel;

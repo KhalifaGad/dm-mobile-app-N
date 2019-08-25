@@ -52,9 +52,9 @@
                 height="100" />
             <ScrollView height="285" visibility="{{ viewModel.itemsViewVisibility }}" id="itemsScrollView"  scrollBarIndicatorVisible="false">
                 <StackLayout height="285" id="itemsStackLayout" >
-                    <ListView id="itemsListView" height="285" items="{{ viewModel.items }}" itemTap="onItemTap">
+                    <ListView id="itemsListView" height="285" items="{{ viewModel.items }}">
                         <ListView.itemTemplate>
-                            <StackLayout orientation="horizontal" class="list-item" tap="toDrug" val="{{ $value }}">
+                            <StackLayout orientation="horizontal" class="list-item" val="{{ $value }}">
                             <StackLayout orientation="horizontal" class="drug-info-wrapper">
                                 <StackLayout orientation="vertical" horizontalAlignment="right" verticalAlignment="middle" class="drug-name-price">
                                     <Label text="{{ $value.name }}" horizontalAlignment="left" class="drug-name" textWrap="true" />

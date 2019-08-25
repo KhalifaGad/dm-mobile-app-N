@@ -17,3 +17,9 @@
     font-weight: bold;
     text-transform: none;
 }
+.is-empty-lbl{
+    font-weight: bold;
+    font-size: 20em;
+    margin-top: 200;
+    color: rgb(204, 195, 195)
+}

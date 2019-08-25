@@ -6,6 +6,7 @@ function refactor(drugsArr) {
         for (let secondI = 0; secondI < drugsArr[i].stores.length; secondI++) {
             refactoredArr.push({
                 name: drugsArr[i].name,
+                drugId: drugsArr[i].id,
                 sellerId:  drugsArr[i].stores[secondI].store,
                 price:  drugsArr[i].stores[secondI].price,
                 discount:  drugsArr[i].stores[secondI].discount,
@@ -25,6 +26,7 @@ async function refactorWtihSellers(drugsArr){
             seller = await getSeller(sellerId)
             refactoredArr.push({
                 name: drugsArr[i].name,
+                drugId: drugsArr[i].id,
                 sellerId,
                 seller,
                 price:  drugsArr[i].stores[secondI].price,

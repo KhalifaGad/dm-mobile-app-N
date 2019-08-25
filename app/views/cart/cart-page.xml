@@ -14,19 +14,34 @@
             <StackLayout orientation="vertical" horizontalAlignment="left" class="cart-info-wrapper">
                 <StackLayout orientation="horizontal">
                     <Label text="Items: " textWrap="true" />
-                    <Label text="{{ viewModel.items.length + ' item' }}" textWrap="true" class="bold" />
+                    <StackLayout orientation="horizontal">
+                        <Label text="{{ viewModel.items.length }}" textWrap="true" class="bold" />
+                        <Label text=" item" textWrap="true" />
+                    </StackLayout>
                 </StackLayout>
                 <StackLayout orientation="horizontal">
                     <Label text="Total: " textWrap="true" />
-                    <Label text="8500 EGP" textWrap="true" class="bold" />
+                    <StackLayout orientation="horizontal" >
+                        <Label text="{{ viewModel.total }}" textWrap="true" class="bold" />
+                        <Label text=" EGP" textWrap="true" />
+                    </StackLayout>
                 </StackLayout>
             </StackLayout>
             <Button text="checkout" tap="" horizontalAlignment="right" class="checkout-btn" tap="test" />
         </StackLayout>
         <StackLayout id="items-container" top="200" left="0" orientation="vertical" class="home-items-stklayout">
-            <ScrollView height="360vh" id="itemsScrollView" scrollBarIndicatorVisible="false">
+            <ActivityIndicator 
+                horizontalAlignment="center"
+                marginTop="139"
+                visibility="{{viewModel.activityIndicatorVis}}"
+                id="myIndicator"
+                busy="{{ viewModel.notFetched }}"
+                backgroundColor="transparent"
+                color="#FF3838"
+                width="100"
+                height="100" />
+            <ScrollView height="360" id="itemsScrollView" visibility="{{ viewModel.itemsViewVisibility }}" scrollBarIndicatorVisible="false">
                 <StackLayout height="360" id="itemsStackLayout">
-                    <!-- loaded="onLoaded" itemLoading="onItemLoading" -->
                     <ListView id="itemsListView" height="360" items="{{ viewModel.items }}" style="" itemTap="onItemTap">
                         <ListView.itemTemplate>
                             <StackLayout orientation="horizontal" class="list-item" tap="onTap" val="{{ $value }}">
@@ -39,13 +54,15 @@
                                         <Label text="{{ '-' + $value.discount + '%' }}" horizontalAlignment="center" />
                                     </StackLayout>
                                 </StackLayout>
-                                <!-- <Image src="res://fa_angle_right" horizontalAlignment="right" verticalAlignment="middle" height="20vh" width="20vw" /> -->
                                 <Button text="" tap="toDrug" class="to-drug-btn" />
                             </StackLayout>
                         </ListView.itemTemplate>
                     </ListView>
                 </StackLayout>
             </ScrollView>
+            <StackLayout height="360" visibility="{{ viewModel.isEmptyViewVisibility }}" >
+                <Label horizontalAlignment="center" text="Cart is empty" class="is-empty-lbl" textWrap="true"  />
+            </StackLayout>
         </StackLayout>
         <bottomNav:BottomNav-component top="579" left="0" />
     </AbsoluteLayout>
