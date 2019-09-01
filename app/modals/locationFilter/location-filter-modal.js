@@ -10,12 +10,13 @@ function onShownModally(args) {
     page = args.object;
     page.bindingContext = observableModule.fromObjectRecursive(context)
     let {
-        areas
+        locations
     } = page.bindingContext
+    console.log(locations)
     page.bindingContext.selectedLocation.on(Observable
         .propertyChangeEvent, (data) => {
-            page.bindingContext.areas =
-                areas.filter(area => area.includes(data.value))
+            page.bindingContext.locations =
+            locations.filter(loc => loc.includes(data.value))
         })
 }
 

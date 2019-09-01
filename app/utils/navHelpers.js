@@ -79,6 +79,25 @@ function toDrug(args) {
     page.frame.navigate(navigationEntry)
 }
 
+function toStore(args) {
+    const store = args.object.parent.val
+    const page = args.object.page;
+    const navigationEntry = {
+        moduleName: "views/store/store-page",
+        context: {
+            store
+        },
+        animated: true,
+        clearHistory: false,
+        transition: {
+            name: "slide",
+            duration: 280,
+            curve: "easeIn"
+        }
+    }
+    page.frame.navigate(navigationEntry)
+}
+
 function toResult(args, resArr, searchTxt){
     const page = args.object.page;
     const navigationEntry = {
@@ -149,5 +168,6 @@ export {
     toResult,
     toSignup,
     toVerification,
-    toLogin
+    toLogin,
+    toStore
 }

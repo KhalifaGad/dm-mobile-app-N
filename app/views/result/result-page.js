@@ -1,5 +1,6 @@
 import {
-    toDrug
+    toDrug,
+    toStore
 } from '../../utils/navHelpers'
 import {
     stretchMenu,
@@ -19,6 +20,7 @@ import {
 } from '~/utils/webHelpers/queries'
 import * as observableModule from 'tns-core-modules/data/observable'
 import * as gestures from 'tns-core-modules/ui/gestures'
+import * as appSettings from 'application-settings'
 let page;
 let searchNumber = 1
 function navigatingTo(args) {
@@ -86,8 +88,7 @@ async function onLoadMoreItems(args){
     let searchTxt = page.bindingContext.viewModel.searchTxt
     let moreDrugs = await searchDrugs(searchTxt, 100, 100 * searchNumber)
     moreDrugs = await refactorWtihSellers(moreDrugs)
-    console.log(moreDrugs.length)
-    console.log(page.bindingContext.viewModel.items.length)
+
     if(moreDrugs.length !== 0){
         console.log('entered')
         await page.bindingContext.viewModel.items.push(...moreDrugs)
@@ -101,9 +102,15 @@ async function onLoadMoreItems(args){
     page.bindingContext.viewModel.loadMoreItemsIndicator = 'collapse'
 }
 
+function selectItemTemplate(item, index, items){
+    return item.city ? "store" : "drug"
+}
+
 export {
     navigatingTo,
     toDrug,
     search,
-    onLoadMoreItems
+    onLoadMoreItems,
+    selectItemTemplate,
+    toStore
 }

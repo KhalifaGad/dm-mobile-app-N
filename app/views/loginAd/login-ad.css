@@ -1,29 +1,112 @@
 page {
     z-index: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #fff;
+}
+.abs{
+    width: 100%;
+    height: 100%; 
+}
+.main-container .first-label{
+    margin-top: 40%;
+    font-weight: bold;
+    font-size: 21em;
+    margin-left:5%;
+}
+.main-container .second-label{
+    font-weight: bold;
+    font-size: 21em;
 }
 .main-container{
     background-color: #fff;
-    height: 600;
+    top: 0;
+    height: 80%;
     width: 90%;
     margin-left: 5%;
+    margin-top: 10%;
     border-width: 10;
     border-radius: 50;
     border-color: #626066;
-    padding: 10;
+    padding: 10%;
     z-index: 900;
 }
+.mc-h550{
+    height: 76%;
+    border-width: 6;
+    margin-top: 11%;
+}
+.mc-h600{
+    height: 78%;
+    margin-top: 11%;
+    border-width: 6;
+}
+.mc-h700{
+    height: 78%;
+    margin-top: 12%;
+}
+.mc-h800{
+    height: 80%;
+    margin-top: 11%;
+}
+.mc-h900{
+    height: 80%;
+}
+.mc-h1100{
+    height: 80%;
+    font-size: 50;
+}
+.mc-h1100 .first-label,
+.mc-h1100 .second-label{
+    font-size: 40;
+}
+
 .logo{
     background-color: #fff;
-    border-width: 10;
-    border-radius: 50;
+    width: 25%;
+    height: 15%;
+    border-width: 10%;
+    border-radius: 100%;
     border-color: #626066;
-    padding: 10;
+    padding: 10%;
     z-index: 900.1;
+    top: 0;
+    left: 0;
+    margin-left: 38%; 
+    margin-top: 5%; 
 }
+.logo-h550{
+    height: 15%;
+    border-width: 6;
+}
+.logo-h600{
+    height: 15%;
+    border-width: 7;
+}
+.logo-h700{
+    height: 15%;
+    border-width: 7;
+}
+.logo-h800{
+    width: 100;
+    height: 100;
+}
+.logo-h900{
+    width: 120;
+    height: 120;
+}
+.logo-h1100{
+    width: 140;
+    height: 140;
+}
+
 .logo-wrapper{
-    width: 60;
-    height: 60;
+    width: 100%;
+    height: 100%;
     background-color: transparent;
+}
+.lw-h550{
+      
 }
 .higher-logo{
     top: 8;
@@ -34,6 +117,41 @@ page {
     background-color: #FF3838;
     border-top-left-radius: 19;
     border-top-right-radius: 19;
+}
+.hl-h550{
+    height: 13;
+    width: 12;
+    top: 5;
+    left: 18;
+    margin-left: 0;
+}
+.hl-h600{
+    height: 15;
+    width: 14;
+    top: 6;
+    left: 20;
+    margin-left: 0;
+}
+.hl-h700{
+    height: 17;
+    width: 14;
+    top: 14;
+    left: 28;
+    margin-left: 0;
+}
+.hl-h900{
+    height: 26;
+    width: 24;
+    top: 10;
+    left: 28;
+    margin-left: 0;
+}
+.hl-h1100{
+    height: 32;
+    width: 30;
+    top: 16;
+    left: 36;
+    margin-left: 0;
 }
 .lower-logo{
     top: 29;
@@ -47,21 +165,70 @@ page {
     border-bottom-left-radius: 27;
     border-bottom-right-radius: 27;
 }
-.main-container .first-label{
-    margin-top: 40%;
-    font-weight: bold;
-    font-size: 21;
-    margin-left:5%;
+.ll-h550{
+    height: 13;
+    width: 21;
+    border-width: 4 ;
+    border-top-width: 00;
+    top: 23;
+    left: 13.5;
 }
-.main-container .second-label{
-    font-weight: bold;
-    font-size: 21;
+.ll-h600{
+    height: 15;
+    width: 23;
+    border-width: 4;
+    border-top-width: 0;
+    top: 25;
+    left: 15.5;
 }
-Button {
+.ll-h700{
+    height: 17;
+    width: 23;
+    border-width: 4;
+    border-top-width: 0;
+    top: 35;
+    left: 23.5;
+}
+.ll-h900{
+    height: 26;
+    width: 34;
+    border-width: 6;
+    border-top-width: 0;
+    top: 42;
+    left: 23.5;
+}
+.ll-h1100{
+    height: 32;
+    width: 44.5;
+    border-width: 8;
+    border-top-width: 00;
+    top: 55;
+    left: 28.5;
+}
+
+.skip-btn {
    text-transform: none;
    color: #fff;
    font-weight: bold;
    background-color: #FF3838;
    border-radius: 10;
    z-index: 990;
+}
+.sb-h550{
+   height: 43;
+   width: 85; 
+}
+.sb-h600{
+   height: 43;
+   width: 85; 
+}
+.sb-h900{
+    left: 0;
+    margin-left: 43%;
+}
+.sb-h800{
+    left: 0;
+    top: 0;
+    margin-left: 40%;
+    margin-top: 92%;
 }

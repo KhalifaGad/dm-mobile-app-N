@@ -1,0 +1,16 @@
+<Page xmlns="http://www.nativescript.org/tns.xsd" loaded="onLoaded" actionBarHidden="true" navigatedTo="onNavigatedTo">
+    <AbsoluteLayout class="abs">
+        <StackLayout id="logo" class="logo logo-h600">
+           <AbsoluteLayout id="logoWrapper" class="logo-wrapper">
+                <Label id="higherLogoPart" class="higher-logo hl-h600" text="" />
+                <Label id="lowerLogoPart" class="lower-logo ll-h600" text="" />            
+            </AbsoluteLayout>
+        </StackLayout>
+        <StackLayout id="main-container" class="main-container mc-h600">
+            <Label horizontalAlignment="center" text="You may ask 600" class="first-label" textWrap="true" />
+            <Label horizontalAlignment="center" text="here!" class="second-label" textWrap="true" />
+        </StackLayout>
+        <Button text="skip" tap="skipAd" top="535" left="135" class="skip-btn sb-h600" />
+
+    </AbsoluteLayout>
+</Page>

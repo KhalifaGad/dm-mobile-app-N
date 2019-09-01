@@ -17,63 +17,63 @@
             <Button text="" src="res://fa_search" class="search-btn" tap="search" />
         </StackLayout>
         <StackLayout id="items-container" top="200" left="0" orientation="vertical" class="home-items-stklayout">
-            <ActivityIndicator 
-                horizontalAlignment="center"
-                marginTop="139"
-                visibility="{{viewModel.activityIndecatorVis}}"
-                id="myIndicator"
-                busy="{{ viewModel.fetching }}"
-                backgroundColor="transparent"
-                color="#FF3838"
-                width="100"
-                height="100" />
-            <ScrollView 
-                height="380"
-                visibility="{{viewModel.itemsViewVisiblity}}"
-                id="itemsScrollView"
-                scrollBarIndicatorVisible="false">
+            <ActivityIndicator horizontalAlignment="center" marginTop="139" visibility="{{viewModel.activityIndecatorVis}}" id="myIndicator" busy="{{ viewModel.fetching }}" backgroundColor="transparent" color="#FF3838" width="100" height="100" />
+            <ScrollView height="380" visibility="{{viewModel.itemsViewVisiblity}}" id="itemsScrollView" scrollBarIndicatorVisible="false">
                 <StackLayout height="380" id="itemsStackLayout">
-                    <ListView id="itemsListView" height="380" items="{{ viewModel.items }}" loadMoreItems="onLoadMoreItems" itemTap="onItemTap">
-                        <ListView.itemTemplate>
-                            <StackLayout orientation="horizontal" class="list-item" tap="onTap" val="{{ $value }}">
-                                <StackLayout orientation="horizontal" class="drug-info-wrapper">
-                                    <StackLayout orientation="vertical" horizontalAlignment="right" verticalAlignment="middle" class="drug-name-price">
-                                        <Label text="{{ $value.name }}" horizontalAlignment="left" class="drug-name" textWrap="true" />
-                                        <StackLayout class="price-seller">
-                                            <StackLayout orientation="horizontal">
-                                                <Label text="Price: " horizontalAlignment="left" textWrap="true" />
-                                                <Label text="{{ $value.price + ' EGP' }}" class="bold red" horizontalAlignment="left" textWrap="true" />
+                    <ListView id="itemsListView" height="380" items="{{ viewModel.items }}" loadMoreItems="onLoadMoreItems" itemTap="onItemTap" 
+                        itemTemplateSelector="selectItemTemplate">
+                        <ListView.itemTemplates>
+                            <template key="drug">
+                                <StackLayout orientation="horizontal" class="list-item" tap="onTap" val="{{ $value }}">
+                                    <StackLayout orientation="horizontal" class="drug-info-wrapper">
+                                        <StackLayout orientation="vertical" horizontalAlignment="right" verticalAlignment="middle" class="drug-name-price">
+                                            <Label text="{{ $value.name }}" horizontalAlignment="left" class="drug-name" textWrap="true" />
+                                            <StackLayout class="price-seller">
+                                                <StackLayout orientation="horizontal">
+                                                    <Label text="Price: " horizontalAlignment="left" textWrap="true" />
+                                                    <Label text="{{ $value.price + ' EGP' }}" class="bold red" horizontalAlignment="left" textWrap="true" />
+                                                </StackLayout>
+                                                <StackLayout orientation="horizontal">
+                                                    <Label text='Seller: ' horizontalAlignment="left" textWrap="true" />
+                                                    <Label text="{{ $value.seller }}" class="bold red" horizontalAlignment="left" textWrap="true" />
+                                                </StackLayout>
                                             </StackLayout>
-                                            <StackLayout orientation="horizontal">
-                                                <Label text='Seller: ' horizontalAlignment="left" textWrap="true" />
-                                                <Label text="{{ $value.seller }}" class="bold red" horizontalAlignment="left" textWrap="true" />
+                                        </StackLayout>
+                                        <StackLayout class="discount-box" orientation="vertical" horizontalAlignment="right">
+                                            <Label text="{{ '-' + $value.discount + '%' }}" visibility="{{item.deferred? 'collapse' : 'visible'}}" horizontalAlignment="center" />
+                                            <Label text="{{ '-' + $value.deferredDiscount + '%' }}" visibility="{{item.deferred? 'visible' : 'collapse'}}" horizontalAlignment="center" />
+                                        </StackLayout>
+                                    </StackLayout>
+                                    <Button text="" tap="toDrug" class="to-drug-btn" />
+                                </StackLayout>
+                            </template>
+                            <template key="store">
+                                <StackLayout orientation="horizontal" class="list-item" tap="onTap" val="{{ $value }}">
+                                    <StackLayout orientation="horizontal" class="drug-info-wrapper">
+                                        <StackLayout orientation="vertical" horizontalAlignment="right" verticalAlignment="middle" class="drug-name-price">
+                                            <Label text="{{ $value.storeName }}" horizontalAlignment="left" class="drug-name bigger-font" textWrap="true" />
+                                            <StackLayout class="price-seller">
+                                                <StackLayout orientation="horizontal">
+                                                    <Label text="City: " horizontalAlignment="left" textWrap="true" />
+                                                    <Label text="{{ $value.city }}" class="bold red" horizontalAlignment="left" textWrap="true" />
+                                                </StackLayout>
+                                                <StackLayout orientation="horizontal">
+                                                    <Label text='Area: ' horizontalAlignment="left" textWrap="true" />
+                                                    <Label text="{{ $value.area }}" class="bold red" horizontalAlignment="left" textWrap="true" />
+                                                </StackLayout>
                                             </StackLayout>
                                         </StackLayout>
                                     </StackLayout>
-                                    <StackLayout class="discount-box" orientation="vertical" horizontalAlignment="right">
-                                        <Label text="{{ '-' + $value.discount + '%' }}" horizontalAlignment="center" />
-                                    </StackLayout>
+                                    <Button text="" tap="toStore" class="to-drug-btn" />
                                 </StackLayout>
-                                <!-- <Image src="res://fa_angle_right" horizontalAlignment="right" verticalAlignment="middle" height="20vh" width="20vw" /> -->
-                                <Button text="" tap="toDrug" class="to-drug-btn" />
-                            </StackLayout>
-                        </ListView.itemTemplate>
+                            </template>
+                        </ListView.itemTemplates>
                     </ListView>
                 </StackLayout>
             </ScrollView>
         </StackLayout>
         <bottomNav:BottomNav-component top="579" left="0" />
-        <ActivityIndicator 
-                top="600"
-                left="180"
-                style="z-index: 400"
-                visibility="{{viewModel.loadMoreItemsIndicator}}"
-                id="loadMoreItemsIndicator"
-                busy="{{ viewModel.loadMore }}"
-                backgroundColor="transparent"
-                color="#FF3838"
-                width="30"
-                height="30" />
+        <ActivityIndicator top="600" left="180" style="z-index: 400" visibility="{{viewModel.loadMoreItemsIndicator}}" id="loadMoreItemsIndicator" busy="{{ viewModel.loadMore }}" backgroundColor="transparent" color="#FF3838" width="30" height="30" />
     </AbsoluteLayout>
 
 </Page>

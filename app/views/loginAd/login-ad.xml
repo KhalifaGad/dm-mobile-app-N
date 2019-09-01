@@ -1,22 +1,19 @@
-<Page xmlns="http://www.nativescript.org/tns.xsd"
-    loaded="onLoaded"
-    actionBarHidden="true"
-    navigatedTo="onNavigatedTo">
-    <AbsoluteLayout>
-        <!-- <StackLayout top="20" left="250" >
-            
-        </StackLayout> -->
-        <StackLayout top="50" left="160" class="logo">
-            <AbsoluteLayout id="logoWrapper" class="logo-wrapper">
+<Page xmlns="http://www.nativescript.org/tns.xsd" loaded="onLoaded" actionBarHidden="true" navigatedTo="onNavigatedTo">
+    <AbsoluteLayout class="abs">
+        <StackLayout class="logo">
+            <!-- <AbsoluteLayout id="logoWrapper" class="logo-wrapper">
                 <Label id="higherLogoPart" class="higher-logo" text="" />
-                <Label id="lowerLogoPart" class="lower-logo" text="" />            
-            </AbsoluteLayout>
+                <AbsoluteLayout id="lowerLogoParts" class="lower-logo-wrapper" >
+                    <Label id="lowerLogoPart1" class="lower-logo1" text="" />
+                    <Label id="lowerLogoPart2" class="lower-logo2" text="" />
+                </AbsoluteLayout>
+            </AbsoluteLayout> -->
         </StackLayout>
-        <StackLayout id="main-container" top="90" class="main-container" >
+        <StackLayout id="main-container" class="main-container mc">
             <Label horizontalAlignment="center" text="You may ask for advertising" class="first-label" textWrap="true" />
             <Label horizontalAlignment="center" text="here!" class="second-label" textWrap="true" />
         </StackLayout>
-        <Button text="skip" tap="skipAd" top="710" left="160" class="skip-btn" />
-        
+        <!-- <Button text="skip" tap="skipAd" top="150" left="160" class="skip-btn" /> -->
+
     </AbsoluteLayout>
 </Page>

@@ -9,7 +9,7 @@
         </StackLayout>
         <StackLayout orientation="horizontal" class="last-layer">
             <ScrollView height="180" scrollBarIndicatorVisible="false">
-                <ListView items="{{ areas }}" height="180">
+                <ListView items="{{ locations }}" height="180">
                     <ListView.itemTemplate>
                         <StackLayout class="list-item-modal" tap="completeText" val="{{ $value }}">
                             <Label horizontalAlignment="center" verticalAlignment="center" text="{{$value}}" textWrap="true" />

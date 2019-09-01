@@ -3,7 +3,7 @@ import {
 } from 'data/observable';
 import {
     ObservableArray
-} from 'tns-core-modules/data/observable-array/observable-array';
+} from 'tns-core-modules/data/observable-array/observable-array'
 
 function DrugViewModel() {
     const viewModel = fromObject({

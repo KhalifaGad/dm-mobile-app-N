@@ -27,38 +27,36 @@
             <Switch id="cashSwitch" checked="{{ cash }}" class="switch-dash" width="45" />
         </StackLayout>
     </StackLayout>
-    <StackLayout top="380" left="30" orientation="horizontal" horizontalAlignment="right" class="payment-option3-wrapper">
-        <Label text="Both" textWrap="true" verticalAlignment="center" class="white bold light-opacity" />
-        <StackLayout class="switch-wrapper light-opacity">
-            <Switch id="bothPaymentsSwtich" checked="{{ bothPayments }}" class="switch-dash" width="45" />
-        </StackLayout>
-    </StackLayout>
-    <StackLayout top="420" left="30" orientation="horizontal" class="label-header light-opacity">
+    <StackLayout top="400" left="30" orientation="horizontal" class="label-header light-opacity">
         <Label verticalAlignment="bottom" text="SEARCH FOR " textWrap="true" />
         <StackLayout verticalAlignment="center" class="line shorter" />
     </StackLayout>
-    <StackLayout top="460" left="30" orientation="horizontal" horizontalAlignment="right" class="search4-option1-wrapper">
+    <StackLayout top="440" left="30" orientation="horizontal" horizontalAlignment="right" class="search4-option1-wrapper">
         <Label text="Store" textWrap="true" verticalAlignment="center" class="white bold light-opacity" />
         <StackLayout class="switch-wrapper light-opacity">
             <Switch id="forStoreSwitch" class="switch-dash" checked="{{ forStore }}" width="45" />
         </StackLayout>
     </StackLayout>
-    <StackLayout top="490" left="30" orientation="horizontal" horizontalAlignment="right" class="search4-option2-wrapper">
+    <StackLayout top="470" left="30" orientation="horizontal" horizontalAlignment="right" class="search4-option2-wrapper">
         <Label text="Medicine" textWrap="true" verticalAlignment="center" class="white bold light-opacity" />
         <StackLayout class="switch-wrapper light-opacity">
             <Switch id="forMedicineSwitch" class="switch-dash" checked="{{ forMedicine }}" width="45" />
         </StackLayout>
     </StackLayout>
-    <StackLayout top="520" left="30" orientation="horizontal" class="label-header light-opacity">
+    <StackLayout top="510" left="30" orientation="horizontal" class="label-header light-opacity">
         <Label verticalAlignment="bottom" text="LOCATION " textWrap="true" />
         <StackLayout verticalAlignment="center" class="line short" />
     </StackLayout>
-    <StackLayout orientation="horizontal" top="560" isEnabled="false" left="30" class="location-search">
-        <Label text="{{ selectedLocation || 'Choose location'}}" verticalAlignment="center" class="white light-opacity loc-lbl" textWrap="true" />
-        <Button id="locBtn" class="location-btn" text="" tap="locationModal" />
+    <StackLayout orientation="horizontal" top="550" isEnabled="false" left="30" class="location-search">
+        <Label text="{{ selectedCity || 'Choose city'}}" verticalAlignment="center" class="white light-opacity loc-lbl" textWrap="true" />
+        <Button id="cities" class="location-btn" text="" tap="locationModal" />
     </StackLayout>
-    <!-- <dd:DropDown id="dd" items="{{ areas }}" width="335" selectedIndex="{{ selectedIndex }}" opened="dropDownOpened" closed="dropDownClosed" backgroundColor="#fff" class="dd" style="padding-bottom: 15; margin-bottom: -10; padding-left: 18; margin-left: -14;" selectedIndexChanged="dropDownSelectedIndexChanged"/> -->
+    <StackLayout orientation="horizontal" top="590" isEnabled="false" left="30" class="location-search">
+        <Label text="{{ selectedArea || 'Choose area'}}" verticalAlignment="center" class="white light-opacity loc-lbl" textWrap="true" />
+        <Button id="areas" class="location-btn" text="" tap="locationModal" />
+    </StackLayout>
     <StackLayout top="680" left="170" class="filter-stklayout" verticalAlignment="top" id="filter-btn">
-        <Button verticalAlignment="center" horizontalAlignment="center" text="Apply" tap="loadFilter" class="btm-nav-side-center-btn" />
+        <Button verticalAlignment="center" horizontalAlignment="center" text="Apply" tap="apply" class="btm-nav-side-center-btn" />
     </StackLayout>
+    <ActivityIndicator top="600" left="180" style="z-index: 400" visibility="{{applyingIndicator}}" id="loadMoreItemsIndicator" busy="{{ applying }}" backgroundColor="transparent" color="#fff" width="30" height="30" />
 </AbsoluteLayout>
