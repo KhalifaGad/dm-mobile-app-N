@@ -12,6 +12,9 @@ import {
 import {
     actionBarStatus
 } from '~/app'
+import {
+    screen
+} from "platform"
 
 async function onNavigatingTo(args) {
     const page = args.object;
@@ -50,24 +53,32 @@ async function onNavigatingTo(args) {
         }
     })
 
-    const itemsScrollView = page.getViewById('itemsScrollView'),
-        itemsStackLayout = page.getViewById('itemsStackLayout'),
-        itemsListView = page.getViewById('itemsListView'),
-        itemsContainer = page.getViewById('items-container'),
-        animationParams = {
-            args,
-            itemsContainer,
-            itemsStackLayout,
-            itemsListView,
-            itemsScrollView
-        }
+    const itemsListView = page.getViewById('itemsListView'),
+        itemsContainer = page.getViewById('items-container')
+
+    let screenHeightDPI = screen.mainScreen.heightDIPs
+    
+    let decreasingRatio = 0
+    if (screenHeightDPI >= 1100) {
+        decreasingRatio = 0.17
+    } else if (screenHeightDPI >= 900) {
+        decreasingRatio = 0.18
+    } else if (screenHeightDPI >= 700) {
+        decreasingRatio = 0.19
+    } else {
+        decreasingRatio = 0.2
+    }
+    let istemsContainerOriginalHeight = screenHeightDPI - itemsContainer.top -
+        (screenHeightDPI * decreasingRatio)
+    itemsContainer.height = istemsContainerOriginalHeight
+    let stretched = false
     itemsListView.on(gestures.GestureTypes.pan, async (args) => {
-        if (args.deltaY < -200) {
-            animationParams.toY = -179
-            stretchMenu(animationParams)
+        if (args.deltaY < -200 && !stretched) {
+            stretchMenu(itemsContainer)
+            stretched = true
         } else if (args.deltaY > 300) {
-            animationParams.smallHeight = '360'
-            shortenMenu(animationParams)
+            shortenMenu(itemsContainer, istemsContainerOriginalHeight)
+            stretched = false
         }
     })
 }

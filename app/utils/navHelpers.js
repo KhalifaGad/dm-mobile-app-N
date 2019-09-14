@@ -41,10 +41,12 @@ function toProfile(args) {
             curve: "linear"
         }
     }
-    page.frame.navigate(navigationEntry)
+    //page.frame.navigate(navigationEntry)
+    frame.getFrameById('mainFrame').navigate(navigationEntry)
 }
 
 function toCart(args) {
+    console.log('hola')
     const page = args.object.page;
     const navigationEntry = {
         moduleName: 'views/cart/cart-page',
@@ -56,7 +58,8 @@ function toCart(args) {
             curve: "linear"
         }
     }
-    page.frame.navigate(navigationEntry)
+    //page.frame.navigate(navigationEntry)
+    frame.getFrameById('mainFrame').navigate(navigationEntry)
 }
 
 

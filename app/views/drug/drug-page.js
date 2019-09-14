@@ -19,6 +19,9 @@ import {
     refactorWtihSellers
 } from '~/utils/refactorDrugsArray';
 import * as fileSystemModule from 'tns-core-modules/file-system'
+import {
+    screen
+} from "platform"
 
 let page, drug
 
@@ -51,24 +54,32 @@ function onNavigatingTo(args) {
         page.bindingContext.viewModel.activityIndicatorVis = 'collapse'
     })
 
-    const itemsScrollView = page.getViewById('itemsScrollView'),
-        itemsStackLayout = page.getViewById('itemsStackLayout'),
-        itemsListView = page.getViewById('itemsListView'),
-        itemsContainer = page.getViewById('items-container'),
-        animationParams = {
-            args,
-            itemsContainer,
-            itemsStackLayout,
-            itemsListView,
-            itemsScrollView
-        }
+    const itemsListView = page.getViewById('itemsListView'),
+        itemsContainer = page.getViewById('items-container')
+
+    let screenHeightDPI = screen.mainScreen.heightDIPs
+    //0.19
+    let decreasingRatio = 0
+    if (screenHeightDPI >= 1100) {
+        decreasingRatio = 0.17
+    } else if (screenHeightDPI >= 900) {
+        decreasingRatio = 0.18
+    } else if (screenHeightDPI >= 700) {
+        decreasingRatio = 0.19
+    } else {
+        decreasingRatio = 0.2
+    }
+    let istemsContainerOriginalHeight = screenHeightDPI - itemsContainer.top -
+        (screenHeightDPI * decreasingRatio)
+    itemsContainer.height = istemsContainerOriginalHeight
+    let stretched = false
     itemsListView.on(gestures.GestureTypes.pan, async (args) => {
-        if (args.deltaY < -200) {
-            animationParams.toY = -270
-            stretchMenu(animationParams)
+        if (args.deltaY < -200 && !stretched) {
+            stretchMenu(itemsContainer)
+            stretched = true
         } else if (args.deltaY > 300) {
-            animationParams.smallHeight = '340vh'
-            shortenMenu(animationParams)
+            shortenMenu(itemsContainer, istemsContainerOriginalHeight)
+            stretched = false
         }
     })
 }

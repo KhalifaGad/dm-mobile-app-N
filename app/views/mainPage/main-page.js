@@ -24,6 +24,12 @@ import {
     getRandomDrugs,
     searchDrugs
 } from '~/utils/webHelpers/queries'
+import {
+    ObservableArray
+} from 'tns-core-modules/data/observable-array/observable-array'
+import {
+    screen
+} from "platform"
 
 async function onNavigatingTo(args) {
 
@@ -32,7 +38,6 @@ async function onNavigatingTo(args) {
         toLogin(args)
         return
     }
-
     const page = args.object
 
     let bindings = {
@@ -40,8 +45,9 @@ async function onNavigatingTo(args) {
         viewModel: mainViewModel()
     }
 
-    page.bindingContext = { ...bindings }
-    
+    page.bindingContext = {
+        ...bindings
+    }
 
     new Promise(function (resolve, reject) {
         resolve(getRandomDrugs())
@@ -54,30 +60,37 @@ async function onNavigatingTo(args) {
 
     }).then(function (drugsArr) {
         page.bindingContext.viewModel.items.push([...drugsArr])
-        
         page.bindingContext.viewModel.itemsViewVisiblit = 'visible'
         page.bindingContext.viewModel.activityIndecatorVis = 'collapse'
         page.bindingContext.viewModel.notFetched = false
     })
 
+    const itemsListView = page.getViewById('itemsListView'),
+        itemsContainer = page.getViewById('items-container')
 
-    const itemsScrollView = page.getViewById('itemsScrollView'),
-        itemsStackLayout = page.getViewById('itemsStackLayout'),
-        itemsListView = page.getViewById('itemsListView'),
-        itemsContainer = page.getViewById('items-container'),
-        animationParams = {
-            args,
-            itemsContainer,
-            itemsStackLayout,
-            itemsListView,
-            itemsScrollView
-        }
-
+    let screenHeightDPI = screen.mainScreen.heightDIPs
+    
+    let decreasingRatio = 0
+    if (screenHeightDPI >= 1100) {
+        decreasingRatio = 0.17
+    } else if (screenHeightDPI >= 900) {
+        decreasingRatio = 0.18
+    } else if (screenHeightDPI >= 700) {
+        decreasingRatio = 0.19
+    } else {
+        decreasingRatio = 0.2
+    }
+    let istemsContainerOriginalHeight = screenHeightDPI - itemsContainer.top -
+        (screenHeightDPI * decreasingRatio)
+    itemsContainer.height = istemsContainerOriginalHeight
+    let stretched = false
     itemsListView.on(gestures.GestureTypes.pan, async (args) => {
-        if (args.deltaY < -200) {
-            stretchMenu(animationParams)
+        if (args.deltaY < -200 && !stretched) {
+            stretchMenu(itemsContainer)
+            stretched = true
         } else if (args.deltaY > 300) {
-            shortenMenu(animationParams)
+            shortenMenu(itemsContainer, istemsContainerOriginalHeight)
+            stretched = false
         }
     })
 }
@@ -88,9 +101,14 @@ async function search(args) {
     page.bindingContext.viewModel.itemsViewVisiblit = 'collapse'
     page.bindingContext.viewModel.activityIndecatorVis = 'visible'
     page.bindingContext.viewModel.notFetched = true
-    let items = await searchDrugs(searchTxt, 100, 0)
+    let items = await searchDrugs(searchTxt, 1000, 0)
     items = await refactorWtihSellers(items)
-    toResult(args, items, searchTxt)
+    page.bindingContext.viewModel.items = new ObservableArray()
+    page.bindingContext.viewModel.items.push(...items)
+    page.bindingContext.viewModel.notFetched = false
+    page.bindingContext.viewModel.itemsViewVisiblit = 'visible'
+    page.bindingContext.viewModel.activityIndecatorVis = 'collapse'
+    //toResult(args, items, searchTxt)
 }
 
 export {

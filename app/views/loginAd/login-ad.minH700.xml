@@ -10,7 +10,7 @@
             <Label horizontalAlignment="center" text="You may ask 700" class="first-label" textWrap="true" />
             <Label horizontalAlignment="center" text="here!" class="second-label" textWrap="true" />
         </StackLayout>
-        <Button text="skip" tap="skipAd" top="622" left="160" class="skip-btn" />
+        <Button id="skipBtn" text="skip" tap="skipAd" top="622" left="0" class="skip-btn" />
 
     </AbsoluteLayout>
 </Page>

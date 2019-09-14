@@ -15,9 +15,19 @@ import {
     settingsStates,
     actionBarStatus
 } from '~/app'
-import { refactorWtihSellers } from '~/utils/refactorDrugsArray';
-import { getRandomDrugs } from '~/utils/webHelpers/queries';
-let page;
+import {
+    refactorWtihSellers
+} from '~/utils/refactorDrugsArray'
+import {
+    getRandomDrugs,
+    getPharmacyName,
+    getPharmacyOrdersTotals
+} from '~/utils/webHelpers/queries'
+import {
+    screen
+} from "platform"
+
+let page
 
 async function onNavigatingTo(args) {
     page = args.object;
@@ -28,6 +38,56 @@ async function onNavigatingTo(args) {
     page.bindingContext = {
         ...bindings
     }
+    
+    profilePromises()
+
+    const itemsListView = page.getViewById('itemsListView'),
+        itemsContainer = page.getViewById('items-container')
+
+    let screenHeightDPI = screen.mainScreen.heightDIPs
+
+    let decreasingRatio = 0
+    if (screenHeightDPI >= 1100) {
+        decreasingRatio = 0.17
+    } else if (screenHeightDPI >= 900) {
+        decreasingRatio = 0.18
+    } else if (screenHeightDPI >= 700) {
+        decreasingRatio = 0.19
+    } else {
+        decreasingRatio = 0.2
+    }
+    let istemsContainerOriginalHeight = screenHeightDPI - itemsContainer.top -
+        (screenHeightDPI * decreasingRatio)
+    itemsContainer.height = istemsContainerOriginalHeight
+    let stretched = false
+    itemsListView.on(gestures.GestureTypes.pan, async (args) => {
+        if (args.deltaY < -200 && !stretched) {
+            stretchMenu(itemsContainer)
+            stretched = true
+        } else if (args.deltaY > 300) {
+            shortenMenu(itemsContainer, istemsContainerOriginalHeight)
+            stretched = false
+        }
+    })
+}
+
+async function profilePromises(){
+
+    new Promise((resolve, reject)=>{
+        resolve(getPharmacyName())
+    }).then((pharmacyName)=> {
+        page.bindingContext.viewModel.pharmacyName = pharmacyName
+    })
+    
+    new Promise((resolve, reject)=>{
+        resolve(getPharmacyOrdersTotals())
+    }).then((ordersTotals)=> {
+        page.bindingContext.viewModel.ordersCount = ordersTotals.length
+        page.bindingContext.viewModel.ordersTotal = ordersTotals.reduce((total, order)=>{
+            console.log(order)
+            return total + order.total
+        }, 0) + ' EGP'
+    })
 
     new Promise(function (resolve, reject) {
         resolve(getRandomDrugs())
@@ -40,31 +100,10 @@ async function onNavigatingTo(args) {
 
     }).then(function (drugsArr) {
         page.bindingContext.viewModel.items.push([...drugsArr])
-        
+
         page.bindingContext.viewModel.notFetched = false
         page.bindingContext.viewModel.itemsViewVisibility = 'visible'
         page.bindingContext.viewModel.activityIndicatorVis = 'collapse'
-    })
-
-    const itemsScrollView = page.getViewById('itemsScrollView'),
-        itemsListView = page.getViewById('itemsListView'),
-        itemsStackLayout = page.getViewById('itemsStackLayout'),
-        itemsContainer = page.getViewById('items-container'),
-        animationParams = {
-            args,
-            itemsContainer,
-            itemsStackLayout,
-            itemsListView,
-            itemsScrollView
-        }
-    itemsListView.on(gestures.GestureTypes.pan, async (args) => {
-        if (args.deltaY < -200) {
-            animationParams.toY = -179
-            stretchMenu(animationParams)
-        } else if (args.deltaY > 300) {
-            animationParams.smallHeight = '360'
-            shortenMenu(animationParams)
-        }
     })
 }
 
@@ -74,7 +113,7 @@ async function removeSettingsCompo() {
     await settingsCompo.animate({
         translate: {
             x: 0,
-            y: 650
+            y: 0
         },
         duration: 400
     }).then(
@@ -93,10 +132,11 @@ async function toSettings() {
         name: 'SettingsCompo'
     })
     mainScene.addChild(settingsCompo)
+    let screenHeightDPI = screen.mainScreen.heightDIPs
     await settingsCompo.animate({
         translate: {
             x: 0,
-            y: -650
+            y: - screenHeightDPI
         },
         duration: 400
     }).then(() => {

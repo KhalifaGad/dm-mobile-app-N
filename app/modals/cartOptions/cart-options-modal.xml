@@ -6,7 +6,13 @@
         </StackLayout>
         <StackLayout horizontalAlignment="center" class="custom-input-stacklayout">
             <Label text="Quantity" class="txtfld-label" />
-            <TextField hint="Enter desired quantity " text="{{ quantity }}" keyboardType="number" class="custom-txtfld" />
+            <DockLayout orientation="horizontal" >
+                <TextField hint="Enter desired quantity " text="{{ quantity }}" dock="left" keyboardType="number" class="custom-txtfld" />
+                <StackLayout dock="right">
+                    <Button text="" class="up-arrow" tap="plus" />
+                    <Button text="" class="down-arrow" tap="minus" />
+                </StackLayout>
+            </DockLayout>
         </StackLayout>
         <StackLayout orientation="horizontal" class="last-layer">
             <StackLayout>

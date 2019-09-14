@@ -7,6 +7,8 @@ function ProfileViewModel() {
     let viewModel = observableModule.fromObject({
         items: new ObservableArray(),
         name: '',
+        ordersCount: 0,
+        ordersTotal: '0 EGP',
         actionBarStatus: false,
         notFetched: true,
         activityIndicatorVis: 'visible',

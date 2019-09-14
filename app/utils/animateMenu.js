@@ -1,38 +1,29 @@
-async function stretchMenu(params) {
-    let {
-        itemsContainer,
-        itemsScrollView,
-        itemsStackLayout,
-        itemsListView,
-        bigHeight,
-        toY
-    } = params
+import {
+    screen
+} from "platform"
 
-    bigHeight = bigHeight == undefined ? '540' : bigHeight
-    toY = toY == undefined ? -230 : toY
+async function stretchMenu(itemsContainer) {
+    
+    let screenHeightDP = screen.mainScreen.heightDIPs
 
+    let actionBarHeight = screenHeightDP * 0.2
+     
+    let itemsContainerHeight = itemsContainer.height
+
+    let translateTo = screenHeightDP - itemsContainerHeight - actionBarHeight   
+
+    itemsContainer.height = screenHeightDP - actionBarHeight
+    
     itemsContainer.animate({
         translate: {
             x: 0,
-            y: toY
+            y: - translateTo
         },
         duration: 500
     })
-    itemsScrollView.height = bigHeight
-    itemsStackLayout.height = bigHeight
-    itemsListView.height = bigHeight
 
 }
-async function shortenMenu(params) {
-    let {
-        itemsContainer,
-        itemsScrollView,
-        itemsStackLayout,
-        itemsListView,
-        smallHeight
-    } = params
-
-    smallHeight = smallHeight == undefined ? '310vh' : smallHeight
+async function shortenMenu(itemsContainer, orginalHeight) {
 
     await itemsContainer.animate({
         translate: {
@@ -41,9 +32,8 @@ async function shortenMenu(params) {
         },
         duration: 500
     })
-    itemsScrollView.height = smallHeight
-    itemsStackLayout.height = smallHeight
-    itemsListView.height = smallHeight
+    itemsContainer.height = orginalHeight
+    
 }
 export {
     stretchMenu,

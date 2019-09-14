@@ -1,0 +1,35 @@
+<Page class="page" navigatingTo="navigatingTo" 
+	xmlns:actionBar="components/actionBar"
+	xmlns="http://schemas.nativescript.org/tns.xsd">
+	<Page.actionBar>
+		<actionBar:ActionBar-component hidden="{{ true }}"/>
+	</Page.actionBar>
+
+	<StackLayout >
+        <StackLayout orientation="vertical" class="headers h-h600" horizontalAlignment="left">
+            <Label text="SIGN IN" />
+            <Label class="bold" text="WELCOME BACK" />
+        </StackLayout>
+        <StackLayout class="login-controllers-stacklayout">
+            <!-- <Image horizontalAlignment="center" class="login-logo" src="res://logo_lg" /> -->
+            <AbsoluteLayout id="logoHolder" class="abs-login-logo" >
+                <Label id="higherLogoPart" class="higher-logo hl-h600" text="" />
+                <Label id="lowerLogoPart" class="lower-logo ll-h600" text="" />
+            </AbsoluteLayout>
+            <StackLayout id="emailView" horizontalAlignment="center" class="custom-input-stacklayout cis-h600">
+                <Label text="Email Address"/>
+                <TextField hint="email@domain.com" keyboardType="email" text="{{ email }}" class="custom-txtfld" />
+            </StackLayout>
+            <StackLayout id="passwordView" horizontalAlignment="center" class="custom-input-stacklayout cis-h600">
+                <Label text="Password" />
+                <TextField hint="Enter your passowrd" secure="true" text="{{ password }}" class="custom-txtfld" secure="true"/>
+            </StackLayout>
+            <StackLayout horizontalAlignment="center" orientation="horizontal" class="h-ctr-login-stklayout hcls-h600">
+                <Label text="Forget password?" id="forgetPassLabel" verticalAlignment="center" horizontalAlignment="left" />
+                <Button id="loginBtn" text="Login" class="login-btn lb-h600" horizontalAlignment="right" tap="submit" />
+            </StackLayout>
+            <Button horizontalAlignment="center" text="Don't have account!" class="signup-btn sb-h600" tap="toSignup" />
+            <Button horizontalAlignment="center" text="Verify your account" class="verification-btn vb-h600" tap="toVerification" />
+        </StackLayout>
+    </StackLayout>
+</Page>

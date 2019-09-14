@@ -86,7 +86,8 @@ async function getStoreDrugs(storeId, onlyCash) {
         })
         .then(res => {
             console.log(res)
-            data = res.data.drugs})
+            data = res.data.drugs
+        })
         .catch(error => {
             if (error.networkError) {
                 makeToast(NETWORK_ERROR_WARNING)
@@ -204,6 +205,112 @@ async function getLocations() {
     return storesLocations
 }
 
+async function getFullPharmacyDetails() {
+    let pharmacy
+    await apolloClient.query({
+            query: gql `query{
+        pharmacy{
+            firstName
+            lastName
+            email
+            pharmacyName
+            phone
+        }
+    }`
+        })
+        .then(res => {
+            pharmacy = res.data.pharmacy
+        })
+        .catch(error => {
+            if (error.networkError) {
+                makeToast(NETWORK_ERROR_WARNING)
+            } else {
+                console.error(error)
+            }
+        })
+    return pharmacy
+}
+
+async function getPharmacyName() {
+    let pharmacyName
+    await apolloClient.query({
+            query: gql `query{
+        pharmacy{
+            pharmacyName
+        }
+    }`
+        })
+        .then(res => {
+            pharmacyName = res.data.pharmacy.pharmacyName
+        })
+        .catch(error => {
+            if (error.networkError) {
+                makeToast(NETWORK_ERROR_WARNING)
+            } else {
+                console.error(error)
+            }
+        })
+    return pharmacyName
+}
+
+async function getPharmacyOrders() {
+    let orders
+    await apolloClient.query({
+            query: gql `query{
+        ordersOfPharmacy{
+            to{
+                storeName
+            }
+            orderStatus
+            createdAt
+            total
+            drugsList{
+                drug{
+                    name
+                }
+                quantity
+                unitPrice
+                discount
+                total
+            }
+        }
+    }`
+        })
+        .then(res => {
+            orders = res.data.ordersOfPharmacy
+        })
+        .catch(error => {
+            if (error.networkError) {
+                makeToast(NETWORK_ERROR_WARNING)
+            } else {
+                console.error(error)
+            }
+        })
+    return orders
+}
+
+async function getPharmacyOrdersTotals() {
+    let ordersTotals
+    await apolloClient.query({
+            query: gql `query{
+        ordersOfPharmacy{
+            total
+        }
+    }`
+        })
+        .then(res => {
+            ordersTotals = res.data.ordersOfPharmacy
+        })
+        .catch(error => {
+            if (error.networkError) {
+                makeToast(NETWORK_ERROR_WARNING)
+            } else {
+                console.error(error)
+            }
+        })
+    return ordersTotals
+}
+
 export {
     getRandomDrugs,
     searchDrugs,
@@ -211,5 +318,9 @@ export {
     seachStoresWithLoc,
     getStores,
     getSeller,
-    getLocations
+    getLocations,
+    getFullPharmacyDetails,
+    getPharmacyName,
+    getPharmacyOrders,
+    getPharmacyOrdersTotals
 }

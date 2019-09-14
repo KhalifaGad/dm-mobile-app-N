@@ -224,11 +224,13 @@ page {
 }
 .sb-h900{
     left: 0;
-    margin-left: 43%;
+}
+.sb-h1100{
+    left: 0;
+    height: 63;
 }
 .sb-h800{
     left: 0;
     top: 0;
-    margin-left: 40%;
     margin-top: 92%;
 }

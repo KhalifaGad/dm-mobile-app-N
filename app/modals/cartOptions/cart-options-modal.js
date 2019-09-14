@@ -31,4 +31,13 @@ function confirm(args) {
 function cancle(){
     closeCallback();
 }
-export { onShownModally, confirm, cancle }
+function plus(args){
+    const page = args.object.page
+    page.bindingContext.quantity ++
+}
+function minus(args){
+    const page = args.object.page
+    if(page.bindingContext.quantity == 1) return
+    page.bindingContext.quantity -- 
+}
+export { onShownModally, confirm, cancle, minus, plus }

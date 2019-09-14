@@ -12,6 +12,9 @@ import {
 import {
     login
 } from '~/utils/webHelpers/mutations'
+import {
+    screen
+} from "platform"
 const appSettings = require("application-settings")
 const Animation = require("tns-core-modules/ui/animation").Animation;
 
@@ -25,6 +28,21 @@ function navigatingTo(args) {
         alert('Your account is not verified yet!. Please verify it.')
     }
     page.bindingContext = new LoginViewModel();
+
+    let screenWidth = screen.mainScreen.widthPixels,
+    screenWidthDPI = screen.mainScreen.widthDIPs
+    if(screenWidth > 1080){
+        page.getViewById('logoHolder').width = (screenWidthDPI/ 7)
+        page.getViewById('higherLogoPart').width = (screenWidthDPI/ 12)
+        page.getViewById('higherLogoPart').left = 8
+        page.getViewById('higherLogoPart').borderTopLeftRadius =  (screenWidthDPI/ 25 )
+        page.getViewById('higherLogoPart').borderTopRightRadius =  (screenWidthDPI/ 25 )
+        page.getViewById('lowerLogoPart').width = (screenWidthDPI/ 9)
+        page.getViewById('lowerLogoPart').borderBottomLeftRadius = (screenWidthDPI/ 22)
+        page.getViewById('lowerLogoPart').borderBottomRightRadius = (screenWidthDPI/ 22)
+        page.getViewById('lowerLogoPart').borderWidth = (screenWidthDPI/ 75)
+        page.getViewById('lowerLogoPart').borderTopWidth = 0
+    }
 }
 
 async function submit(args) {
@@ -49,6 +67,7 @@ async function submit(args) {
             duration: 1000,
             iterations: Number.POSITIVE_INFINITY
         }])
+        
         loginAnimation.play()
         let {
             token,
@@ -65,6 +84,7 @@ async function submit(args) {
         } else {
             appSettings.setString('token', token)
             appSettings.setString('pharmacyName', pharmacyName)
+            appSettings.setString('password', password)
             loginAnimation.cancel()
             higherLogoPart.backgroundColor = '#FF3838'
             toMain(args, true)

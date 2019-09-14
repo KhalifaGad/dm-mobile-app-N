@@ -100,9 +100,12 @@ Button, TextField {
     padding-right: 20vw;
     border-color: #fff;
     background-color: #fff;
-    height: 800vh;  
+    height: 76.5%;  
     width: 100%;
     overflow: hidden;
+}
+.home-items-scrollView, .items-listView, .items-stacklayout{
+    height: 100%;
 }
 
 .list-item {

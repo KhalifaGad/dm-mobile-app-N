@@ -11,8 +11,11 @@
         <StackLayout class="side-drawer" >
             <Button text="" horizontalAlignment="left" class="close-btn" tap="closeSideDrawer" />
             <Button text="Home" class="drawer-item top-itme" tap="navMain" />
-            <Button text="Orders" class="drawer-item" tap="toOrders" />
-            <Button text="change expired" class="drawer-item" tap="toOrders" />
+            <Button text="Profile" class="drawer-item" tap="navProfile" />
+            <Button text="Cart" class="drawer-item" tap="navCart" />
+            <Button text="Change Expired" class="drawer-item" tap="changeExpired" />
+            <Button text="App Settings" class="drawer-item" tap="navCart" />
+            <Button text="Contact Us" class="drawer-item" tap="navCart" />
             <Button text="Logout" class="drawer-item" tap="logout" />
             <!-- <Button text="Orders" class="drawer-item" tap="toOrders" /> -->
             

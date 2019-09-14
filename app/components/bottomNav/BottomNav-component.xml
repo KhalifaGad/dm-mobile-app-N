@@ -1,4 +1,4 @@
-<AbsoluteLayout style="width: 100%" >
+<AbsoluteLayout class="bottomNav">
     <StackLayout top="0" left="0" orientation="horizontal" loaded="onLoaded" class="bottom-controllers-layout">
         <Button id="home-btn" text="" verticalAlignment="bottom" tap="toProfile" class="btm-nav-side-right-btn" />
         <StackLayout class="filter-stklayout" verticalAlignment="top" id="filter-btn">

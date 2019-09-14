@@ -89,8 +89,39 @@ async function login(email, password) {
     }
 }
 
+async function updatePharmacy(fName, lName, pharmacyName,
+    email, phone, password){
+        let resPharmacyName
+    await apolloClient
+        .mutate({
+            mutation: gql `mutation {
+            updatePharmacy(firstName: "${fName}",
+                lastName: "${lName}",
+                pharmacyName: "${pharmacyName}",
+                email: "${email}",
+                password: "${password}",
+                phone: "${phone}"){
+                    pharmacyName
+                }
+        }`
+        })
+        .then(res => {
+            resPharmacyName = res.data.updatePharmacy.pharmacyName
+        })
+        .catch(error => {
+            if (error.networkError) {
+                makeToast(NETWORK_ERROR_WARNING)
+            }
+            console.log(error)
+            returnedError = error
+        })
+        await apolloClient.clearStore()
+        return resPharmacyName
+}
+
 export {
     addPharmacy,
     pharmacyVerification,
-    login
+    login,
+    updatePharmacy
 }

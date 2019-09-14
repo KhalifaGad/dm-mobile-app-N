@@ -8,7 +8,7 @@
     id="home-page">
 
     <Page.actionBar>
-        <actionBar:ActionBar-component />
+        <actionBar:ActionBar-component id="AB" />
     </Page.actionBar>
 
     <AbsoluteLayout id="secondChild">
@@ -23,10 +23,8 @@
         </StackLayout>
         <Label text="{{ viewModel.areFetched }}" top="200" left="90" class="white bold" style="font-size: 18em" textWrap="true" />
         <Label text="{{ viewModel.areFetched  }}" top="220" left="90" class="white bold" style="font-size: 18em" textWrap="true" />
-    
-        <!--  -->
         
-        <StackLayout id="items-container" top="250" left="0" orientation="vertical" class="home-items-stklayout">
+        <StackLayout id="items-container" top="250" left="0" orientation="vertical" class="home-items-stklayout ">
             <ActivityIndicator
                     horizontalAlignment="center"
                     marginTop="139"
@@ -37,28 +35,28 @@
                     color="#FF3838" 
                     width="100" 
                     height="100" />
+            <!-- <Label text="Recommended Drugs" class="" textWrap="true" /> -->
+            
             <ScrollView
                 clipToBounds="true"
-                height="310"
+                class="home-items-scrollView"
                 id="itemsScrollView"
-                scrollBarIndicatorVisible="false">
-                <StackLayout visibility="{{ viewModel.itemsViewVisiblit }}" height="310" id="itemsStackLayout" >
-                    <ListView id="itemsListView" height="310" items="{{ viewModel.items }}" >
+                scrollBarIndicatorVisible="false" >
+                <StackLayout visibility="{{ viewModel.itemsViewVisiblit }}" class="items-stacklayout" id="itemsStackLayout" >
+                    <ListView id="itemsListView" class="items-listView" items="{{ viewModel.items }}" >
                         <ListView.itemTemplate>
                             <StackLayout orientation="horizontal" class="list-item" val="{{ $value }}">
                                 <StackLayout orientation="vertical" horizontalAlignment="right" verticalAlignment="middle" class="drug-info-wrapper">
                                     <Label text="{{ $value.name }}" horizontalAlignment="left" class="drug-name" textWrap="false" width="90%" />
                                     <Label text="{{'Price per pack ' + $value.price + 'EGP' }}" horizontalAlignment="left" textWrap="true" />
                                 </StackLayout>
-                                <!-- <Image src="res://fa_angle_right" horizontalAlignment="right" style="horizontal-align:center;" verticalAlignment="middle" height="20vh" width="20vw" tap="toDrug" /> -->
                                 <Button text="" tap="toDrug" class="to-drug-btn" />
-                                
                             </StackLayout>
                         </ListView.itemTemplate>
                     </ListView>
                 </StackLayout>
             </ScrollView>
         </StackLayout>
-        <bottomNav:BottomNav-component top="579" left="0"/>
+        <!-- <bottomNav:BottomNav-component top="579" left="0"/> -->
     </AbsoluteLayout>
 </Page>

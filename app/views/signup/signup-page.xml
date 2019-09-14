@@ -43,10 +43,6 @@
                 <Label text="Phone Number *" class="txtfld-label" />
                 <TextField hint="Enter your phone number" keyboardType="number" text="{{ signupInfo.phone }}" class="custom-txtfld" />
             </StackLayout>
-            <StackLayout horizontalAlignment="center" class="custom-input-stacklayout">
-                <Label text="Birth Date" class="txtfld-label" />
-                <TextField hint="DD/MM/YYYY" keyboardType="datetime" class="custom-txtfld" />
-            </StackLayout>
             <StackLayout horizontalAlignment="right" class="next">
                 <Button class="next-btn" tap="step2" />
             </StackLayout>

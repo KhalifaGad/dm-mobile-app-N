@@ -12,12 +12,12 @@
             <StackLayout orientation="horizontal" class="first-layer">
                 <StackLayout orientation="vertical" horizontalAlignment="left" class="item-info-wrapper">
                     <StackLayout orientation="horizontal">
-                        <Label text="City: " textWrap="true" />
-                        <Label text="Alexandria" textWrap="true" class="bold" />
+                        <Label text="Orders: " textWrap="true" />
+                        <Label text="{{ viewModel.ordersCount }}" textWrap="true" class="bold" />
                     </StackLayout>
                     <StackLayout orientation="horizontal">
-                        <Label text="Area: " textWrap="true" />
-                        <Label text="Smouha" textWrap="true" class="bold" />
+                        <Label text="total: " textWrap="true" />
+                        <Label text="{{viewModel.ordersTotal}}" textWrap="true" class="bold" />
                     </StackLayout>
                 </StackLayout>
                 <Image horizontalAlignment="right" src="res://edit" width="46vw" height="46vh" tap="toSettings"/>
@@ -34,9 +34,9 @@
                 color="#FF3838"
                 width="100"
                 height="100" />
-            <ScrollView height="360" id="itemsScrollView" scrollBarIndicatorVisible="false">
-                <StackLayout height="360" visibility="{{ viewModel.itemsViewVisibility }}" id="itemsStackLayout">
-                    <ListView id="itemsListView" height="360" items="{{ viewModel.items }}" style="" itemTap="onItemTap">
+            <ScrollView class="home-items-scrollView" id="itemsScrollView" scrollBarIndicatorVisible="false">
+                <StackLayout class="items-stacklayout" visibility="{{ viewModel.itemsViewVisibility }}" id="itemsStackLayout">
+                    <ListView id="itemsListView" class="items-listView" items="{{ viewModel.items }}" style="" itemTap="onItemTap">
                         <ListView.itemTemplate>
                             <StackLayout orientation="horizontal" class="list-item" val="{{ $value }}">
                                 <StackLayout orientation="horizontal" class="drug-info-wrapper">
@@ -48,7 +48,6 @@
                                         <Label text="{{ '-' + $value.discount + '%' }}" horizontalAlignment="center" />
                                     </StackLayout>
                                 </StackLayout>
-                                <!-- <Image src="res://fa_angle_right" horizontalAlignment="right" style="horizontal-align:center;" verticalAlignment="middle" height="20vh" width="20vw" /> -->
                                 <Button text="" tap="toDrug" class="to-drug-btn" />
                             </StackLayout>
                         </ListView.itemTemplate>
@@ -56,6 +55,6 @@
                 </StackLayout>
             </ScrollView>
         </StackLayout>
-        <bottomNav:BottomNav-component top="579" left="0" />
+        <!-- <bottomNav:BottomNav-component top="579" left="0" /> -->
     </AbsoluteLayout>
 </Page>
