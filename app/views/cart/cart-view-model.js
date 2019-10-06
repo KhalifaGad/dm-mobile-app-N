@@ -9,6 +9,8 @@ function CartViewModel() {
     const viewModel = fromObject({
         items: new ObservableArray(),
         total: 0,
+        discount: 0,
+        grandTotal: 0,
         notFetched: true,
         activityIndicatorVis: 'visible',
         itemsViewVisibility: 'collapse',

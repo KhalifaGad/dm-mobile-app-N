@@ -28,20 +28,23 @@
         </StackLayout>
         <StackLayout id="firstScene" class="form-body" visibility="{{step == '1'? 'visible' : 'collapsed'}}">
             <StackLayout>
-                <Label text="Personal information" class="bold signup-info-label" textWrap="true" />
-                <Label text="Will not be shared with public" textWrap="true" />
+                <Label text="Please fill the required fields" class="bold signup-info-label" textWrap="true" />
             </StackLayout>
             <StackLayout id="fName" horizontalAlignment="center" class="custom-input-stacklayout">
                 <Label text="First Name *" class="txtfld-label" />
-                <TextField hint="Enter your first name " text="{{ signupInfo.fName }}" class="custom-txtfld" />
+                <TextField hint="Eg: John " text="{{ signupInfo.fName }}" class="custom-txtfld" />
             </StackLayout>
             <StackLayout id="lName" horizontalAlignment="center" class="custom-input-stacklayout">
                 <Label text="Last Name *" class="txtfld-label" />
-                <TextField hint="Enter your last name" text="{{ signupInfo.lName }}" class="custom-txtfld" />
+                <TextField hint="Eg: Alex" text="{{ signupInfo.lName }}" class="custom-txtfld" />
             </StackLayout>
             <StackLayout id="phone" horizontalAlignment="center" class="custom-input-stacklayout">
                 <Label text="Phone Number *" class="txtfld-label" />
-                <TextField hint="Enter your phone number" keyboardType="number" text="{{ signupInfo.phone }}" class="custom-txtfld" />
+                <TextField hint="Eg: 010xxxxxxxx" keyboardType="number" text="{{ signupInfo.phone }}" class="custom-txtfld" />
+            </StackLayout>
+            <StackLayout id="pName" horizontalAlignment="center" class="custom-input-stacklayout">
+                <Label text="Pharmacy name*" class="txtfld-label" />
+                <TextField hint="Enter your pharmacy name" text="{{ signupInfo.pharmacyName }}" class="custom-txtfld" />
             </StackLayout>
             <StackLayout horizontalAlignment="right" class="next">
                 <Button class="next-btn" tap="step2" />
@@ -51,31 +54,17 @@
             <StackLayout>
                 <Label text="You are almost there!." class="bold signup-info-label" textWrap="true" />
             </StackLayout>
-            <StackLayout id="email" horizontalAlignment="center" class="custom-input-stacklayout">
-                <Label text="Email Address *" class="txtfld-label" />
-                <TextField hint="Enter your email" keyboardType="email" text="{{ signupInfo.email }}" class="custom-txtfld" />
+            <StackLayout id="city" horizontalAlignment="center" class="custom-input-stacklayout">
+                <Label text="City *" class="txtfld-label" />
+                <TextField hint="Eg: Alexandria" text="{{ signupInfo.city }}" class="custom-txtfld" />
             </StackLayout>
-            <StackLayout id="password" horizontalAlignment="center" class="custom-input-stacklayout">
-                <Label text="Password *" class="txtfld-label" />
-                <TextField hint="Enter your password" text="{{ signupInfo.password }}" class="custom-txtfld" />
+            <StackLayout id="area" horizontalAlignment="center" class="custom-input-stacklayout">
+                <Label text="Area *" class="txtfld-label" />
+                <TextField hint="Eg: Smouha" text="{{ signupInfo.area }}" class="custom-txtfld" />
             </StackLayout>
-            <StackLayout id="repeatedPass" horizontalAlignment="center" class="custom-input-stacklayout">
-                <Label text="Retype Password *" class="txtfld-label" />
-                <TextField hint="Retype your password Again" text="{{ signupInfo.repeatedPass }}" class="custom-txtfld" />
-            </StackLayout>
-            <StackLayout horizontalAlignment="right" orientation="horizontal" class="max-width split-arrows next-deeper">
-                <Button class="back-btn" horizontalAlignment="left" tap="step1" />
-                <Button class="next-btn" horizontalAlignment="right" tap="step3" />
-            </StackLayout>
-        </StackLayout>
-        <StackLayout id="thirdScene" class="form-body" visibility="{{step == '3'? 'visible' : 'collapsed'}}">
-            <StackLayout>
-                <Label text="Pharmacy information" class="bold signup-info-label" textWrap="true" />
-                <Label text="Enter your pharmacy information" textWrap="true" />
-            </StackLayout>
-            <StackLayout id="pName" horizontalAlignment="center" class="custom-input-stacklayout">
-                <Label text="Pharmacy name*" class="txtfld-label" />
-                <TextField hint="Enter your pharmacy name" text="{{ signupInfo.pharmacyName }}" class="custom-txtfld" />
+            <StackLayout id="street" horizontalAlignment="center" class="custom-input-stacklayout street">
+                <Label text="Street *" class="txtfld-label" />
+                <TextField hint="Eg: Fawzy moaaz" text="{{ signupInfo.street }}" class="custom-txtfld" />
             </StackLayout>
             <StackLayout orientation="horizontal" horizontalAlignment="center" class="switch-wrapper-parent">
                 <StackLayout class="location-labels" horizontalAlignment="left">
@@ -89,7 +78,44 @@
                     <Switch class="switch-dash" width="45vw" checked="{{ locationSwitch }}" tap="toggleSwitch" />
                 </StackLayout>
             </StackLayout>
-            <StackLayout horizontalAlignment="right" orientation="horizontal" class="max-width arrow-and-button next-extra-deeper">
+            <StackLayout horizontalAlignment="right" orientation="horizontal" class="max-width split-arrows next-deeper">
+                <Button class="back-btn" horizontalAlignment="left" tap="step1" />
+                <Button class="next-btn" horizontalAlignment="right" tap="step3" />
+            </StackLayout>
+        </StackLayout>
+        <StackLayout id="thirdScene" class="form-body" visibility="{{step == '3'? 'visible' : 'collapsed'}}">
+            <StackLayout>
+                <Label text="Last step" class="bold signup-info-label" textWrap="true" />
+            </StackLayout>
+            <StackLayout id="email" horizontalAlignment="center" class="custom-input-stacklayout">
+                <Label text="Email Address *" class="txtfld-label" />
+                <TextField hint="Enter your email" keyboardType="email" text="{{ signupInfo.email }}" class="custom-txtfld" />
+            </StackLayout>
+            <StackLayout id="password" horizontalAlignment="center" class="custom-input-stacklayout">
+                <Label text="Password *" class="txtfld-label" />
+                <TextField hint="Enter your password" secure="true" text="{{ signupInfo.password }}" class="custom-txtfld" />
+            </StackLayout>
+            <StackLayout id="repeatedPass" horizontalAlignment="center" class="custom-input-stacklayout">
+                <Label text="Retype Password *" class="txtfld-label" />
+                <TextField hint="Retype your password Again" secure="true" text="{{ signupInfo.repeatedPass }}" class="custom-txtfld" />
+            </StackLayout>
+            <StackLayout orientation="horizontal" horizontalAlignment="center" class="switch-wrapper-parent">
+                <StackLayout class="location-labels" horizontalAlignment="left">
+                    <Label text="Payment Method" textWrap="true" verticalAlignment="center" class="bold" />
+                    <Label 
+                    text="the default value is cash, use the switch to turn it to deferred." 
+                    textWrap="true"
+                    class="small" />
+                    <Label 
+                    text="You can change it later from application settings." 
+                    textWrap="true"
+                    class="small" />
+                </StackLayout>
+                <StackLayout class="switch-wrapper">
+                    <Switch class="switch-dash" width="45vw" checked="{{ isCash }}" tap="toggleSwitch" />
+                </StackLayout>
+            </StackLayout>
+            <StackLayout horizontalAlignment="right" orientation="horizontal" class="max-width arrow-and-button next-a-pit-deeper">
                 <Button class="back-btn" horizontalAlignment="left" tap="step2" />
                 <Button text="confirm" horizontalAlignment="right" isEnabled="{{ allowed }}" class="confirm-btn" tap="submit" />
             </StackLayout>

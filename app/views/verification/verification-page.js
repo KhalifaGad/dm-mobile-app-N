@@ -25,6 +25,7 @@ async function verifyPharmacy(args) {
         return
     }
     let done = await pharmacyVerification(code)
+    console.log(done)
     if (!done) {
 		alert('Wrong code, make sure of it!')
 		return

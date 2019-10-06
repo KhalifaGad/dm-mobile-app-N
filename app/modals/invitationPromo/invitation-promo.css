@@ -1,0 +1,38 @@
+.modal {
+    background-color: #952cdd;
+    color: #fff;
+    height: 150;
+}
+.modal-header {
+    margin-top: 10;
+    font-weight: bold;
+    font-size: 16;
+}
+.yes-no-btns {
+    width: 80%;
+    height: 80%;
+    margin-top: 5%;
+}
+.yes-no-btns Button {
+    background-color: #fff;
+    color: #952cdd;
+    width: 40%;
+    height: 50;
+}
+.custom-input-stacklayout{
+    width: 70%;
+    margin-top: 10%;
+}
+.custom-input-stacklayout Button {
+    background-color: #fff;
+    color: #952cdd;
+    text-transform: none;
+    font-weight: bold;
+    margin-left: 2%;
+}
+.custom-input-stacklayout TextField {
+    border-bottom-color: #fff;
+    border-bottom-style: solid;
+    border-bottom-width: 1;
+    width: 70%;
+}

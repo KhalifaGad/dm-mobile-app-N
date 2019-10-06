@@ -25,7 +25,8 @@
     color: #FF3838;
 }
 .signup-info-label{
-    font-size: 18em
+    font-size: 18em;
+    margin-top: 10;
 }
 .custom-input-stacklayout {
     margin-top: 4%;
@@ -47,8 +48,14 @@
 .next{
     margin-top: 10%;
 }
+.next-less-deeper{
+    margin-top: 5%;
+}
 .next-deeper{
-    margin-top: 30%;
+    margin-top: 16%;
+}
+.next-a-pit-deeper{
+    margin-top: 12%;
 }
 .next-extra-deeper{
     margin-top: 43%;

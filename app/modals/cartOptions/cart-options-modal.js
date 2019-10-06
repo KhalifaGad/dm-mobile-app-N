@@ -1,5 +1,5 @@
 import { Observable, fromObjectRecursive } from 'tns-core-modules/data/observable'
-let closeCallback;
+let closeCallback
 
 function onShownModally(args) {
     const context = args.context;

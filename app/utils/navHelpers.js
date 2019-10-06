@@ -149,7 +149,8 @@ function toVerification(args) {
     page.frame.navigate(navigationEntry)
 }
 
-function toLogin(args){
+function toLogin(){
+    console.log(";)")
     const navigationEntry = {
         moduleName: 'views/login/login-page',
         clearHistory: true,

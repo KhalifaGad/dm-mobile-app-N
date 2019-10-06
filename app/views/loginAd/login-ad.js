@@ -17,7 +17,6 @@ function onNavigatedTo(args) {
     const skipBtnWidth = screenWidthDPI / 6
     page.getViewById('skipBtn').width = skipBtnWidth
     page.getViewById('skipBtn').left = (screenWidthDPI / 2) - (skipBtnWidth / 2)
-    console.log(screenWidth)
     if (screenWidth > 1080) {
         const logo = page.getViewById('logo')
         logo.marginLeft = (screenWidthDPI / 2) - (logo.width / 2)

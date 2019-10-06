@@ -7,7 +7,7 @@ import {
     NETWORK_ERROR_WARNING
 } from '~/utils/makeToast'
 
-async function addPharmacy(signupInfo) {
+async function addPharmacy(signupInfo, wallet = 0) {
     let returnedData
     await apolloClient
         .mutate({
@@ -19,6 +19,10 @@ async function addPharmacy(signupInfo) {
                 password: "${signupInfo.password}",
                 lat: ${signupInfo.lat},
                 long: ${signupInfo.long},
+                city: "${signupInfo.city}",
+                area: "${signupInfo.area}",
+                street: "${signupInfo.street}",
+                wallet: ${wallet}
                 phone: "${signupInfo.phone}"){
                     id
                     code
@@ -80,6 +84,7 @@ async function login(email, password) {
             if (error.networkError) {
                 makeToast(NETWORK_ERROR_WARNING)
             }
+            console.log(JSON.stringify(error))
             returnedError = error
         })
     return {
@@ -90,8 +95,8 @@ async function login(email, password) {
 }
 
 async function updatePharmacy(fName, lName, pharmacyName,
-    email, phone, password){
-        let resPharmacyName
+    email, phone, password) {
+    let resPharmacyName
     await apolloClient
         .mutate({
             mutation: gql `mutation {
@@ -115,13 +120,77 @@ async function updatePharmacy(fName, lName, pharmacyName,
             console.log(error)
             returnedError = error
         })
-        await apolloClient.clearStore()
-        return resPharmacyName
+    await apolloClient.clearStore()
+    return resPharmacyName
+}
+
+async function addPromo(id, code) {
+    let isAdded = false
+    await apolloClient
+        .mutate({
+            mutation: gql `mutation {
+            addPharmacyPromo(id: "${id}",
+                oldPharmacyCode: "${code}")
+        }`
+        })
+        .then(res => {
+            isAdded = res.data.addPharmacyPromo
+            console.log("###### inner ########" + isAdded)
+
+        })
+        .catch(error => {
+            console.log(error)
+            if (error.networkError) {
+                makeToast(NETWORK_ERROR_WARNING)
+            }
+            return error
+        })
+    console.log("##############" + isAdded)
+    return isAdded
+}
+
+async function issueOrder(order) {
+    
+    let {
+        to,
+        total,
+        drugList
+    } = order
+    let isOrderPlaced = false
+    await apolloClient.mutate({
+        mutation: gql `mutation ($to: ID!, $total: Float!,
+            $drugList: [OrderDrugsListInput!]!) {
+            makeOrder(
+                to: $to,
+                total: $total,
+                drugList: $drugList
+            ){
+                id
+            }
+        }`,
+        variables: {
+            to: to,
+            total: total,
+            drugList: drugList
+        }
+    }).then((res) => {
+        isOrderPlaced = true
+    }).catch((error) => {
+        if (error.networkError) {
+            makeToast(NETWORK_ERROR_WARNING)
+        }
+        console.log(error)
+        isOrderPlaced = false
+    })
+
+    return isOrderPlaced
 }
 
 export {
     addPharmacy,
     pharmacyVerification,
     login,
-    updatePharmacy
+    updatePharmacy,
+    addPromo,
+    issueOrder
 }

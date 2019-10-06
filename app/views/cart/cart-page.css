@@ -11,15 +11,30 @@
 }
 .checkout-btn {
     width: 36%;
+    height: 10%;
     background-color: #fff;
     color: #FF3838;
     border-radius: 10%;
     font-weight: bold;
     text-transform: none;
+    margin-left: 4%;
 }
 .is-empty-lbl{
     font-weight: bold;
     font-size: 20em;
     margin-top: 200;
     color: rgb(204, 195, 195)
+}
+.list-item{
+    height: 110;
+}
+
+.remove-btn{
+    z-index: 0;
+    background-image: url("res://close");
+    background-position: right;
+    background-size: 50 50;
+    background-repeat: no-repeat;
+    height: 40%;
+    width: 10%;
 }

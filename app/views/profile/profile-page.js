@@ -84,7 +84,6 @@ async function profilePromises(){
     }).then((ordersTotals)=> {
         page.bindingContext.viewModel.ordersCount = ordersTotals.length
         page.bindingContext.viewModel.ordersTotal = ordersTotals.reduce((total, order)=>{
-            console.log(order)
             return total + order.total
         }, 0) + ' EGP'
     })

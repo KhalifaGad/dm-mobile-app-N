@@ -1,12 +1,9 @@
 import DrugViewModel from './drug-view-model'
-import * as gestures from 'tns-core-modules/ui/gestures'
-import Toast from 'nativescript-toast'
 import {
     toDrug
 } from '../../utils/navHelpers'
 import {
-    stretchMenu,
-    shortenMenu
+    initMenuAnimation
 } from '../../utils/animateMenu'
 import {
     actionBarStatus,
@@ -20,8 +17,8 @@ import {
 } from '~/utils/refactorDrugsArray';
 import * as fileSystemModule from 'tns-core-modules/file-system'
 import {
-    screen
-} from "platform"
+    makeToast
+} from '~/utils/makeToast'
 
 let page, drug
 
@@ -54,34 +51,7 @@ function onNavigatingTo(args) {
         page.bindingContext.viewModel.activityIndicatorVis = 'collapse'
     })
 
-    const itemsListView = page.getViewById('itemsListView'),
-        itemsContainer = page.getViewById('items-container')
-
-    let screenHeightDPI = screen.mainScreen.heightDIPs
-    //0.19
-    let decreasingRatio = 0
-    if (screenHeightDPI >= 1100) {
-        decreasingRatio = 0.17
-    } else if (screenHeightDPI >= 900) {
-        decreasingRatio = 0.18
-    } else if (screenHeightDPI >= 700) {
-        decreasingRatio = 0.19
-    } else {
-        decreasingRatio = 0.2
-    }
-    let istemsContainerOriginalHeight = screenHeightDPI - itemsContainer.top -
-        (screenHeightDPI * decreasingRatio)
-    itemsContainer.height = istemsContainerOriginalHeight
-    let stretched = false
-    itemsListView.on(gestures.GestureTypes.pan, async (args) => {
-        if (args.deltaY < -200 && !stretched) {
-            stretchMenu(itemsContainer)
-            stretched = true
-        } else if (args.deltaY > 300) {
-            shortenMenu(itemsContainer, istemsContainerOriginalHeight)
-            stretched = false
-        }
-    })
+    initMenuAnimation(page)
 }
 
 function showCartOptions(args) {
@@ -132,24 +102,21 @@ function add2Cart(quantity) {
                 JSON.stringify(orders).replace("[", "").replace("]", "")
         } else {
             drug.quantity = quantity
-            if(res.length > 2){
-                drug.index = orders.length
-                data2Write = res + ',' + JSON.stringify(drug) 
+            data2Write = JSON.stringify(drug)
+            if (res.length > 2) {
+                data2Write = res + ',' + JSON.stringify(drug)
             } else {
-                drug.index = 0
                 data2Write = JSON.stringify(drug)
             }
         }
 
         ordersFile.writeText(data2Write).
         then(() => {
-            Toast.makeText(`Quantity ${quantity} of ${drug.name} added to cart`)
-                .show()
+            makeToast(`Quantity ${quantity} of ${drug.name} added to cart`)
         }).catch((err) => {
-            Toast.makeText('Error placing order please' +
-                           ' check if there are enough free storage')
-                .show()
-            console.log(err)
+            makeToast('Error placing order please' +
+                ' check if there are enough free storage')
+
         })
     })
 

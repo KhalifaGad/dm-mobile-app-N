@@ -12,9 +12,13 @@ function SignupViewModel() {
             repeatedPass: 'Hakm2321',
             lat: 0,
             long: 0,
-            phone: '01099106299'
+            phone: '01099106299',
+            city: 'Alexandria',
+            area: 'Smouha',
+            street: 'Fawzy Moaz'
         },
         locationSwitch: false,
+        isCash: true,
         allowed: false,
         activityIndcatorFlag: false
     })

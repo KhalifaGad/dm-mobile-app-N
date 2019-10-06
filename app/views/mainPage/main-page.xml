@@ -36,13 +36,16 @@
                     width="100" 
                     height="100" />
             <!-- <Label text="Recommended Drugs" class="" textWrap="true" /> -->
-            
+            <StackLayout visibility="{{ viewModel.adViewVisbility }}" class="items-stacklayout" > 
+                    <Label text="advertisement area" horizontalAlignment="center" verticalAlignment="middle" />
+            </StackLayout>
             <ScrollView
                 clipToBounds="true"
                 class="home-items-scrollView"
                 id="itemsScrollView"
+                visibility="{{ viewModel.itemsViewVisiblity }}"
                 scrollBarIndicatorVisible="false" >
-                <StackLayout visibility="{{ viewModel.itemsViewVisiblit }}" class="items-stacklayout" id="itemsStackLayout" >
+                <StackLayout class="items-stacklayout" id="itemsStackLayout" >
                     <ListView id="itemsListView" class="items-listView" items="{{ viewModel.items }}" >
                         <ListView.itemTemplate>
                             <StackLayout orientation="horizontal" class="list-item" val="{{ $value }}">
