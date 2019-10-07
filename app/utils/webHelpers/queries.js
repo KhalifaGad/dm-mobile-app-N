@@ -289,6 +289,29 @@ async function getPharmacyOrders() {
     return orders
 }
 
+async function getPharmacyWallet() {
+    let wallet
+    await apolloClient.query({
+            query: gql `query{
+        pharmacy{
+            wallet
+        }
+    }`,
+            fetchPolicy: 'no-cache'
+        })
+        .then(res => {
+            wallet = res.data.pharmacy.wallet
+        })
+        .catch(error => {
+            if (error.networkError) {
+                makeToast(NETWORK_ERROR_WARNING)
+            } else {
+                console.error(error)
+            }
+        })
+    return wallet
+}
+
 async function getPharmacyOrdersTotals() {
     let ordersTotals
     await apolloClient.query({
@@ -322,5 +345,6 @@ export {
     getFullPharmacyDetails,
     getPharmacyName,
     getPharmacyOrders,
-    getPharmacyOrdersTotals
+    getPharmacyOrdersTotals,
+    getPharmacyWallet
 }

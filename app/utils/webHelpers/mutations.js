@@ -108,7 +108,8 @@ async function updatePharmacy(fName, lName, pharmacyName,
                 phone: "${phone}"){
                     pharmacyName
                 }
-        }`
+        }`,
+        fetchPolicy: 'no-cache'
         })
         .then(res => {
             resPharmacyName = res.data.updatePharmacy.pharmacyName
@@ -120,7 +121,6 @@ async function updatePharmacy(fName, lName, pharmacyName,
             console.log(error)
             returnedError = error
         })
-    await apolloClient.clearStore()
     return resPharmacyName
 }
 
@@ -135,8 +135,6 @@ async function addPromo(id, code) {
         })
         .then(res => {
             isAdded = res.data.addPharmacyPromo
-            console.log("###### inner ########" + isAdded)
-
         })
         .catch(error => {
             console.log(error)
@@ -150,20 +148,23 @@ async function addPromo(id, code) {
 }
 
 async function issueOrder(order) {
-    
+
     let {
         to,
         total,
-        drugList
+        drugList,
+        walletDiscount
     } = order
+
     let isOrderPlaced = false
     await apolloClient.mutate({
         mutation: gql `mutation ($to: ID!, $total: Float!,
-            $drugList: [OrderDrugsListInput!]!) {
+            $drugList: [OrderDrugsListInput!]!, $walletDiscount: Float!) {
             makeOrder(
                 to: $to,
                 total: $total,
-                drugList: $drugList
+                drugList: $drugList,
+                walletDiscount: $walletDiscount
             ){
                 id
             }
@@ -171,10 +172,12 @@ async function issueOrder(order) {
         variables: {
             to: to,
             total: total,
-            drugList: drugList
+            drugList: drugList,
+            walletDiscount: walletDiscount
         }
     }).then((res) => {
         isOrderPlaced = true
+        decreaseWallet(walletDiscount)
     }).catch((error) => {
         if (error.networkError) {
             makeToast(NETWORK_ERROR_WARNING)
@@ -182,8 +185,25 @@ async function issueOrder(order) {
         console.log(error)
         isOrderPlaced = false
     })
-
     return isOrderPlaced
+}
+
+async function decreaseWallet(val) {
+    console.log('hey')
+    await apolloClient
+        .mutate({
+            mutation: gql `mutation {
+                decreasePharmacyWallet(val: ${val})
+            }`
+        }).then((res) => {
+            console.log(res)
+        }).catch((e) => {
+            console.log(e)
+            if (error.networkError) {
+                makeToast(NETWORK_ERROR_WARNING)
+                decreaseWallet(val)
+            }
+        })
 }
 
 export {

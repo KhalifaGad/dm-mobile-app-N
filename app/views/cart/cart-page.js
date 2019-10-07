@@ -7,10 +7,17 @@ import {
     actionBarStatus
 } from '~/app'
 import * as dialogs from "tns-core-modules/ui/dialogs"
-import { issueOrder } from '~/utils/webHelpers/mutations'
-import { makeToast } from '~/utils/makeToast'
+import {
+    issueOrder
+} from '~/utils/webHelpers/mutations'
+import {
+    makeToast
+} from '~/utils/makeToast'
+import {
+    getPharmacyWallet
+} from '~/utils/webHelpers/queries'
 
-let page
+let page, wallet = 0
 async function onNavigatingTo(args) {
     page = args.object;
     let bindings = {
@@ -20,11 +27,18 @@ async function onNavigatingTo(args) {
     page.bindingContext = {
         ...bindings
     }
+    new Promise((resolve, reject) => {
+        resolve(getPharmacyWallet())
+    }).then((pharmacyWallet) => {
+        wallet = pharmacyWallet
+    }).catch((err) => {
+        makeToast(`Wour wallet can not be retrieved`)
+    })
     initUI()
     initMenuAnimation(page)
 }
 
-async function initUI(){
+async function initUI() {
     let orders = await getOrders()
     if (orders.length <= 0) {
         page.bindingContext.viewModel.notFetched = false
@@ -58,6 +72,7 @@ function calcPrice(quantity, price, discount) {
 }
 
 async function getOrders() {
+    console.log('get orders')
     const currentAppFolder =
         fileSystemModule.knownFolders.currentApp()
     const folderPath =
@@ -72,54 +87,99 @@ async function getOrders() {
     return orders
 }
 
-function confirmOrders() {
+async function confirmOrders() {
     let grandTotal = page.bindingContext.viewModel.grandTotal
+    let usedWalletRatio = 0
+    if (wallet > 0) {
+        let {
+            result,
+            text
+        } = await getWalletConfirmation()
+        if (result) {
+            usedWalletRatio = text
+        }
+    }
     dialogs.confirm({
         title: 'Order Confirmation',
-        message: `confirm order with total cash: ${grandTotal} EGP`,
+        message: `confirm order with total cash: ${grandTotal -
+            ( grandTotal * (usedWalletRatio / 100 ))} EGP`,
         okButtonText: 'Confirm',
         cancelButtonText: 'Cancel'
-    }).then(async (res) => {
-        if(res){
-            new Promise((resolve, reject)=> {
-                resolve(prepareOrders())
-            }).then((preparedOrders)=>{
-                return new Promise((resolve, reject)=> {
-                    resolve(orderItems(preparedOrders))
-                })
-            }).then((remainedItems)=> {
-                refreshCart(remainedItems)
-            })
+    }).then(async (confirmationres) => {
+        if (confirmationres) {
+            try {
+                let preparedOrders = await prepareOrders()
+                let remainedItems = await orderItems(preparedOrders, usedWalletRatio)
+                if (remainedItems.length > 0) {
+                    await refreshCart([])
+                }
+                await refreshCart(remainedItems)
+            } catch (e) {
+                makeToast(`Error in ordering process, please try again`)
+                console.log(e)
+            }
         }
     })
 }
 
-function orderItems(preparedItems){
-    let remainedItems = []
-    preparedItems.forEach( async (order)=>{
-        let isOrdered = await issueOrder(order)
-        if(!isOrdered){
-            orders.forEach((unpreparedOrder)=> {
-                if(unpreparedOrder.sellerId == order.to){
-                    makeToast(`order with drug ${unpreparedOrder.drugName} can not take a place`)
-                    remainedItems.push(unpreparedOrder)
-                }
-            })
+async function getWalletConfirmation() {
+    let response
+    await dialogs.prompt({
+        title: 'Use your wallet',
+        message: `You have ${wallet} discount ratio in your wallet,
+            do you want to use some of it`,
+        okButtonText: 'Yes',
+        cancelButtonText: 'No',
+        defaultText: `${wallet}`,
+        inputType: dialogs.inputType.number
+    }).then(async (res) => {
+        if (res.result) {
+            if (res.text > wallet) {
+                makeToast('Not accepted value')
+                res.text = 0
+                await getWalletConfirmation()
+            }
         }
+        response = res
     })
+    return response
+}
+
+async function orderItems(preparedItems, usedWalletRatio) {
+
+    let orders = await getOrders()
+    let walletDiscountPerOrder = usedWalletRatio > 0 ?
+        usedWalletRatio / preparedItems.length : 0
+
+    let remainedItems = []
+
+    for (let i = 0; i < preparedItems.length; i++) {
+        preparedItems[i].walletDiscount = walletDiscountPerOrder
+        let isOrdered = await issueOrder(preparedItems[i])
+
+        if (!isOrdered) {
+            for (let j = 0; j < orders.length; j++) {
+                if (orders[j].sellerId == preparedItems[i].to) {
+                    await makeToast(`order with drug ${orders[j].name} can not take a place`)
+                    remainedItems.push(orders[j])
+                }
+            }
+        }
+    }
+
     return remainedItems
 }
 
-async function refreshCart(remainedItems){
+async function refreshCart(remainedItems) {
     rewriteTheCart(remainedItems)
     initUI()
 }
 
-function prepareOrders(){
+function prepareOrders() {
     let orders = page.bindingContext.viewModel.items.concat([])
     let ordersMap = new Map()
-    orders.forEach((order)=>{
-        if(ordersMap.has(order.sellerId)){
+    orders.forEach((order) => {
+        if (ordersMap.has(order.sellerId)) {
             let preparedOrder = ordersMap.get(order.sellerId)
             let total = calcPrice(order.quantity, order.price, order.discount)
             preparedOrder.total += total
@@ -136,7 +196,7 @@ function prepareOrders(){
             })
         } else {
             let preparedOrder = {}
-            let total = calcPrice(order.quantity, order.price, order.discount) 
+            let total = calcPrice(order.quantity, order.price, order.discount)
             preparedOrder.to = order.sellerId
             preparedOrder.total = total
             preparedOrder.drugList = new Array()
@@ -177,12 +237,10 @@ function rewriteTheCart(orders) {
 
     let data2Write =
         JSON.stringify(orders).replace("[", "").replace("]", "")
-    ordersFile.writeText(data2Write).
-    then(() => {
-        makeToast('Cart is updated')
-    }).catch((err) => {
-        makeToast('Error Updating cart')
-    })
+    ordersFile.writeText(data2Write)
+        .catch((err) => {
+            makeToast('Error Updating cart')
+        })
 }
 
 export {
