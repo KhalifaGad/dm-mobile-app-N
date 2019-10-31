@@ -1,6 +1,5 @@
 import profileViewModel from './profile-view-model'
 import * as builder from "tns-core-modules/ui/builder"
-import * as gestures from 'tns-core-modules/ui/gestures'
 import {
     Observable
 } from 'tns-core-modules/data/observable'
@@ -8,20 +7,12 @@ import {
     toDrug
 } from '../../utils/navHelpers'
 import {
-    stretchMenu,
-    shortenMenu
-} from '../../utils/animateMenu'
-import {
-    settingsStates,
-    actionBarStatus
+    settingsStates
 } from '~/app'
 import {
-    refactorWtihSellers
-} from '~/utils/refactorDrugsArray'
-import {
-    getRandomDrugs,
     getPharmacyName,
-    getPharmacyOrdersTotals
+    getPharmacyOrdersTotals,
+    getPharmacyData
 } from '~/utils/webHelpers/queries'
 import {
     screen
@@ -32,7 +23,6 @@ let page
 async function onNavigatingTo(args) {
     page = args.object;
     let bindings = {
-        actionBarStatus,
         viewModel: profileViewModel()
     }
     page.bindingContext = {
@@ -41,7 +31,7 @@ async function onNavigatingTo(args) {
     
     profilePromises()
 
-    const itemsListView = page.getViewById('itemsListView'),
+    /* const itemsListView = page.getViewById('itemsListView'),
         itemsContainer = page.getViewById('items-container')
 
     let screenHeightDPI = screen.mainScreen.heightDIPs
@@ -68,15 +58,20 @@ async function onNavigatingTo(args) {
             shortenMenu(itemsContainer, istemsContainerOriginalHeight)
             stretched = false
         }
-    })
+    }) */
 }
 
 async function profilePromises(){
 
     new Promise((resolve, reject)=>{
-        resolve(getPharmacyName())
-    }).then((pharmacyName)=> {
+        resolve(getPharmacyData())
+    }).then((pharmacyData)=> {
+        let {
+            pharmacyName,
+            wallet
+        } = pharmacyData
         page.bindingContext.viewModel.pharmacyName = pharmacyName
+        page.bindingContext.viewModel.wallet = wallet
     })
     
     new Promise((resolve, reject)=>{
@@ -85,10 +80,10 @@ async function profilePromises(){
         page.bindingContext.viewModel.ordersCount = ordersTotals.length
         page.bindingContext.viewModel.ordersTotal = ordersTotals.reduce((total, order)=>{
             return total + order.total
-        }, 0) + ' EGP'
+        }, 0)
     })
 
-    new Promise(function (resolve, reject) {
+    /* new Promise(function (resolve, reject) {
         resolve(getRandomDrugs())
 
     }).then(function (drugsArr) {
@@ -103,7 +98,7 @@ async function profilePromises(){
         page.bindingContext.viewModel.notFetched = false
         page.bindingContext.viewModel.itemsViewVisibility = 'visible'
         page.bindingContext.viewModel.activityIndicatorVis = 'collapse'
-    })
+    }) */
 }
 
 async function removeSettingsCompo() {
@@ -116,13 +111,12 @@ async function removeSettingsCompo() {
         },
         duration: 400
     }).then(
-        actionBarStatus.hidden = false
+        page.bindingContext.viewModel.isActionBarHidden = false
     )
     mainScene.removeChild(settingsCompo)
     settingsStates.off(Observable.propertyChangeEvent)
 }
 
-//mainScene
 async function toSettings() {
     const mainScene = page.getViewById('secondChild')
     if (page.getViewById('settingsComponent')) return
@@ -139,7 +133,7 @@ async function toSettings() {
         },
         duration: 400
     }).then(() => {
-        actionBarStatus.hidden = true;
+        page.bindingContext.viewModel.isActionBarHidden = true;
     })
     settingsStates.opened = true
     settingsStates.addEventListener(Observable.propertyChangeEvent, (data) => {
@@ -155,4 +149,4 @@ export {
     toSettings,
     removeSettingsCompo,
     toDrug
-};
+}

@@ -1,0 +1,37 @@
+<Page id="drug-page" 
+    xmlns="http://schemas.nativescript.org/tns.xsd" 
+    xmlns:lv="nativescript-ui-listview" 
+    xmlns:actionBar="components/actionBar" 
+    xmlns:bottomNav="components/bottomNav" navigatingTo="onNavigatingTo" class="page">
+    <Page.actionBar>
+        <actionBar:ActionBar-component />
+    </Page.actionBar>
+
+    <AbsoluteLayout id="secondChild">
+        <StackLayout top="80" left="24" class="item-headers-wrapper">
+            <StackLayout orientation="horizontal">
+                <StackLayout orientation="vertical" horizontalAlignment="left" class="item-info-wrapper">
+                    <FlexboxLayout class="lang" alignItems="flex-start" flexDirection="row" justifyContent="space-around">
+                        <Label text="English" textWrap="true" />
+                        <StackLayout class="switch-wrapper">
+                            <Switch id="langSwitch" checked="{{isArabic}}" class="switch" width="45vw" />
+                        </StackLayout>
+                        <Label text="عربى" textWrap="true" class="arabic-txt" />
+                    </FlexboxLayout>
+                    <FlexboxLayout class="payment" alignItems="flex-start" flexDirection="row" justifyContent="space-around">
+                        <Label text="{{defferedString}}" textWrap="true" />
+                        <StackLayout class="switch-wrapper">
+                            <Switch id="paymentSwitch" checked="{{isCash}}" class="switch" width="45vw" />
+                        </StackLayout>
+                        <Label text="{{cashString}}" textWrap="true" />
+                    </FlexboxLayout>
+                </StackLayout>
+            </StackLayout>
+        </StackLayout>
+        <StackLayout id="items-container" top="280" left="0" orientation="vertical" class="home-items-stklayout">
+            <StackLayout class="items-stacklayout">
+                <Label text="advertisement area" horizontalAlignment="center" verticalAlignment="middle" />
+            </StackLayout>
+        </StackLayout>
+    </AbsoluteLayout>
+</Page>

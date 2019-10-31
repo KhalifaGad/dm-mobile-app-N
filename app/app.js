@@ -31,9 +31,10 @@ let settingsStates = observableModule.fromObject({
     }),
     actionBarStatus = observableModule.fromObject({
         hidden: false
-    }),
-    cart = observableModule.fromObject({
-        hasItems: false
+    })
+
+    application.android.on(application.AndroidApplication.activityBackPressedEvent, (args) => {
+        actionBarStatus.hidden = false
     })
 
 export {

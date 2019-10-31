@@ -12,7 +12,6 @@ function onShownModally(args) {
     let {
         locations
     } = page.bindingContext
-    console.log(locations)
     page.bindingContext.selectedLocation.on(Observable
         .propertyChangeEvent, (data) => {
             page.bindingContext.locations =

@@ -1,0 +1,23 @@
+.item-headers-wrapper {
+    width: 100%;
+}
+.item-info-wrapper {
+    color: #fff;
+    font-size: 18em;
+    width: 100%;
+}
+
+.number{
+
+}
+
+.email{
+    margin-top: 40vh
+}
+
+.small{
+    font-size: 16;
+    margin-top: 20;
+    margin-right: 20;
+}
+

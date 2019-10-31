@@ -34,8 +34,12 @@
 .second-layer {
     font-size: 17em;
 }
+Label + Label {
+    margin-left: 3;
+    margin-right: 3;
+}
 .second-layer StackLayout+StackLayout {
-    margin-left: 90vw;    
+    margin-left: 39%;    
 }
 .add-2-cart-btn{
     background-image: url("res://fa_plus_square");

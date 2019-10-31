@@ -39,12 +39,15 @@ async function getRandomDrugs() {
 
 async function searchDrugs(drugName, first, skip) {
     let data
-    let paymentMethod = await appSettings.getBoolean("onlyCash")
+    let paymentMethod = appSettings.getBoolean("onlyCash")
     let onlyCash = paymentMethod === undefined ? true : paymentMethod
+    /* 
+    first: ${first},
+            skip: ${skip}, ${onlyCash}
+    */
     await apolloClient.query({
             query: gql `query{
-            drugs(name: "${drugName}", first: ${first},
-            skip: ${skip}, onlyCash: ${onlyCash}){
+            drugs(name: "${drugName}", onlyCash: ${onlyCash}){
                 id
                 name
                 stores{
@@ -231,17 +234,21 @@ async function getFullPharmacyDetails() {
     return pharmacy
 }
 
-async function getPharmacyName() {
-    let pharmacyName
+async function getPharmacyData() {
+    let pharmacyData
     await apolloClient.query({
             query: gql `query{
         pharmacy{
             pharmacyName
+            wallet
         }
     }`
         })
         .then(res => {
-            pharmacyName = res.data.pharmacy.pharmacyName
+            pharmacyData = {
+                pharmacyName: res.data.pharmacy.pharmacyName,
+                wallet: res.data.pharmacy.wallet
+            }
         })
         .catch(error => {
             if (error.networkError) {
@@ -250,7 +257,7 @@ async function getPharmacyName() {
                 console.error(error)
             }
         })
-    return pharmacyName
+    return pharmacyData
 }
 
 async function getPharmacyOrders() {
@@ -312,6 +319,28 @@ async function getPharmacyWallet() {
     return wallet
 }
 
+async function getPharmacyCode() {
+    let code
+    await apolloClient.query({
+            query: gql `query{
+        pharmacy{
+            code
+        }
+    }`
+    })
+        .then(res => {
+            code = res.data.pharmacy.code
+        })
+        .catch(error => {
+            if (error.networkError) {
+                makeToast(NETWORK_ERROR_WARNING)
+            } else {
+                console.error(error)
+            }
+        })
+    return code
+}
+
 async function getPharmacyOrdersTotals() {
     let ordersTotals
     await apolloClient.query({
@@ -334,6 +363,50 @@ async function getPharmacyOrdersTotals() {
     return ordersTotals
 }
 
+async function fetchDrugsNames(){
+    let drugsNames
+    await apolloClient.query({
+        query: gql` query{
+            drugsWithoutStores{
+                name
+            }
+        }`
+    }).then((res)=> {
+        drugsNames = res.data.drugsWithoutStores
+    }).catch(error => {
+        if (error.networkError) {
+            makeToast(NETWORK_ERROR_WARNING)
+        } else {
+            console.error(error)
+        }
+    })
+    return drugsNames
+}
+
+function checkPromo(code){
+    let otherPharmacyId
+    await apolloClient.query({
+        query: gql` query{
+            pharmacyFromCode(code: "${code}"){
+                id
+            }
+        }`
+    }).then((res)=> {
+        if(res.data.pharmacyFromCode){
+            otherPharmacyId = res.data.pharmacyFromCode.id
+        } else {
+            otherPharmacyId = null
+        }
+    }).catch(error => {
+        if (error.networkError) {
+            makeToast(NETWORK_ERROR_WARNING)
+        } else {
+            console.error(error)
+        }
+    })
+    return otherPharmacyId
+}
+
 export {
     getRandomDrugs,
     searchDrugs,
@@ -343,8 +416,11 @@ export {
     getSeller,
     getLocations,
     getFullPharmacyDetails,
-    getPharmacyName,
+    getPharmacyData,
     getPharmacyOrders,
     getPharmacyOrdersTotals,
-    getPharmacyWallet
+    getPharmacyWallet,
+    getPharmacyCode,
+    fetchDrugsNames,
+    checkPromo
 }

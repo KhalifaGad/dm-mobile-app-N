@@ -16,8 +16,10 @@
     "apollo-boost": "^0.4.4",
     "graphql": "^14.4.2",
     "nativescript-geolocation": "^5.1.0",
+    "nativescript-social-share": "^1.5.2",
     "nativescript-theme-core": "~1.0.6",
     "nativescript-toast": "^2.0.0",
+    "nativescript-ui-autocomplete": "^5.1.1",
     "nativescript-ui-listview": "^7.0.1",
     "nativescript-ui-sidedrawer": "^7.0.0",
     "tns-core-modules": "~6.0.0"

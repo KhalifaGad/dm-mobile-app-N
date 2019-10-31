@@ -1,4 +1,4 @@
-<Page id="profile-page" actionBarHidden="{{ actionBarStatus.hidden }}" 
+<Page id="profile-page" actionBarHidden="{{ viewModel.isActionBarHidden }}"
     xmlns="http://schemas.nativescript.org/tns.xsd" 
     xmlns:lv="nativescript-ui-listview" 
     xmlns:actionBar="components/actionBar" 
@@ -9,22 +9,30 @@
     <AbsoluteLayout id="secondChild">
         <Label top="30" left="24" class="bold app-headers" text="{{ viewModel.pharmacyName }}" />
         <StackLayout top="100" left="24" class="item-headers-wrapper">
-            <StackLayout orientation="horizontal" class="first-layer">
-                <StackLayout orientation="vertical" horizontalAlignment="left" class="item-info-wrapper">
-                    <StackLayout orientation="horizontal">
-                        <Label text="Orders: " textWrap="true" />
+            <FlexboxLayout flexDirection="{{viewModel.flexboxDirection}}" orientation="horizontal" class="first-layer">
+                <StackLayout orientation="vertical" class="item-info-wrapper">
+                    <FlexboxLayout flexDirection="{{viewModel.flexboxDirection}}"  orientation="horizontal">
+                        <Label text="{{viewModel.ordersString}}" textWrap="true" />
                         <Label text="{{ viewModel.ordersCount }}" textWrap="true" class="bold" />
-                    </StackLayout>
-                    <StackLayout orientation="horizontal">
-                        <Label text="total: " textWrap="true" />
+                    </FlexboxLayout>
+                    <FlexboxLayout flexDirection="{{viewModel.flexboxDirection}}" >
+                        <Label text="{{viewModel.totalString}}" textWrap="true" />
                         <Label text="{{viewModel.ordersTotal}}" textWrap="true" class="bold" />
-                    </StackLayout>
+                        <Label text="{{viewModel.currencyString}}" textWrap="true" class="bold" />
+                    </FlexboxLayout>
+                    <FlexboxLayout flexDirection="{{viewModel.flexboxDirection}}" >
+                        <Label text="{{viewModel.walletString}}" textWrap="true" />
+                        <Label text="{{viewModel.wallet}}" textWrap="true" class="bold" />
+                    </FlexboxLayout>
                 </StackLayout>
-                <Image horizontalAlignment="right" src="res://edit" width="46vw" height="46vh" tap="toSettings"/>
-            </StackLayout>
+                <Image src="res://edit"  width="46vw" height="46vh" tap="toSettings"/>
+            </FlexboxLayout>
         </StackLayout>
-        <StackLayout id="items-container" top="200" left="0" orientation="vertical" class="home-items-stklayout">
-            <ActivityIndicator 
+        <StackLayout id="items-container" top="230" left="0" orientation="vertical" class="home-items-stklayout">
+            <StackLayout visibility="{{ viewModel.adViewVisbility }}" class="items-stacklayout" > 
+                    <Label text="advertisement area" horizontalAlignment="center" verticalAlignment="middle" />
+            </StackLayout>
+            <!-- <ActivityIndicator 
                 horizontalAlignment="center"
                 marginTop="139"
                 visibility="{{viewModel.activityIndicatorVis}}"
@@ -53,7 +61,7 @@
                         </ListView.itemTemplate>
                     </ListView>
                 </StackLayout>
-            </ScrollView>
+            </ScrollView> -->
         </StackLayout>
         <!-- <bottomNav:BottomNav-component top="579" left="0" /> -->
     </AbsoluteLayout>

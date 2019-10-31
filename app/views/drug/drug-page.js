@@ -1,20 +1,4 @@
 import DrugViewModel from './drug-view-model'
-import {
-    toDrug
-} from '../../utils/navHelpers'
-import {
-    initMenuAnimation
-} from '../../utils/animateMenu'
-import {
-    actionBarStatus,
-    cart
-} from '~/app'
-import {
-    getRandomDrugs
-} from '~/utils/webHelpers/queries';
-import {
-    refactorWtihSellers
-} from '~/utils/refactorDrugsArray';
 import * as fileSystemModule from 'tns-core-modules/file-system'
 import {
     makeToast
@@ -26,7 +10,6 @@ function onNavigatingTo(args) {
     page = args.object
     drug = page.navigationContext.drug
     let bindings = {
-        actionBarStatus,
         navContext: page.navigationContext,
         viewModel: new DrugViewModel()
     }
@@ -34,7 +17,7 @@ function onNavigatingTo(args) {
         ...bindings
     }
 
-    new Promise(function (resolve, reject) {
+    /* new Promise(function (resolve, reject) {
         resolve(getRandomDrugs())
 
     }).then(function (drugsArr) {
@@ -49,9 +32,9 @@ function onNavigatingTo(args) {
         page.bindingContext.viewModel.notFetched = false
         page.bindingContext.viewModel.itemsViewVisibility = 'visible'
         page.bindingContext.viewModel.activityIndicatorVis = 'collapse'
-    })
+    }) */
 
-    initMenuAnimation(page)
+    /* initMenuAnimation(page) */
 }
 
 function showCartOptions(args) {
@@ -64,7 +47,6 @@ function showCartOptions(args) {
         },
         closeCallback: (quantity = 0) => {
             if (quantity === 0) return
-            cart.hasItems = true
             add2Cart(quantity)
         },
         fullscreen: false
@@ -124,9 +106,5 @@ function add2Cart(quantity) {
 
 export {
     onNavigatingTo,
-    toProfile,
-    toFilter,
-    toCart,
-    toDrug,
     showCartOptions
 };

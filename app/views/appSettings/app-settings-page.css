@@ -1,0 +1,48 @@
+.payment > label,
+.lang > label
+{
+    color: #fff;
+    font-size: 16;
+    font-weight: bold;
+}
+
+.payment {
+    margin-top: 60;
+}
+
+.switch[checked = false] {
+    padding: 0;
+    margin: 0;
+    color: #FF3838;
+    background-color: transparent;
+}
+.switch[checked = true]{
+    padding: 0;
+    margin: 0;
+    color: #FF3838;
+    background-color: transparent;
+}
+
+.item-headers-wrapper {
+    width: 90%;
+}
+.item-info-wrapper {
+    color: #fff;
+    font-size: 18em;
+    width: 100%;
+}
+
+.number{
+
+}
+
+.email{
+    margin-top: 40vh
+}
+
+/* .small{
+    font-size: 16;
+    margin-top: 20;
+    margin-right: 20;
+}
+ */

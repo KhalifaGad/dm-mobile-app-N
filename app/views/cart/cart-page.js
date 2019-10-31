@@ -3,9 +3,6 @@ import * as fileSystemModule from 'tns-core-modules/file-system'
 import {
     initMenuAnimation
 } from '~/utils/animateMenu'
-import {
-    actionBarStatus
-} from '~/app'
 import * as dialogs from "tns-core-modules/ui/dialogs"
 import {
     issueOrder
@@ -21,7 +18,6 @@ let page, wallet = 0
 async function onNavigatingTo(args) {
     page = args.object;
     let bindings = {
-        actionBarStatus,
         viewModel: CartViewModel()
     }
     page.bindingContext = {

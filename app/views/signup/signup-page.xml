@@ -9,8 +9,8 @@
     </Page.actionBar>
     <!--  -->
     <StackLayout>
-        <StackLayout orientation="horizontal" >
-            <StackLayout orientation="vertical" class="headers primary-color" horizontalAlignment="left">
+        <StackLayout orientation="horizontal"  >
+            <StackLayout id="signUpHeaders" orientation="vertical" class="headers primary-color" horizontalAlignment="left">
                 <Label text="SIGN UP" />
                 <Label class="bold" text="LET'S START" /> 
             </StackLayout>
@@ -46,7 +46,7 @@
                 <Label text="Pharmacy name*" class="txtfld-label" />
                 <TextField hint="Enter your pharmacy name" text="{{ signupInfo.pharmacyName }}" class="custom-txtfld" />
             </StackLayout>
-            <StackLayout horizontalAlignment="right" class="next">
+            <StackLayout id="nextStackLayout"  horizontalAlignment="right" class="next">
                 <Button class="next-btn" tap="step2" />
             </StackLayout>
         </StackLayout>
@@ -74,11 +74,11 @@
                     textWrap="true"
                     class="small" />
                 </StackLayout>
-                <StackLayout class="switch-wrapper">
-                    <Switch class="switch-dash" width="45vw" checked="{{ locationSwitch }}" tap="toggleSwitch" />
+                <StackLayout id="locSwitchWrapper" class="switch-wrapper">
+                    <Switch class="switch-dash2" width="45vw" checked="{{ locationSwitch }}" tap="toggleSwitch" />
                 </StackLayout>
             </StackLayout>
-            <StackLayout horizontalAlignment="right" orientation="horizontal" class="max-width split-arrows next-deeper">
+            <StackLayout id="nextDeeperStackLayout" horizontalAlignment="right" orientation="horizontal" class="max-width split-arrows next-deeper">
                 <Button class="back-btn" horizontalAlignment="left" tap="step1" />
                 <Button class="next-btn" horizontalAlignment="right" tap="step3" />
             </StackLayout>
@@ -103,9 +103,9 @@
                 <StackLayout class="location-labels" horizontalAlignment="left">
                     <Label text="Payment Method" textWrap="true" verticalAlignment="center" class="bold" />
                     <Label 
-                    text="the default value is cash, use the switch to turn it to deferred." 
+                    text="{{isCash? 'Cash' : 'Deffered'}}" 
                     textWrap="true"
-                    class="small" />
+                    class="bold mg-t-5" />
                     <Label 
                     text="You can change it later from application settings." 
                     textWrap="true"
@@ -115,7 +115,7 @@
                     <Switch class="switch-dash" width="45vw" checked="{{ isCash }}" tap="toggleSwitch" />
                 </StackLayout>
             </StackLayout>
-            <StackLayout horizontalAlignment="right" orientation="horizontal" class="max-width arrow-and-button next-a-pit-deeper">
+            <StackLayout id="nextPitDeeperStackLayout" horizontalAlignment="right" orientation="horizontal" class="max-width arrow-and-button next-a-pit-deeper">
                 <Button class="back-btn" horizontalAlignment="left" tap="step2" />
                 <Button text="confirm" horizontalAlignment="right" isEnabled="{{ allowed }}" class="confirm-btn" tap="submit" />
             </StackLayout>

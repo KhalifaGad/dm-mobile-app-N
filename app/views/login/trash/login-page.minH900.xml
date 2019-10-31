@@ -6,7 +6,7 @@
 	</Page.actionBar>
 
 	<StackLayout >
-        <StackLayout orientation="vertical" class="headers" horizontalAlignment="left">
+        <StackLayout id="headers" orientation="vertical" class="headers" horizontalAlignment="left">
             <Label text="SIGN IN" />
             <Label class="bold" text="WELCOME BACK" />
         </StackLayout>

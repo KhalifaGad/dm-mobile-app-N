@@ -1,4 +1,4 @@
-<Page actionBarHidden="{{ actionBarStatus.hidden }}" 
+<Page  
     xmlns="http://schemas.nativescript.org/tns.xsd" 
     xmlns:lv="nativescript-ui-listview" 
     xmlns:actionBar="components/actionBar" 
@@ -11,18 +11,24 @@
         <actionBar:ActionBar-component id="AB" />
     </Page.actionBar>
 
-    <AbsoluteLayout id="secondChild">
+    <AbsoluteLayout id="secondChild" tap="onTap">
         <StackLayout top="30" left="36" orientation="vertical" class="app-headers">
-            <Label horizontalAlignment="left" text="SEARCH" />
-            <Label horizontalAlignment="left" class="bold" text="FOR MEDICIN" />
+            <Label horizontalAlignment="{{viewModel.horzintalAlignment}}" text="{{viewModel.searchString}}" />
+            <Label visibility="{{viewModel.forMedicinLblVisbility}}" horizontalAlignment="left" class="bold" text="FOR MEDICIN" />
         </StackLayout>
         <StackLayout top="120" left="40" orientation="horizontal" class="search-stklayout">
-            <!-- returnKeyType="Search" -->
-            <TextField text="{{ viewModel.searchTxt }}" returnKeyType="Search" returnPress="search" hint="Find the medicine" class="search-txtfld" />
+            <TextField id="searchTxtFld" text="{{ viewModel.searchTxt }}" focus="onFocus" autocapitalizationType="none" returnKeyType="Search" returnPress="search" hint="{{viewModel.searchHintString}}" class="search-txtfld" />
             <Button text="" src="res://fa_search" class="search-btn" tap="search" />
         </StackLayout>
-        <Label text="{{ viewModel.areFetched }}" top="200" left="90" class="white bold" style="font-size: 18em" textWrap="true" />
-        <Label text="{{ viewModel.areFetched  }}" top="220" left="90" class="white bold" style="font-size: 18em" textWrap="true" />
+        <StackLayout top="175"  visibility="{{viewModel.searchingHelperVisibility}}" class="search-box" left="40" height="250" >
+            <ListView  items="{{ viewModel.displayedDrugs }}" height="250" separatorColor="#626066" >
+                <ListView.itemTemplate>
+                    <StackLayout width="100%" class="search-box-item" val="{{$value.name}}" tap="fillSearchTxt" >
+                        <Label text="{{ $value.name }}" horizontalAlignment="left" verticalAlignment="middle" class="drug-name" textWrap="false" />
+                    </StackLayout>
+                </ListView.itemTemplate>
+            </ListView>
+        </StackLayout>
         
         <StackLayout id="items-container" top="250" left="0" orientation="vertical" class="home-items-stklayout ">
             <ActivityIndicator
@@ -48,12 +54,15 @@
                 <StackLayout class="items-stacklayout" id="itemsStackLayout" >
                     <ListView id="itemsListView" class="items-listView" items="{{ viewModel.items }}" >
                         <ListView.itemTemplate>
-                            <StackLayout orientation="horizontal" class="list-item" val="{{ $value }}">
-                                <StackLayout orientation="vertical" horizontalAlignment="right" verticalAlignment="middle" class="drug-info-wrapper">
+                            <StackLayout orientation="horizontal" tap="toDrug" class="list-item" val="{{ $value }}">
+                                <StackLayout orientation="vertical" verticalAlignment="middle" class="drug-info-wrapper">
                                     <Label text="{{ $value.name }}" horizontalAlignment="left" class="drug-name" textWrap="false" width="90%" />
                                     <Label text="{{'Price per pack ' + $value.price + 'EGP' }}" horizontalAlignment="left" textWrap="true" />
                                 </StackLayout>
-                                <Button text="" tap="toDrug" class="to-drug-btn" />
+                                <StackLayout class="discount-box" orientation="vertical" >
+                                    <Label text="{{ '- ' + $value.discount + '%' }}" horizontalAlignment="center" />
+                                </StackLayout>
+                                <!-- <Button class="to-drug-btn" /> -->
                             </StackLayout>
                         </ListView.itemTemplate>
                     </ListView>

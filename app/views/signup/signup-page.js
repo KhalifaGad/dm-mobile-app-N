@@ -15,7 +15,11 @@ import {
 import {
     toVerification
 } from '~/utils/navHelpers'
+import {
+    screen
+} from "platform"
 import * as appSettings from "tns-core-modules/application-settings"
+import { checkPromo } from '~/utils/webHelpers/queries'
 
 let page, step1View, step2View, step3View
 
@@ -27,6 +31,35 @@ function navigatingTo(args) {
     step3View = page.getViewById('thirdScene')
     step2View.opacity = 0
     step3View.opacity = 0
+
+    let screenHeightDPI = screen.mainScreen.heightDIPs
+
+    let nextClassMargin = 0,
+        nextDeeperClassMargin = 0,
+        nextPitDeeperClassMargin
+    if (screenHeightDPI <= 800) {
+        nextClassMargin = '3%'
+        nextDeeperClassMargin = '7%'
+        nextPitDeeperClassMargin = '5%'
+        page.getViewById('nextStackLayout').className = ''
+        page.getViewById('nextStackLayout').marginTop = nextClassMargin
+        page.getViewById('nextDeeperStackLayout').className = 'max-width split-arrows '
+        page.getViewById('nextDeeperStackLayout').marginTop = nextDeeperClassMargin
+        page.getViewById('nextPitDeeperStackLayout').className = 'max-width arrow-and-button '
+        page.getViewById('nextPitDeeperStackLayout').marginTop = nextPitDeeperClassMargin
+    } else if (screenHeightDPI < 700) {
+        nextClassMargin = '1%'
+        nextDeeperClassMargin = '4%'
+        nextPitDeeperClassMargin = '2%'
+        page.getViewById('signUpHeaders').className = 'custom-headers'
+        page.getViewById('nextStackLayout').className = ''
+        page.getViewById('nextStackLayout').marginTop = nextClassMargin
+        page.getViewById('nextDeeperStackLayout').className = 'max-width split-arrows '
+        page.getViewById('nextDeeperStackLayout').marginTop = nextDeeperClassMargin
+        page.getViewById('nextPitDeeperStackLayout').className = 'max-width arrow-and-button '
+        page.getViewById('nextPitDeeperStackLayout').marginTop = nextPitDeeperClassMargin
+    }
+
 }
 
 function toggleSwitch() {
@@ -57,7 +90,6 @@ function getLocation() {
     }).
     then(function (loc) {
         if (loc) {
-            console.log("Current location is: " + loc.latitude)
             page.bindingContext.signupInfo.lat = loc.latitude
             page.bindingContext.signupInfo.long = loc.longitude
             page.bindingContext.allowed = true
@@ -145,6 +177,17 @@ function checkStep2() {
     if (!page.bindingContext.locationSwitch) {
         makeToast('can not process without locaion enabled,' +
             ' please use the switch to enable it')
+        page.getViewById('locSwitchWrapper').animate({
+            backgroundColor: '#fff',
+            duration: 250,
+            iterations: 3
+        }).then(() => {
+            page.getViewById('locSwitchWrapper').animate({
+                backgroundColor: '#FF3838',
+                duration: 300,
+                iterations: 1
+            })
+        })
         return false
     }
 
@@ -248,12 +291,8 @@ async function submit(args) {
             }
         })
     }).then((data) => {
-        console.log('########### then ############')
-        console.log(data)
-        console.log('#######################')
         page.bindingContext.activityIndcatorFlag = false
         if (data.flag) {
-            console.log('###########------------############')
             check4Promo(args.object, data.id, args)
         }
     })
@@ -265,6 +304,7 @@ async function signUp() {
     appSettings.setBoolean('isVerified', false)
     if (data) {
         appSettings.setBoolean("isCash", page.bindingContext.isCash)
+        appSettings.setBoolean("isArabic", false)
         console.log('passed')
         return {
             flag: true,
@@ -283,7 +323,6 @@ async function signUp() {
 }
 
 async function check4Promo(mainView, pharmacyId, args) {
-    console.log('---------> promo')
     const option = {
         context: {
             invitationCode: ''
@@ -292,17 +331,13 @@ async function check4Promo(mainView, pharmacyId, args) {
             if (invitationCode === '') {
                 toVerification(args)
             } else {
-                console.log('1')
-                let isAdded = await addPromo(pharmacyId, invitationCode)
-                console.log('2')
-                console.log(isAdded)
-                console.log('3')
-                if(isAdded){
-                    console.log('4')
-                    makeToast('promo has been add successfully')
+                //let isAdded = await addPromo(pharmacyId, invitationCode)
+                let otherPharamacyId = await checkPromo(invitationCode)
+                if (otherPharamacyId) {
+                    makeToast('Invitation code is correct \n You will get your discount after your first order')
+                    appSettings.setString('otherPharamcyId', otherPharamacyId)
                     toVerification(args)
                 } else {
-                    console.log('5')
                     makeToast('wrong code')
                     check4Promo(mainView, pharmacyId, args)
                 }
