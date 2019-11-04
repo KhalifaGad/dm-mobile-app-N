@@ -335,7 +335,7 @@ async function check4Promo(mainView, pharmacyId, args) {
                 let otherPharamacyId = await checkPromo(invitationCode)
                 if (otherPharamacyId) {
                     makeToast('Invitation code is correct \n You will get your discount after your first order')
-                    appSettings.setString('otherPharamcyId', otherPharamacyId)
+                    appSettings.setString('invitationCode', invitationCode)
                     toVerification(args)
                 } else {
                     makeToast('wrong code')

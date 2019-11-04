@@ -383,7 +383,7 @@ async function fetchDrugsNames(){
     return drugsNames
 }
 
-function checkPromo(code){
+async function checkPromo(code){
     let otherPharmacyId
     await apolloClient.query({
         query: gql` query{

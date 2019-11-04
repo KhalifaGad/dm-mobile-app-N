@@ -30,35 +30,6 @@ async function onNavigatingTo(args) {
     }
     
     profilePromises()
-
-    /* const itemsListView = page.getViewById('itemsListView'),
-        itemsContainer = page.getViewById('items-container')
-
-    let screenHeightDPI = screen.mainScreen.heightDIPs
-
-    let decreasingRatio = 0
-    if (screenHeightDPI >= 1100) {
-        decreasingRatio = 0.17
-    } else if (screenHeightDPI >= 900) {
-        decreasingRatio = 0.18
-    } else if (screenHeightDPI >= 700) {
-        decreasingRatio = 0.19
-    } else {
-        decreasingRatio = 0.2
-    }
-    let istemsContainerOriginalHeight = screenHeightDPI - itemsContainer.top -
-        (screenHeightDPI * decreasingRatio)
-    itemsContainer.height = istemsContainerOriginalHeight
-    let stretched = false
-    itemsListView.on(gestures.GestureTypes.pan, async (args) => {
-        if (args.deltaY < -200 && !stretched) {
-            stretchMenu(itemsContainer)
-            stretched = true
-        } else if (args.deltaY > 300) {
-            shortenMenu(itemsContainer, istemsContainerOriginalHeight)
-            stretched = false
-        }
-    }) */
 }
 
 async function profilePromises(){

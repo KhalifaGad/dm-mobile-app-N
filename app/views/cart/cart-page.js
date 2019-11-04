@@ -5,7 +5,7 @@ import {
 } from '~/utils/animateMenu'
 import * as dialogs from "tns-core-modules/ui/dialogs"
 import {
-    issueOrder
+    issueOrder, addPromo
 } from '~/utils/webHelpers/mutations'
 import {
     makeToast
@@ -13,6 +13,7 @@ import {
 import {
     getPharmacyWallet
 } from '~/utils/webHelpers/queries'
+import * as appSettings from "tns-core-modules/application-settings"
 
 let page, wallet = 0
 async function onNavigatingTo(args) {
@@ -106,6 +107,14 @@ async function confirmOrders() {
             try {
                 let preparedOrders = await prepareOrders()
                 let remainedItems = await orderItems(preparedOrders, usedWalletRatio)
+                let invitationCode = appSettings.getString("invitationCode")
+                if(invitationCode != undefined) {
+                    let isAdded = addPromo(invitationCode)
+                    if(isAdded){
+                        makeToast('You have unlocked your discount')
+                        appSettings.remove('invitationCode')
+                    }
+                }
                 if (remainedItems.length > 0) {
                     await refreshCart([])
                 }

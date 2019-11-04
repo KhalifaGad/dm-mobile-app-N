@@ -7,19 +7,17 @@
     </nsDrawer:RadSideDrawer.drawerTransition>
 
     <nsDrawer:RadSideDrawer.drawerContent>
-        <!-- Here go the side drawer items -->
         <StackLayout class="side-drawer" >
             <Button text="" horizontalAlignment="left" class="close-btn" tap="closeSideDrawer" />
             <Button text="{{homeString}}" class="drawer-item top-itme" tap="navMain" />
             <Button text="{{profileString}}" class="drawer-item" tap="navProfile" />
             <Button text="{{cartString}}" class="drawer-item" tap="navCart" />
             <Button text="{{expiredString}}" class="drawer-item" tap="changeExpired" />
-            <Button text="Invite Friends" class="drawer-item" tap="inviteFriends" />
+            <Button text="{{exchangeString}}" class="drawer-item" tap="drugExchange" />
+            <Button text="{{invitationString}}" class="drawer-item" tap="inviteFriends" />
             <Button text="{{settingsString}}" class="drawer-item" tap="navSettings" />
             <Button text="{{contactUsString}}" class="drawer-item" tap="navContactUs" />
             <Button text="{{logoutString}}" class="drawer-item" tap="logout" />
-            <!-- <Button text="Orders" class="drawer-item" tap="toOrders" /> -->
-            
         </StackLayout>
     </nsDrawer:RadSideDrawer.drawerContent>
 

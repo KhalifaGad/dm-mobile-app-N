@@ -107,12 +107,18 @@
     width: 80%;
 }
 
-.h-ctr-login-stklayout Label+Button {
-    margin-left: 20%;
+.h-ctr-login-stklayout Button+Button {
+    margin-left: 18%;
 }
 
-.h-ctr-login-stklayout Label {
+.h-ctr-login-stklayout .btn {
+    width: 48%;
     font-size: 16em;
+    text-transform: none;
+    background-color: #fff;
+    color: #b1b0b4;
+    z-index: 0;
+    margin-left: -14;
 }
 
 .hcls-h600 Label {
@@ -124,7 +130,8 @@
     background-color: #FF3838;
     color: white;
     font-weight: bold;
-    width: 35%;
+    width: 30%;
+    height: 20%;
     text-transform: none;
 }
 

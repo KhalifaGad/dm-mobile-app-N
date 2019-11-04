@@ -109,7 +109,7 @@ async function updatePharmacy(fName, lName, pharmacyName,
                     pharmacyName
                 }
         }`,
-        fetchPolicy: 'no-cache'
+            fetchPolicy: 'no-cache'
         })
         .then(res => {
             resPharmacyName = res.data.updatePharmacy.pharmacyName
@@ -129,8 +129,7 @@ async function addPromo(id, code) {
     await apolloClient
         .mutate({
             mutation: gql `mutation {
-            addPharmacyPromo(id: "${id}",
-                oldPharmacyCode: "${code}")
+            addPharmacyPromo(oldPharmacyCode: "${code}")
         }`
         })
         .then(res => {
@@ -189,7 +188,6 @@ async function issueOrder(order) {
 }
 
 async function decreaseWallet(val) {
-    console.log('hey')
     await apolloClient
         .mutate({
             mutation: gql `mutation {
@@ -197,13 +195,32 @@ async function decreaseWallet(val) {
             }`
         }).then((res) => {
             console.log(res)
-        }).catch((e) => {
-            console.log(e)
-            if (error.networkError) {
+        }).catch((err) => {
+            console.log(err)
+            if (err.networkError) {
                 makeToast(NETWORK_ERROR_WARNING)
                 decreaseWallet(val)
             }
         })
+}
+
+async function resetPassword(email) {
+    let done
+    await apolloClient.mutate({
+        mutation: gql ` mutation {
+            resetPassword(email: "${ email }")
+        } `
+    }).then((res) => {
+        console.log(res)
+        done = res.data.resetPassword
+    }).catch((err) => {
+        done = false
+        console.log(err)
+        if (err.networkError) {
+            makeToast(NETWORK_ERROR_WARNING)
+        }
+    })
+    return done
 }
 
 export {
@@ -212,5 +229,6 @@ export {
     login,
     updatePharmacy,
     addPromo,
-    issueOrder
+    issueOrder,
+    resetPassword
 }

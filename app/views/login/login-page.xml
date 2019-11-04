@@ -2,9 +2,7 @@
     xmlns:actionBar="components/actionBar" 
     xmlns:au="nativescript-ui-autocomplete" 
     xmlns="http://schemas.nativescript.org/tns.xsd">
-    <!-- xmlns:CheckBox="@nstudio/nativescript-checkbox" 
-        tns plugin remove @nstudio/nativescript-checkbox
-     -->
+
     <Page.actionBar>
         <actionBar:ActionBar-component hidden="{{ true }}"/>
     </Page.actionBar>
@@ -46,7 +44,8 @@
                 <TextField hint="Enter your passowrd" secure="true" text="{{ password }}" class="custom-txtfld" secure="true"/>
             </StackLayout>
             <StackLayout horizontalAlignment="center" orientation="horizontal" class="h-ctr-login-stklayout">
-                <Label text="Forget password?" verticalAlignment="center" horizontalAlignment="left" />
+                <!-- <Label text="Forget password?" verticalAlignment="center" horizontalAlignment="left" tap="openResetDialog" /> -->
+                <Button text="Forget password?" class="btn" verticalAlignment="center" horizontalAlignment="left" tap="openResetDialog"/>
                 <Button text="Login" class="login-btn" horizontalAlignment="right" tap="submit" />
             </StackLayout>
             <StackLayout class="bottom-controllers" orientation="horizontal">

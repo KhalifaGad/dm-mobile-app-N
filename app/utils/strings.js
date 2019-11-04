@@ -35,6 +35,14 @@ const APP_STRINGS = {
         english: 'Change Expired',
         arabic: 'تبديل المنتهى'
     },
+    drugsExchange: {
+        english: 'Drugs Exchange',
+        arabic: 'تبديل ادويه'
+    },
+    inviteFriends: {
+        english: 'Invite Friends',
+        arabic: 'دعوة اصدقاء'
+    },
     search: {
         english: 'SEARCH',
         arabic: 'بحث الادويه'

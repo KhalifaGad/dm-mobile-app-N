@@ -10,14 +10,15 @@ import {
     toVerification
 } from '~/utils/navHelpers'
 import {
-    login
+    login, resetPassword
 } from '~/utils/webHelpers/mutations'
 import {
     screen
 } from "platform"
 const appSettings = require("application-settings")
-const Animation = require("tns-core-modules/ui/animation").Animation;
-var autocompleteModule = require("nativescript-ui-autocomplete");
+const Animation = require("tns-core-modules/ui/animation").Animation
+var autocompleteModule = require("nativescript-ui-autocomplete")
+import * as dialogs from "tns-core-modules/ui/dialogs"
 
 let page
 
@@ -151,11 +152,34 @@ async function submit(args) {
     }
 }
 
+function openResetDialog(){
+    dialogs.prompt({
+        title: 'Reset Your Password',
+        message: 'New password will be sent to your email \n'+
+        'Use it to login and change it from your profile if you want',
+        okButtonText: 'Reset it',
+        cancelButtonText: 'Cancel',
+        inputType: dialogs.inputType.email
+    }).then(async (res)=> {
+        let {result, text} = res
+        if(result && text != null){
+            let reseted = await resetPassword(text)
+            console.log(reseted)
+            if(reseted){
+                makeToast('New password has been sent to your email')
+            } else {
+                makeToast('Wrong email')
+            }
+        }
+    })
+}
+
 export {
     navigatingTo,
     submit,
     login,
     toSignup,
     toVerification,
-    onTextChanged
+    onTextChanged,
+    openResetDialog
 }
