@@ -94,6 +94,22 @@ const APP_STRINGS = {
     addToCart: {
         english: 'Add To Cart',
         arabic:  'اضف الى السله'
+    },
+    logoutTitle: {
+        english: 'Logout Confirmation',
+        arabic: 'تأكيد الخروج'
+    },
+    logoutMessage: {
+        english: 'Do you really want to logout?',
+        arabic: 'هل تريد الخروج ؟'
+    },
+    yes: {
+        english: 'Yes',
+        arabic: 'نعم'
+    },
+    no: {
+        english: 'No',
+        arabic: 'لا' 
     }
 }
 

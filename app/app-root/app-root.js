@@ -7,6 +7,7 @@ import {
     toAppSettings
 } from '~/utils/navHelpers'
 import * as appSettings from "tns-core-modules/application-settings"
+import * as dialogs from "tns-core-modules/ui/dialogs"
 import { getPharmacyCode, getPharmacyOrdersTotals } from '~/utils/webHelpers/queries'
 import {
     fromObject
@@ -32,11 +33,14 @@ function onLoaded(args) {
         contactUsString: isArabic ? APP_STRINGS.contactUs.arabic : APP_STRINGS.contactUs.english,
         logoutString: isArabic ? APP_STRINGS.logout.arabic : APP_STRINGS.logout.english,
         invitationString: isArabic ? APP_STRINGS.inviteFriends.arabic : APP_STRINGS.inviteFriends.english,
+        logoutTitle: isArabic ? APP_STRINGS.logoutTitle.arabic : APP_STRINGS.logoutTitle.english,
+        logoutMessage: isArabic ? APP_STRINGS.logoutMessage.arabic : APP_STRINGS.logoutMessage.english,
+        okString: isArabic ? APP_STRINGS.yes.arabic : APP_STRINGS.yes.english,
+        cancelString: isArabic ? APP_STRINGS.no.arabic : APP_STRINGS.no.english,
     })
 }
 
 function rerwiteDrawerStrings(isArabic) {
-    console.log('hey')
     drawer.bindingContext.homeString = 
         isArabic ? APP_STRINGS.home.arabic : APP_STRINGS.home.english
     drawer.bindingContext.profileString = 
@@ -57,6 +61,15 @@ function rerwiteDrawerStrings(isArabic) {
     
     drawer.bindingContext.invitationString =
         isArabic ? APP_STRINGS.inviteFriends.arabic : APP_STRINGS.inviteFriends.english
+    
+    drawer.bindingContext.logoutTitle =
+        isArabic ? APP_STRINGS.logoutTitle.arabic : APP_STRINGS.logoutTitle.english
+    drawer.bindingContext.logoutMessage =
+        isArabic ? APP_STRINGS.logoutMessage.arabic : APP_STRINGS.logoutMessage.english
+    drawer.bindingContext.okString =
+        isArabic ? APP_STRINGS.yes.arabic : APP_STRINGS.yes.english
+    drawer.bindingContext.cancelString =
+        isArabic ? APP_STRINGS.no.arabic : APP_STRINGS.no.english
 }
 
 function closeSideDrawer() {
@@ -131,11 +144,20 @@ async function inviteFriends(){
 }
 
 function logout(args) {
-    let navPromise = new Promise(() => {
-        appSettings.remove("token");
-        toLogin(args);
+    dialogs.confirm({
+        title: drawer.bindingContext.logoutTitle,
+        message: drawer.bindingContext.logoutMessage,
+        okButtonText: drawer.bindingContext.okString,
+        cancelButtonText: drawer.bindingContext.cancelString
+    }).then((confirmationres)=>{
+        if(confirmationres){
+            let navPromise = new Promise(() => {
+                appSettings.remove("token");
+                toLogin(args);
+            })
+            navPromise.then(drawer.toggleDrawerState())
+        }
     })
-    navPromise.then(drawer.toggleDrawerState())
 }
 
 

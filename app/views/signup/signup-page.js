@@ -19,7 +19,7 @@ import {
     screen
 } from "platform"
 import * as appSettings from "tns-core-modules/application-settings"
-import { checkPromo } from '~/utils/webHelpers/queries'
+import { checkPromo, checkEmail } from '~/utils/webHelpers/queries'
 
 let page, step1View, step2View, step3View
 
@@ -194,7 +194,7 @@ function checkStep2() {
     return true
 }
 
-function checkStep3() {
+async function checkStep3() {
     let {
         email,
         password,
@@ -206,6 +206,12 @@ function checkStep3() {
         makeToast('Please write your email!')
         return false
     } else {
+        let isExisted = await checkEmail(email)
+        if(isExisted){
+            makeToast('This email is already taken')
+            page.getViewById('email').borderColor = 'red'
+            return false
+        }
         page.getViewById('email').borderColor = '#a7a6aa'
     }
 
@@ -274,28 +280,30 @@ function step3(args) {
 }
 
 async function submit(args) {
-
-    if (!checkStep3()) return
-
-    //check4Promo(mainView)
-    new Promise((resolve, reject) => {
-
-        page.bindingContext.activityIndcatorFlag = true
-
-        resolve(signUp())
-
-        reject(() => {
-            makeToast('Can not sign up')
-            return {
-                flag: false
+    let checkStep3Flag = await checkStep3()
+    if (!checkStep3Flag) {
+        return
+    } else {
+        new Promise((resolve, reject) => {
+    
+            page.bindingContext.activityIndcatorFlag = true
+    
+            resolve(signUp())
+    
+            reject(() => {
+                makeToast('Can not sign up')
+                return {
+                    flag: false
+                }
+            })
+        }).then((data) => {
+            page.bindingContext.activityIndcatorFlag = false
+            if (data.flag) {
+                check4Promo(args.object, data.id, args)
             }
         })
-    }).then((data) => {
-        page.bindingContext.activityIndcatorFlag = false
-        if (data.flag) {
-            check4Promo(args.object, data.id, args)
-        }
-    })
+    }
+    //check4Promo(mainView)
 }
 
 async function signUp() {

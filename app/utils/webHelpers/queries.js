@@ -242,7 +242,8 @@ async function getPharmacyData() {
             pharmacyName
             wallet
         }
-    }`
+    }`,
+            fetchPolicy: 'no-cache'
         })
         .then(res => {
             pharmacyData = {
@@ -327,7 +328,7 @@ async function getPharmacyCode() {
             code
         }
     }`
-    })
+        })
         .then(res => {
             code = res.data.pharmacy.code
         })
@@ -348,7 +349,8 @@ async function getPharmacyOrdersTotals() {
         ordersOfPharmacy{
             total
         }
-    }`
+    }`,
+            fetchPolicy: 'no-cache'
         })
         .then(res => {
             ordersTotals = res.data.ordersOfPharmacy
@@ -363,15 +365,15 @@ async function getPharmacyOrdersTotals() {
     return ordersTotals
 }
 
-async function fetchDrugsNames(){
+async function fetchDrugsNames() {
     let drugsNames
     await apolloClient.query({
-        query: gql` query{
+        query: gql ` query{
             drugsWithoutStores{
                 name
             }
         }`
-    }).then((res)=> {
+    }).then((res) => {
         drugsNames = res.data.drugsWithoutStores
     }).catch(error => {
         if (error.networkError) {
@@ -383,16 +385,16 @@ async function fetchDrugsNames(){
     return drugsNames
 }
 
-async function checkPromo(code){
+async function checkPromo(code) {
     let otherPharmacyId
     await apolloClient.query({
-        query: gql` query{
+        query: gql ` query{
             pharmacyFromCode(code: "${code}"){
                 id
             }
         }`
-    }).then((res)=> {
-        if(res.data.pharmacyFromCode){
+    }).then((res) => {
+        if (res.data.pharmacyFromCode) {
             otherPharmacyId = res.data.pharmacyFromCode.id
         } else {
             otherPharmacyId = null
@@ -401,10 +403,28 @@ async function checkPromo(code){
         if (error.networkError) {
             makeToast(NETWORK_ERROR_WARNING)
         } else {
-            console.error(error)
+            console.log(error)
         }
     })
     return otherPharmacyId
+}
+
+async function checkEmail(email) {
+    let isExisted
+    await apolloClient.query({
+        query: gql ` query{
+            checkPharmacyEmail(email: "${email}")
+        }`
+    }).then((res) => {
+        isExisted = res.data.checkPharmacyEmail
+    }).catch((err) => {
+        if (err.networkError) {
+            makeToast(NETWORK_ERROR_WARNING)
+        } else {
+            console.log(err)
+        }
+    })
+    return isExisted
 }
 
 export {
@@ -422,5 +442,6 @@ export {
     getPharmacyWallet,
     getPharmacyCode,
     fetchDrugsNames,
-    checkPromo
+    checkPromo,
+    checkEmail
 }

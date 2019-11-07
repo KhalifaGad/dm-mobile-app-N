@@ -3,7 +3,7 @@
 		<StackLayout visibility="{{firstStep}}">
 			<Label text="Are you invited by another pharmacist?" horizontalAlignment="center" class="modal-header" textWrap="true" />
 			<StackLayout class="yes-no-btns" orientation="horizontal" horizontalAlignment="center">
-				<Button text="No" tap="" />
+				<Button text="No" tap="submit" />
 				<Button text="Yes" tap="yes" />
 			</StackLayout>
 		</StackLayout>

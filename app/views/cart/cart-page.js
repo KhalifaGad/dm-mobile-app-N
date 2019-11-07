@@ -108,8 +108,8 @@ async function confirmOrders() {
                 let preparedOrders = await prepareOrders()
                 let remainedItems = await orderItems(preparedOrders, usedWalletRatio)
                 let invitationCode = appSettings.getString("invitationCode")
-                if(invitationCode != undefined) {
-                    let isAdded = addPromo(invitationCode)
+                if(invitationCode !== undefined) {
+                    let isAdded = await addPromo(invitationCode)
                     if(isAdded){
                         makeToast('You have unlocked your discount')
                         appSettings.remove('invitationCode')

@@ -1,6 +1,6 @@
 .side-drawer{
     background-color: #fff;
-    padding-top: 55vh;
+    padding-top: 25;
 }
 .side-drawer .close-btn {
     background-image: url('res://close');
@@ -12,7 +12,7 @@
 }
 .side-drawer Button{
     margin: 0;
-    height: 70vh;
+    height: 60vh;
     padding: 0;
     background-color: #fff;
     border-width: 0;
@@ -26,5 +26,5 @@
     margin-right: 10vw;
 }
 .side-drawer .top-itme{
-    margin-top: 0vh;
+    margin-top: 0;
 }

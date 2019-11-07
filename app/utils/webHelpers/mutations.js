@@ -124,12 +124,12 @@ async function updatePharmacy(fName, lName, pharmacyName,
     return resPharmacyName
 }
 
-async function addPromo(id, code) {
+async function addPromo(code) {
     let isAdded = false
     await apolloClient
         .mutate({
             mutation: gql `mutation {
-            addPharmacyPromo(oldPharmacyCode: "${code}")
+            addPharmacyPromo(oldPharmacyCode: "${ code }")
         }`
         })
         .then(res => {
