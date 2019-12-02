@@ -3,6 +3,10 @@ import * as fileSystemModule from 'tns-core-modules/file-system'
 import {
     makeToast
 } from '~/utils/makeToast'
+import {
+    getAd
+} from '~/utils/webHelpers/queries'
+const Image = require("tns-core-modules/ui/image").Image;
 
 let page, drug
 
@@ -16,25 +20,30 @@ function onNavigatingTo(args) {
     page.bindingContext = {
         ...bindings
     }
+    adHelper()
 
-    /* new Promise(function (resolve, reject) {
-        resolve(getRandomDrugs())
+}
 
-    }).then(function (drugsArr) {
-
-        return new Promise((resolve, reject) => {
-            resolve(refactorWtihSellers(drugsArr))
-        });
-
-    }).then(function (drugsArr) {
-        page.bindingContext.viewModel.items.push([...drugsArr])
-
-        page.bindingContext.viewModel.notFetched = false
-        page.bindingContext.viewModel.itemsViewVisibility = 'visible'
-        page.bindingContext.viewModel.activityIndicatorVis = 'collapse'
-    }) */
-
-    /* initMenuAnimation(page) */
+function adHelper(){
+    new Promise((resolve, reject)=> {
+        resolve(getAd("DRUG"))
+    }).then((url)=> {
+        if(url){
+            let adImage = new Image()
+            adImage.src = 'http://test.drug1market.com:3000'+ url
+            adImage.className = "ad-img"
+            adImage.stretch = "aspectFit"
+            adImage.loadMode = "async"
+            console.log(url)
+            page.bindingContext.viewModel.adExist =  "collapsed"
+            let adContainer = page.getViewById("adContainer")
+            adContainer.addChild(adImage)
+            
+        }
+    }).catch((err)=> {
+        console.log("ERORRRRRRR:")
+        console.log(err)
+    })
 }
 
 function showCartOptions(args) {
@@ -47,7 +56,7 @@ function showCartOptions(args) {
         },
         closeCallback: (quantity = 0) => {
             if (quantity === 0) return
-            add2Cart(quantity)
+            add2Cart(parseInt(quantity))
         },
         fullscreen: false
     }

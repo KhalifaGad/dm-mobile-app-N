@@ -29,40 +29,9 @@
             </FlexboxLayout>
         </StackLayout>
         <StackLayout id="items-container" top="230" left="0" orientation="vertical" class="home-items-stklayout">
-            <StackLayout visibility="{{ viewModel.adViewVisbility }}" class="items-stacklayout" > 
-                    <Label text="advertisement area" horizontalAlignment="center" verticalAlignment="middle" />
+            <StackLayout id="adContainer" visibility="{{ viewModel.adViewVisbility }}" class="items-stacklayout" > 
+                    <Label text="advertisement area" visibility="{{viewModel.adExist}}" horizontalAlignment="center" verticalAlignment="middle" />
             </StackLayout>
-            <!-- <ActivityIndicator 
-                horizontalAlignment="center"
-                marginTop="139"
-                visibility="{{viewModel.activityIndicatorVis}}"
-                id="myIndicator"
-                busy="{{ viewModel.notFetched }}"
-                backgroundColor="transparent"
-                color="#FF3838"
-                width="100"
-                height="100" />
-            <ScrollView class="home-items-scrollView" id="itemsScrollView" scrollBarIndicatorVisible="false">
-                <StackLayout class="items-stacklayout" visibility="{{ viewModel.itemsViewVisibility }}" id="itemsStackLayout">
-                    <ListView id="itemsListView" class="items-listView" items="{{ viewModel.items }}" style="" itemTap="onItemTap">
-                        <ListView.itemTemplate>
-                            <StackLayout orientation="horizontal" class="list-item" val="{{ $value }}">
-                                <StackLayout orientation="horizontal" class="drug-info-wrapper">
-                                    <StackLayout orientation="vertical" horizontalAlignment="right" verticalAlignment="middle" class="drug-name-price">
-                                        <Label text="{{ $value.name }}" horizontalAlignment="left" class="drug-name" textWrap="true" />
-                                        <Label text="{{'Price per pack ' + $value.price + 'EGP' }}" horizontalAlignment="left" textWrap="true" />
-                                    </StackLayout>
-                                    <StackLayout class="discount-box" orientation="vertical" horizontalAlignment="right">
-                                        <Label text="{{ '-' + $value.discount + '%' }}" horizontalAlignment="center" />
-                                    </StackLayout>
-                                </StackLayout>
-                                <Button text="" tap="toDrug" class="to-drug-btn" />
-                            </StackLayout>
-                        </ListView.itemTemplate>
-                    </ListView>
-                </StackLayout>
-            </ScrollView> -->
         </StackLayout>
-        <!-- <bottomNav:BottomNav-component top="579" left="0" /> -->
     </AbsoluteLayout>
 </Page>

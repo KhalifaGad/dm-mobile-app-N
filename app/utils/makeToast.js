@@ -1,7 +1,7 @@
 import Toast from 'nativescript-toast'
 
 function makeToast(txt){
-    Toast.makeText(txt).show()
+    Toast.makeText(txt, "long").show()
 }
 
 const NETWORK_ERROR_WARNING = 

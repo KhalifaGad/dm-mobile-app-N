@@ -3,10 +3,15 @@ const Animation = require("tns-core-modules/ui/animation").Animation
 import {
     screen
 } from "platform"
+import { getAd } from '~/utils/webHelpers/queries'
+const Image = require("tns-core-modules/ui/image").Image;
 
-function onNavigatedTo(args) {
-    const page = args.object.page
+let page
 
+async function onNavigatedTo(args) {
+    page = args.object.page
+    page.bindingContext.adExist = "visible"
+    adHelper()
     const logoWrapper = page.getViewById('logoWrapper')
     const higherLogoPart = page.getViewById('higherLogoPart')
     const lowerLogoPart = page.getViewById('lowerLogoPart')
@@ -21,6 +26,29 @@ function onNavigatedTo(args) {
         const logo = page.getViewById('logo')
         logo.marginLeft = (screenWidthDPI / 2) - (logo.width / 2)
     }
+}
+
+async function adHelper(){
+    //main-container
+    new Promise((resolve, reject)=> {
+        resolve(getAd("MAIN"))
+    }).then((url)=> {
+        if(url){
+            let adImage = new Image()
+            adImage.src = 'http://test.drug1market.com:3000'+ url
+            adImage.className = "ad-img"
+            adImage.stretch = "aspectFit"
+            adImage.loadMode = "async"
+            console.log(url)
+            page.bindingContext.set("adExist", "collapsed")
+            let mainContainer = page.getViewById("main-container")
+            mainContainer.addChild(adImage)
+            
+        }
+    }).catch((err)=> {
+        console.log("ERORRRRRRR:")
+        console.log(err)
+    })
 }
 
 function logoAnimation(logoWrapper, higherLogoPart, lowerLogoPart) {

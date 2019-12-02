@@ -342,6 +342,28 @@ async function getPharmacyCode() {
     return code
 }
 
+async function getPharmacyRegisToken() {
+    let regisToken
+    await apolloClient.query({
+            query: gql `query{
+        pharmacy{
+            registerationToken
+        }
+    }`
+        })
+        .then(res => {
+            regisToken = res.data.pharmacy.registerationToken
+        })
+        .catch(error => {
+            if (error.networkError) {
+                makeToast(NETWORK_ERROR_WARNING)
+            } else {
+                console.error(error)
+            }
+        })
+    return regisToken
+}
+
 async function getPharmacyOrdersTotals() {
     let ordersTotals
     await apolloClient.query({
@@ -427,6 +449,48 @@ async function checkEmail(email) {
     return isExisted
 }
 
+async function getAd(page) {
+    let url
+    await apolloClient.query({
+        query: gql ` query($page: Pages!){
+            ads(page: $page){
+                url
+            }
+        }`,
+        fetchPolicy: 'no-cache',
+        variables: {
+            page
+        }
+    }).then((res) => {
+        url = res.data.ads.url
+    }).catch((err) => {
+        if (err.networkError) {
+            makeToast(NETWORK_ERROR_WARNING)
+        } else {
+            console.log(err)
+        }
+    })
+    return url
+}
+
+async function isBlackListed() {
+    let isBlackListed
+    await apolloClient.query({
+        query: gql ` query{
+            isBlackListed
+        }`
+    }).then((res) => {
+        isBlackListed = res.data.isBlackListed
+    }).catch((err) => {
+        if (err.networkError) {
+            makeToast(NETWORK_ERROR_WARNING)
+        } else {
+            console.log(err)
+        }
+    })
+    return isBlackListed
+}
+
 export {
     getRandomDrugs,
     searchDrugs,
@@ -443,5 +507,8 @@ export {
     getPharmacyCode,
     fetchDrugsNames,
     checkPromo,
-    checkEmail
+    checkEmail,
+    getPharmacyRegisToken,
+    getAd,
+    isBlackListed
 }

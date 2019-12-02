@@ -7,8 +7,10 @@
             </AbsoluteLayout>
         </StackLayout>
         <StackLayout id="main-container" class="main-container mc-h800">
-            <Label horizontalAlignment="center" text="You may ask 800" class="first-label" textWrap="true" />
-            <Label horizontalAlignment="center" text="here!" class="second-label" textWrap="true" />
+            <!-- <Image src="{{ 'http://test.drug1market.com:3000' + adUrl}}" loadMode="async" useCache="true" stretch="aspectFill" visibility="{{adExist? 'visible' : 'collapsed'}}" class="ad-img" /> -->
+            
+            <Label horizontalAlignment="center" text="You may ask 800" visibility="{{adExist}}" class="first-label" textWrap="true" />
+            <Label horizontalAlignment="center" text="here!" visibility="{{adExist}}" class="second-label" textWrap="true" />
         </StackLayout>
         <Button id="skipBtn" text="skip" tap="skipAd" top="715" left="0" class="skip-btn sb-h800" />
 

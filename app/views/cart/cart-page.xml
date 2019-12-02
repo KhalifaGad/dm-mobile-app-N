@@ -23,7 +23,7 @@
                     <Label text="{{viewModel.currencyString}}" textWrap="true" />
                 </FlexboxLayout>
             </StackLayout>
-            <Button text="{{viewModel.checkoutString}}" tap="" horizontalAlignment="right" class="checkout-btn" tap="confirmOrders" />
+            <Button text="{{viewModel.checkoutString}}" horizontalAlignment="right" class="checkout-btn" tap="confirmOrders" />
         </FlexboxLayout>
         <StackLayout id="items-container" top="200" left="0" orientation="vertical" class="home-items-stklayout">
             <ActivityIndicator horizontalAlignment="center" marginTop="139" visibility="{{viewModel.activityIndicatorVis}}" id="myIndicator" busy="{{ viewModel.notFetched }}" backgroundColor="transparent" color="#FF3838" width="100" height="100" />

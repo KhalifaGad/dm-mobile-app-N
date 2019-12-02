@@ -2,6 +2,34 @@ const observableModule = require("tns-core-modules/data/observable")
 const application = require("tns-core-modules/application")
 import ApolloClient from 'apollo-boost'
 import * as appSettings from 'application-settings'
+import { getPharmacyRegisToken } from './utils/webHelpers/queries';
+import { addRegisToken } from './utils/webHelpers/mutations';
+var firebase = require("nativescript-plugin-firebase");
+
+firebase.init({
+    async onPushTokenReceivedCallback(registerationToken){
+        let existedRegisToken = await getPharmacyRegisToken()
+        if(existedRegisToken !== registerationToken){
+            let isAdded = await addRegisToken(registerationToken)
+        }
+        
+    },
+    showNotificationsWhenInForeground: true,
+    showNotifications: true,
+    onMessageReceivedCallback: ()=> {
+        
+        
+    }
+    // Optionally pass in properties for database, authentication and cloud messaging,
+    // see their respective docs.
+}).then(
+    function (res) {
+        console.log("firebase.init done");
+    },
+    function (error) {
+        console.log("firebase.init error: " + error);
+    }
+);
 
 const BASE_URI = 'http://test.drug1market.com/'
 
@@ -33,9 +61,9 @@ let settingsStates = observableModule.fromObject({
         hidden: false
     })
 
-    application.android.on(application.AndroidApplication.activityBackPressedEvent, (args) => {
-        actionBarStatus.hidden = false
-    })
+application.android.on(application.AndroidApplication.activityBackPressedEvent, (args) => {
+    actionBarStatus.hidden = false
+})
 
 export {
     settingsStates,

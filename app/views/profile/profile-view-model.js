@@ -20,6 +20,7 @@ function ProfileViewModel() {
         currencyString: isArabic? APP_STRINGS.currency.arabic : APP_STRINGS.currency.english,
         walletString:  isArabic? APP_STRINGS.wallet.arabic : APP_STRINGS.wallet.english,
         flexboxDirection: isArabic? 'row-reverse' : 'row',
+        adExist: 'visible'
     })
     return viewModel
 }

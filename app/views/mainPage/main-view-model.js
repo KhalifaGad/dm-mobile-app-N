@@ -8,6 +8,7 @@ function mainViewModel() {
     const viewModel = Observable.fromObject({
         searchTxt: '',
         notFetched: true,
+        adExist: 'visible',
         forMedicinLblVisbility: isArabic? 'collapse' : 'visible',
         adViewVisbility: 'visible',
         itemsViewVisiblity: 'collapse',

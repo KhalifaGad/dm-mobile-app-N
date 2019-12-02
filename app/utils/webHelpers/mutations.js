@@ -6,6 +6,7 @@ import {
     makeToast,
     NETWORK_ERROR_WARNING
 } from '~/utils/makeToast'
+import * as appSettings from "tns-core-modules/application-settings"
 
 async function addPharmacy(signupInfo, wallet = 0) {
     let returnedData
@@ -142,7 +143,31 @@ async function addPromo(code) {
             }
             return error
         })
-    console.log("##############" + isAdded)
+
+    return isAdded
+}
+
+async function addRegisToken(regisToken) {
+    let isAdded = false
+    await apolloClient
+        .mutate({
+            mutation: gql `mutation {
+                addRegisToken(regisToken: "${regisToken}"){
+                    registerationToken
+                }
+        }`
+        })
+        .then(res => {
+            isAdded = res.data ? true : false
+        })
+        .catch(error => {
+            console.log(error)
+            if (error.networkError) {
+                makeToast(NETWORK_ERROR_WARNING)
+            }
+            return error
+        })
+
     return isAdded
 }
 
@@ -156,14 +181,18 @@ async function issueOrder(order) {
     } = order
 
     let isOrderPlaced = false
+    let isCash = appSettings.getBoolean('isCash')
+    let paymentMethod = isCash ? "CASH" : "DEFERRED"
     await apolloClient.mutate({
         mutation: gql `mutation ($to: ID!, $total: Float!,
-            $drugList: [OrderDrugsListInput!]!, $walletDiscount: Float!) {
+            $drugList: [OrderDrugsListInput!]!, $walletDiscount: Float!,
+            $payment: PaymentMethod!) {
             makeOrder(
                 to: $to,
                 total: $total,
                 drugList: $drugList,
-                walletDiscount: $walletDiscount
+                walletDiscount: $walletDiscount,
+                payment: $payment
             ){
                 id
             }
@@ -172,12 +201,16 @@ async function issueOrder(order) {
             to: to,
             total: total,
             drugList: drugList,
-            walletDiscount: walletDiscount
+            walletDiscount: walletDiscount,
+            payment: paymentMethod
         }
     }).then((res) => {
         isOrderPlaced = true
-        decreaseWallet(walletDiscount)
+        if (walletDiscount > 0) {
+            decreaseWallet(walletDiscount)
+        }
     }).catch((error) => {
+        console.log(JSON.stringify(error))
         if (error.networkError) {
             makeToast(NETWORK_ERROR_WARNING)
         }
@@ -230,5 +263,6 @@ export {
     updatePharmacy,
     addPromo,
     issueOrder,
-    resetPassword
+    resetPassword,
+    addRegisToken
 }

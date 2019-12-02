@@ -14,8 +14,11 @@ import {
 } from '~/utils/refactorDrugsArray'
 import {
     searchDrugs,
-    fetchDrugsNames
+    fetchDrugsNames,
+    getAd,
+    isBlackListed
 } from '~/utils/webHelpers/queries'
+
 import {
     ObservableArray
 } from 'tns-core-modules/data/observable-array/observable-array'
@@ -26,16 +29,17 @@ import {
     makeToast
 } from '~/utils/makeToast'
 
+const Image = require("tns-core-modules/ui/image").Image
+
 let page
 async function onNavigatingTo(args) {
-
+    
     const token = appSettings.getString("token")
     if (!token) {
         toLogin(args)
         return
     }
     page = args.object
-    console.log('test -1')
     let bindings = {
         viewModel: mainViewModel()
     }
@@ -45,10 +49,40 @@ async function onNavigatingTo(args) {
     page.bindingContext = {
         ...bindings
     }
-
+    page.bindingContext.adExist = 'visible'
+    
+    checkBlackList()
+    adHelper()
     getDrugsNames()
     initSearchingFunctionality()
     initMenuAnimation(page)
+}
+
+async function checkBlackList(){
+    let res = await isBlackListed()
+    appSettings.setBoolean('isBlackListed', res)
+}
+
+async function adHelper(){
+    new Promise((resolve, reject)=> {
+        resolve(getAd("HOME"))
+    }).then((url)=> {
+        if(url){
+            let adImage = new Image()
+            adImage.src = 'http://test.drug1market.com:3000'+ url
+            adImage.className = "ad-img"
+            adImage.stretch = "aspectFit"
+            adImage.loadMode = "async"
+            console.log(url)
+            page.bindingContext.viewModel.adExist =  "collapsed"
+            let adContainer = page.getViewById("adContainer")
+            adContainer.addChild(adImage)
+            
+        }
+    }).catch((err)=> {
+        console.log("ERORRRRRRR:")
+        console.log(err)
+    })
 }
 
 function initSearchingFunctionality() {

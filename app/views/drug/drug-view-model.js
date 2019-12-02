@@ -14,7 +14,8 @@ function DrugViewModel() {
         cashStr: isArabic? APP_STRINGS.cash.arabic : APP_STRINGS.cash.english,
         deferredStr: isArabic? APP_STRINGS.deffered.arabic : APP_STRINGS.deffered.english,
         flexDirection: isArabic? 'row-reverse' : 'row',
-        justifyContent: isArabic? 'flex-end' : 'flex-start'
+        justifyContent: isArabic? 'flex-end' : 'flex-start',
+        adExist: 'visible'
     })
     return viewModel;
 }

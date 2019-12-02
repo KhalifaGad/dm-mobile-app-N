@@ -29,8 +29,8 @@
             </StackLayout>
         </StackLayout>
         <StackLayout id="items-container" top="280" left="0" orientation="vertical" class="home-items-stklayout">
-            <StackLayout class="items-stacklayout">
-                <Label text="advertisement area" horizontalAlignment="center" verticalAlignment="middle" />
+            <StackLayout id="adContainer" class="items-stacklayout">
+                <Label text="advertisement area" visibility="{{adExist}}" horizontalAlignment="center" verticalAlignment="middle" />
             </StackLayout>
         </StackLayout>
     </AbsoluteLayout>

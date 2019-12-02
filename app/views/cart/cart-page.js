@@ -85,6 +85,12 @@ async function getOrders() {
 }
 
 async function confirmOrders() {
+    let isBlackListed = appSettings.getBoolean('isBlackListed')
+    if(isBlackListed){
+        makeToast("oh oh, you are black listed")
+        return
+    }
+
     let grandTotal = page.bindingContext.viewModel.grandTotal
     let usedWalletRatio = 0
     if (wallet > 0) {
